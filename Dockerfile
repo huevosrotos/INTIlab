@@ -28,6 +28,8 @@ RUN bun run db:generate
 RUN bun run build
 
 # ---------- Stage 3: Runtime ligero ----------
+# node:20-slim ya incluye libssl3 (dependencia de Node.js), que es lo que
+# Prisma necesita. No hace falta apt-get install openssl.
 FROM node:20-slim AS runner
 WORKDIR /app
 
@@ -36,11 +38,6 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 ENV DATABASE_URL=file:/app/db/custom.db
-
-# Dependencias del sistema para Prisma (SQLite + openssl)
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends openssl ca-certificates && \
-    rm -rf /var/lib/apt/lists/*
 
 # Usuario no-root
 RUN addgroup --system --gid 1001 nodejs && \

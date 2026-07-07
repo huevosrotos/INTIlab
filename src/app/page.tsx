@@ -1,31 +1,23 @@
-'use client'
+"use client"
+
+import { useAuth } from "@/components/app-provider"
+import { AppShell } from "@/components/app-shell"
+import { LoginScreen } from "@/components/sections/login"
 
 export default function Home() {
-  return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      minHeight: '100vh',
-      gap: '2rem',
-      padding: '1rem'
-    }}>
-      <div style={{
-        position: 'relative',
-        width: '6rem',
-        height: '6rem'
-      }}>
-        <img
-          src="/logo.svg"
-          alt="Z.ai Logo"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain'
-          }}
-        />
+  const { user, loading } = useAuth()
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+          <p className="text-sm text-muted-foreground">Cargando DrogLab…</p>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
+
+  if (!user) return <LoginScreen />
+  return <AppShell />
 }

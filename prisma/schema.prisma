@@ -1,8 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// DrogLab - Sistema de gestión de droguero de laboratorio químico
 
 generator client {
   provider = "prisma-client-js"
@@ -14,19 +10,120 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  password     String
+  role         String   @default("OPERARIO") // ADMIN | ENCARGADO | OPERARIO | AUDITOR
+  active       Boolean  @default(true)
+  warehouseId  String?
+  warehouse    Warehouse? @relation("WarehouseMembers", fields: [warehouseId], references: [id])
+  responsibleOf Warehouse? @relation("WarehouseResponsible")
+  movements    Movement[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
-model Post {
+model Warehouse {
+  id           String   @id @default(cuid())
+  name         String
+  code         String   @unique
+  type         String   // PRINCIPAL | SECUNDARIO
+  location     String?
+  description  String?
+  active       Boolean  @default(true)
+  responsibleId String? @unique
+  responsible  User?    @relation("WarehouseResponsible", fields: [responsibleId], references: [id])
+  members      User[]   @relation("WarehouseMembers")
+  lots         Lot[]
+  movementsFrom Movement[] @relation("MovementFrom")
+  movementsTo   Movement[] @relation("MovementTo")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Drug {
+  id                 String   @id @default(cuid())
+  chemicalName       String
+  commercialName     String?
+  cas                String?  @unique
+  formula            String?
+  molecularWeight    Float?
+  purity             String?
+  physicalState      String?  // SOLIDO | LIQUIDO | GAS | OTRO
+  hazardClass        String?
+  pictograms         String   // JSON array string of GHS pictogram keys
+  hStatements        String?  // JSON array string
+  defaultWarehouseId String?
+  defaultLocation    String?  // estantería/estante/caja predeterminada
+  minStock           Float?   @default(0)
+  unit               String?  // g, mL, kg, L, u
+  sdsUrl             String?
+  notes              String?
+  active             Boolean  @default(true)
+  lots               Lot[]
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Lot {
+  id              String   @id @default(cuid())
+  drugId          String
+  drug            Drug     @relation(fields: [drugId], references: [id])
+  lotNumber       String
+  qrCode          String   @unique
+  expiryDate      DateTime?
+  supplier        String?
+  purchaseDate    DateTime?
+  initialQuantity Float
+  currentQuantity Float
+  unit            String
+  warehouseId     String?
+  warehouse       Warehouse? @relation(fields: [warehouseId], references: [id])
+  location        String?
+  containerPhoto  String?
+  labelPhoto      String?
+  status          String   @default("ACTIVO") // ACTIVO | AGOTADO | VENCIDO | DADO_DE_BAJA
+  movements       Movement[]
+  alerts          Alert[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([drugId])
+  @@index([warehouseId])
+}
+
+model Movement {
+  id              String   @id @default(cuid())
+  lotId           String
+  lot             Lot      @relation(fields: [lotId], references: [id])
+  type            String   // INGRESO | TRANSFERENCIA | CONSUMO | DEVOLUCION | BAJA | AJUSTE
+  fromWarehouseId String?
+  fromWarehouse   Warehouse? @relation("MovementFrom", fields: [fromWarehouseId], references: [id])
+  toWarehouseId   String?
+  toWarehouse     Warehouse? @relation("MovementTo", fields: [toWarehouseId], references: [id])
+  quantity        Float
+  balanceAfter    Float?
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  reason          String?
+  createdAt       DateTime @default(now())
+
+  @@index([lotId])
+  @@index([createdAt])
+}
+
+model Alert {
   id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
+  lotId     String
+  lot       Lot      @relation(fields: [lotId], references: [id])
+  type      String   // VENCIMIENTO | STOCK_BAJO | STOCK_AGOTADO
+  severity  String   // INFO | WARNING | CRITICAL
+  message   String
+  resolved  Boolean  @default(false)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  resolvedAt DateTime?
+
+  @@index([lotId])
+  @@index([resolved])
 }

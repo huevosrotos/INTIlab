@@ -1,0 +1,28 @@
+# Dependencias y artefactos que NO deben ir al build de Docker
+node_modules
+.next
+.git
+.gitignore
+
+# Logs
+*.log
+dev.log
+server.log
+
+# Datos locales (se montan como volúmenes en producción)
+db/*
+uploads/*
+!uploads/.gitkeep
+
+# Datos del sandbox / IDE
+agent-ctx
+.claude
+worklog.md
+TODO.md
+
+# Otros
+.DS_Store
+*.md
+!prisma/README.md
+.vscode
+.idea

@@ -6,16 +6,17 @@
 # ============================================================
 
 # ---------- Stage 1: Instalar dependencias ----------
-FROM oven/bun:1.1-debian AS deps
+# Usar la misma version de Bun que en desarrollo para que reconozca bun.lock
+FROM oven/bun:1.3-debian AS deps
 WORKDIR /app
 
 COPY package.json bun.lock* ./
 COPY prisma ./prisma
 
-RUN bun install --frozen-lockfile || bun install
+RUN bun install --frozen-lockfile
 
 # ---------- Stage 2: Build de Next.js ----------
-FROM oven/bun:1.1-debian AS builder
+FROM oven/bun:1.3-debian AS builder
 WORKDIR /app
 
 ENV NEXT_TELEMETRY_DISABLED=1

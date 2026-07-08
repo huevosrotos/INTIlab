@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react"
 import { useQuery } from "@tanstack/react-query"
 import QRCode from "qrcode"
+import { buildQrUrl } from "@/lib/qr-utils"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -126,12 +127,14 @@ export function Labels() {
     enabled: !!selectedLotId,
   })
 
-  // Generar QR
+  // Generar QR — codifica la URL completa para que al escanear con el
+  // teléfono abra la app automáticamente y muestre la info del lote.
   useEffect(() => {
     const code = labelData?.lot.qrCode
     if (!code) return
     let active = true
-    QRCode.toDataURL(code, {
+    const qrContent = buildQrUrl(code)
+    QRCode.toDataURL(qrContent, {
       margin: 1,
       width: 600,
       errorCorrectionLevel: "M",

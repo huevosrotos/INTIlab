@@ -24,6 +24,10 @@ interface AppState {
   setInventoryWarehouseFilter: (w: string | "ALL") => void
   mobileNavOpen: boolean
   setMobileNavOpen: (o: boolean) => void
+  // QR pendiente: cuando se escanea desde fuera (URL ?qr=DL-XXXX),
+  // se guarda acá para que el Scanner lo procese al montar.
+  pendingQr: string | null
+  setPendingQr: (qr: string | null) => void
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -38,4 +42,6 @@ export const useAppStore = create<AppState>((set) => ({
     set({ inventoryWarehouseFilter }),
   mobileNavOpen: false,
   setMobileNavOpen: (mobileNavOpen) => set({ mobileNavOpen }),
+  pendingQr: null,
+  setPendingQr: (pendingQr) => set({ pendingQr }),
 }))

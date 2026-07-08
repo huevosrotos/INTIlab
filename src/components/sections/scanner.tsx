@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import { Html5Qrcode } from "html5-qrcode"
+import { extractQrCode } from "@/lib/qr-utils"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -109,7 +110,7 @@ const toneClass: Record<string, string> = {
 }
 
 export function Scanner() {
-  const { setSection, setActiveLotId } = useAppStore()
+  const { setSection, setActiveLotId, pendingQr, setPendingQr } = useAppStore()
   const { user } = useAuth()
   const scannerRef = useRef<Html5Qrcode | null>(null)
   const processingRef = useRef(false)
@@ -153,7 +154,8 @@ export function Scanner() {
       await stopCamera()
       setSearching(true)
       try {
-        const { lot } = await fetchLotByQr(qr)
+        const code = extractQrCode(qr)
+      const { lot } = await fetchLotByQr(code)
         setFoundLot(lot)
         toast.success("Lote encontrado")
       } catch (e) {
@@ -227,8 +229,29 @@ export function Scanner() {
     }
   }, [])
 
+  // Procesar QR pendiente (cuando se llega desde un ?qr= en la URL)
+  useEffect(() => {
+    if (pendingQr) {
+      const code = extractQrCode(pendingQr)
+      setPendingQr(null)
+      if (code) {
+        setSearching(true)
+        fetchLotByQr(code)
+          .then(({ lot }) => {
+            setFoundLot(lot)
+            toast.success("Lote encontrado")
+          })
+          .catch((e) => {
+            const msg = e instanceof Error ? e.message : "Lote no encontrado"
+            toast.error(msg)
+          })
+          .finally(() => setSearching(false))
+      }
+    }
+  }, [pendingQr, setPendingQr])
+
   const handleManualSearch = async () => {
-    const code = manualQr.trim()
+    const code = extractQrCode(manualQr)
     if (!code) return
     setSearching(true)
     setFoundLot(null)

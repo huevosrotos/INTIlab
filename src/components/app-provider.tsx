@@ -3,6 +3,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ThemeProvider } from "next-themes"
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react"
+import { useAppStore } from "@/store/app-store"
 
 export type SessionUser = {
   id: string
@@ -79,6 +80,22 @@ function AuthProvider({ children }: { children: ReactNode }) {
     await refresh()
     return { ok: true }
   }
+
+  // Detectar ?qr= en la URL al cargar (para cuando se escanea el QR desde
+  // fuera de la app con la cámara del teléfono). Si existe, guardar el código
+  // en el store para que el Scanner lo procese automáticamente.
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const params = new URLSearchParams(window.location.search)
+    const qr = params.get("qr")
+    if (qr) {
+      useAppStore.getState().setPendingQr(qr)
+      useAppStore.getState().setSection("scanner")
+      // Limpiar la URL para que no quede el ?qr= visible
+      const newUrl = window.location.pathname
+      window.history.replaceState({}, "", newUrl)
+    }
+  }, [])
 
   const logout = async () => {
     await fetch("/api/auth/logout", { method: "POST" })

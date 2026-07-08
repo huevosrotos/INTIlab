@@ -11,10 +11,10 @@ echo ""
 
 # Aplicar schema a la base de datos (crea las tablas si no existen)
 echo ">> Aplicando schema de Prisma…"
-npx prisma db push --skip-generate 2>&1 || {
+bunx prisma db push --skip-generate 2>&1 || {
   echo ">> Aviso: no se pudo aplicar el schema (probablemente ya estaba aplicado)"
 }
 
 echo ""
 echo ">> Iniciando servidor Next.js en puerto $PORT…"
-exec node server.js
+exec bun server.js

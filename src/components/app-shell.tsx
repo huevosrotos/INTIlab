@@ -49,7 +49,6 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { id: "dashboard", label: "Panel", icon: LayoutDashboard },
-  { id: "catalog", label: "Catálogo", icon: FlaskConical },
   { id: "inventory", label: "Inventario", icon: Boxes },
   { id: "scanner", label: "Escanear QR", icon: ScanLine },
   { id: "labels", label: "Etiquetas QR", icon: QrCode },
@@ -190,7 +189,7 @@ export function AppShell() {
         {/* Main content */}
         <main className="flex-1 overflow-x-hidden pb-20 lg:pb-0">
           <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            {readOnly && section !== "dashboard" && section !== "catalog" && section !== "inventory" && section !== "movements" && section !== "reports" && section !== "warehouses" ? (
+            {readOnly && section !== "dashboard" && section !== "inventory" && section !== "movements" && section !== "reports" && section !== "warehouses" ? (
               <ReadOnlyNotice />
             ) : (
               renderSection(section)
@@ -225,9 +224,9 @@ export function AppShell() {
 
 const MOBILE_NAV: NavItem[] = [
   { id: "dashboard", label: "Panel", icon: LayoutDashboard },
-  { id: "catalog", label: "Drogas", icon: FlaskConical },
+  { id: "inventory", label: "Inventario", icon: Boxes },
   { id: "scanner", label: "Escanear", icon: ScanLine },
-  { id: "inventory", label: "Stock", icon: Boxes },
+  { id: "labels", label: "Etiquetas", icon: QrCode },
   { id: "reports", label: "Más", icon: FileBarChart },
 ]
 
@@ -235,8 +234,6 @@ function renderSection(section: Section) {
   switch (section) {
     case "dashboard":
       return <Dashboard />
-    case "catalog":
-      return <Catalog />
     case "inventory":
       return <Inventory />
     case "scanner":

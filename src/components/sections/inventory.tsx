@@ -28,6 +28,8 @@ import {
 import { MovementDialog, type MovementType } from "@/components/movement-dialog"
 import { Ghspictogram } from "@/components/ghs-pictograms"
 import { QrBadge } from "@/components/qr-badge"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { Catalog } from "@/components/sections/catalog"
 import { useAppStore } from "@/store/app-store"
 import { useAuth } from "@/components/app-provider"
 import { toast } from "sonner"
@@ -186,6 +188,31 @@ const toneClass: Record<string, string> = {
 }
 
 export function Inventory() {
+  const { activeLotId, selectedDrugId } = useAppStore()
+  // Si hay un lote o droga activa en detalle, mostrar directamente sin tabs
+  if (activeLotId || selectedDrugId) {
+    return <LotsList />
+  }
+
+  return (
+    <div className="space-y-4">
+      <Tabs defaultValue="lots">
+        <TabsList className="grid w-full grid-cols-2 sm:w-auto">
+          <TabsTrigger value="lots">Lotes</TabsTrigger>
+          <TabsTrigger value="catalog">Catálogo</TabsTrigger>
+        </TabsList>
+        <TabsContent value="lots" className="mt-4">
+          <LotsList />
+        </TabsContent>
+        <TabsContent value="catalog" className="mt-4">
+          <Catalog />
+        </TabsContent>
+      </Tabs>
+    </div>
+  )
+}
+
+export function LotsList() {
   const { user } = useAuth()
   const {
     inventoryWarehouseFilter,

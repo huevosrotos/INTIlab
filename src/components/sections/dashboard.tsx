@@ -72,7 +72,7 @@ export function Dashboard() {
   const c = data!.counts
 
   const cards = [
-    { label: "Drogas en catálogo", value: c.drugs, icon: FlaskConical, color: "text-teal-600 bg-teal-50 dark:bg-teal-950/40", section: "catalog" as const },
+    { label: "Drogas en catálogo", value: c.drugs, icon: FlaskConical, color: "text-teal-600 bg-teal-50 dark:bg-teal-950/40", section: "inventory" as const },
     { label: "Lotes activos", value: c.activeLots, icon: Boxes, color: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40", section: "inventory" as const, sub: `${c.lots} en total` },
     { label: "Depósitos", value: c.warehouses, icon: WarehouseIcon, color: "text-violet-600 bg-violet-50 dark:bg-violet-950/40", section: "warehouses" as const },
     { label: "Movimientos", value: c.movements, icon: ArrowLeftRight, color: "text-sky-600 bg-sky-50 dark:bg-sky-950/40", section: "movements" as const },

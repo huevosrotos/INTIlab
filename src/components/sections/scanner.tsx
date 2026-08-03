@@ -34,6 +34,7 @@ import { format } from "date-fns"
 import { es } from "date-fns/locale"
 import { cn } from "@/lib/utils"
 import { Ghspictogram } from "@/components/ghs-pictograms"
+import { QrBadge } from "@/components/qr-badge"
 import {
   MovementDialog,
   type MovementType,
@@ -479,31 +480,34 @@ function FoundLotCard({
       <Card className="overflow-hidden">
         <CardContent className="p-5 sm:p-6">
           <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0 flex-1">
-              <h2 className="truncate text-xl font-bold sm:text-2xl">
-                {lot.drug.chemicalName}
-              </h2>
-              {lot.drug.commercialName && (
-                <p className="text-sm text-muted-foreground">
-                  {lot.drug.commercialName}
-                </p>
-              )}
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                <Badge variant="outline" className="font-mono text-[10px]">
-                  Lote {lot.lotNumber}
-                </Badge>
-                <Badge variant="outline" className="font-mono text-[10px]">
-                  QR {lot.qrCode}
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className={cn(
-                    "text-[10px]",
-                    LOT_STATUS_COLORS[lot.status]
-                  )}
-                >
-                  {LOT_STATUS_LABELS[lot.status]}
-                </Badge>
+            <div className="flex min-w-0 flex-1 items-start gap-3">
+              <QrBadge code={lot.qrCode} size={72} />
+              <div className="min-w-0 flex-1">
+                <h2 className="truncate text-xl font-bold sm:text-2xl">
+                  {lot.drug.chemicalName}
+                </h2>
+                {lot.drug.commercialName && (
+                  <p className="text-sm text-muted-foreground">
+                    {lot.drug.commercialName}
+                  </p>
+                )}
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  <Badge variant="outline" className="font-mono text-[10px]">
+                    Lote {lot.lotNumber}
+                  </Badge>
+                  <Badge variant="outline" className="font-mono text-[10px]">
+                    QR {lot.qrCode}
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className={cn(
+                      "text-[10px]",
+                      LOT_STATUS_COLORS[lot.status]
+                    )}
+                  >
+                    {LOT_STATUS_LABELS[lot.status]}
+                  </Badge>
+                </div>
               </div>
             </div>
             <Button variant="ghost" size="sm" onClick={onReset}>

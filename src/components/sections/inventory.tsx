@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/select"
 import { MovementDialog, type MovementType } from "@/components/movement-dialog"
 import { Ghspictogram } from "@/components/ghs-pictograms"
+import { QrBadge } from "@/components/qr-badge"
 import { useAppStore } from "@/store/app-store"
 import { useAuth } from "@/components/app-provider"
 import { toast } from "sonner"
@@ -510,31 +511,33 @@ function LotDetail({
       <Card>
         <CardContent className="p-5 sm:p-6">
           <div className="flex flex-wrap items-start justify-between gap-4">
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold sm:text-2xl">
-                  {lot.drug.chemicalName}
-                </h1>
-                <Badge
-                  variant="outline"
-                  className={cn("text-[10px]", LOT_STATUS_COLORS[lot.status])}
-                >
-                  {LOT_STATUS_LABELS[lot.status]}
-                </Badge>
-              </div>
-              {lot.drug.commercialName && (
-                <p className="text-sm text-muted-foreground">
-                  {lot.drug.commercialName}
-                </p>
-              )}
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                <Badge variant="outline" className="font-mono text-[10px]">
-                  Lote {lot.lotNumber}
-                </Badge>
-                <Badge variant="outline" className="font-mono text-[10px]">
-                  QR {lot.qrCode}
-                </Badge>
-                {lot.drug.cas && (
+            <div className="flex min-w-0 flex-1 items-start gap-4">
+              <QrBadge code={lot.qrCode} size={80} />
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <h1 className="text-xl font-bold sm:text-2xl">
+                    {lot.drug.chemicalName}
+                  </h1>
+                  <Badge
+                    variant="outline"
+                    className={cn("text-[10px]", LOT_STATUS_COLORS[lot.status])}
+                  >
+                    {LOT_STATUS_LABELS[lot.status]}
+                  </Badge>
+                </div>
+                {lot.drug.commercialName && (
+                  <p className="text-sm text-muted-foreground">
+                    {lot.drug.commercialName}
+                  </p>
+                )}
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  <Badge variant="outline" className="font-mono text-[10px]">
+                    Lote {lot.lotNumber}
+                  </Badge>
+                  <Badge variant="outline" className="font-mono text-[10px]">
+                    QR {lot.qrCode}
+                  </Badge>
+                  {lot.drug.cas && (
                   <Badge variant="secondary" className="font-mono text-[10px]">
                     CAS {lot.drug.cas}
                   </Badge>
@@ -550,6 +553,7 @@ function LotDetail({
                       lot.drug.physicalState}
                   </Badge>
                 )}
+                </div>
               </div>
             </div>
           </div>

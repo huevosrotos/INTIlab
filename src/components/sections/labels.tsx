@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   Select,
   SelectContent,
@@ -129,11 +128,11 @@ export function Labels() {
 
   // Generar QR — codifica la URL completa para que al escanear con el
   // teléfono abra la app automáticamente y muestre la info del lote.
+  const qrCodeValue = labelData?.lot.qrCode
   useEffect(() => {
-    const code = labelData?.lot.qrCode
-    if (!code) return
+    if (!qrCodeValue) return
     let active = true
-    const qrContent = buildQrUrl(code)
+    const qrContent = buildQrUrl(qrCodeValue)
     QRCode.toDataURL(qrContent, {
       margin: 1,
       width: 600,
@@ -149,7 +148,7 @@ export function Labels() {
     return () => {
       active = false
     }
-  }, [labelData])
+  }, [qrCodeValue])
 
   const size = LABEL_SIZES.find((s) => s.id === sizeId) ?? LABEL_SIZES[2]
   const w = sizeId === "CUSTOM" ? customW : size.width
@@ -208,51 +207,49 @@ export function Labels() {
                   No se encontraron lotes
                 </p>
               ) : (
-                <ScrollArea className="max-h-72 rounded-lg border">
-                  <div className="divide-y">
-                    {lots.map((lot) => {
-                      const active = lot.id === selectedLotId
-                      return (
-                        <button
-                          key={lot.id}
-                          onClick={() => {
-                            setQrDataUrl("")
-                            setSelectedLotId(lot.id)
-                          }}
-                          className={cn(
-                            "flex w-full items-center gap-3 px-3 py-2.5 text-left transition-colors",
-                            active
-                              ? "bg-primary/10"
-                              : "hover:bg-accent"
-                          )}
-                        >
-                          <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-medium">
-                              {lot.drug.chemicalName}
-                            </p>
-                            <p className="truncate font-mono text-[11px] text-muted-foreground">
-                              {lot.lotNumber} · {lot.qrCode}
-                            </p>
-                          </div>
-                          <div className="shrink-0 text-right">
-                            <Badge
-                              variant="outline"
-                              className={cn(
-                                "text-[9px]",
-                                LOT_STATUS_COLORS[lot.status]
-                              )}
-                            >
-                              {LOT_STATUS_LABELS[lot.status]}
-                            </Badge>
-                            <p className="mt-0.5 text-[10px] text-muted-foreground">
-                              {lot.currentQuantity} {lot.unit}
-                            </p>
-                          </div>
-                        </button>
-                      )
-                    })}
-                  </div>
-                </ScrollArea>
+                <div className="max-h-72 overflow-y-auto rounded-lg border">
+                  {lots.map((lot) => {
+                    const active = lot.id === selectedLotId
+                    return (
+                      <button
+                        key={lot.id}
+                        onClick={() => {
+                          setQrDataUrl("")
+                          setSelectedLotId(lot.id)
+                        }}
+                        className={cn(
+                          "flex w-full items-center gap-3 border-b px-3 py-2.5 text-left transition-colors last:border-b-0",
+                          active
+                            ? "bg-primary/10"
+                            : "hover:bg-accent"
+                        )}
+                      >
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-sm font-medium">
+                            {lot.drug.chemicalName}
+                          </p>
+                          <p className="truncate font-mono text-[11px] text-muted-foreground">
+                            {lot.lotNumber} · {lot.qrCode}
+                          </p>
+                        </div>
+                        <div className="shrink-0 text-right">
+                          <Badge
+                            variant="outline"
+                            className={cn(
+                              "text-[9px]",
+                              LOT_STATUS_COLORS[lot.status]
+                            )}
+                          >
+                            {LOT_STATUS_LABELS[lot.status]}
+                          </Badge>
+                          <p className="mt-0.5 text-[10px] text-muted-foreground">
+                            {lot.currentQuantity} {lot.unit}
+                          </p>
+                        </div>
+                      </button>
+                    )
+                  })}
+                </div>
               )}
             </CardContent>
           </Card>

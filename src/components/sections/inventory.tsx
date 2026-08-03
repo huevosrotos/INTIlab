@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -51,6 +51,10 @@ import {
   Repeat,
   Ban,
   SlidersHorizontal,
+  ImageIcon,
+  ChevronDown,
+  RefreshCw,
+  Trash2,
 } from "lucide-react"
 import {
   LOT_STATUS_LABELS,
@@ -733,6 +737,10 @@ function ContainerPhotoSection({
   const qc = useQueryClient()
   const inputRef = useRef<HTMLInputElement>(null)
   const [uploading, setUploading] = useState(false)
+  const [cameraOpen, setCameraOpen] = useState(false)
+  const [stream, setStream] = useState<MediaStream | null>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const uploadMutation = useMutation({
     mutationFn: async (file: File) => {
@@ -763,6 +771,24 @@ function ContainerPhotoSection({
     onError: (e: Error) => toast.error(e.message),
   })
 
+  const removeMutation = useMutation({
+    mutationFn: async () => {
+      const putRes = await fetch(`/api/lots/${lot.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ containerPhoto: null }),
+      })
+      if (!putRes.ok) throw new Error("Error al eliminar la foto")
+      return putRes.json()
+    },
+    onSuccess: () => {
+      toast.success("Foto eliminada")
+      qc.invalidateQueries({ queryKey: ["lot", lot.id] })
+      qc.invalidateQueries({ queryKey: ["lots"] })
+    },
+    onError: (e: Error) => toast.error(e.message),
+  })
+
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
@@ -774,6 +800,83 @@ function ContainerPhotoSection({
       },
     })
   }
+
+  // --- Cámara: abrir y cerrar ---
+  const openCamera = async () => {
+    setCameraOpen(true)
+    try {
+      const s = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "environment" },
+        audio: false,
+      })
+      setStream(s)
+      // Esperar a que el video element esté disponible
+      setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.srcObject = s
+          videoRef.current.play().catch(() => {})
+        }
+      }, 100)
+    } catch (e) {
+      toast.error(
+        "No se pudo acceder a la cámara. Verifique los permisos del navegador."
+      )
+      setCameraOpen(false)
+    }
+  }
+
+  const closeCamera = () => {
+    if (stream) {
+      stream.getTracks().forEach((t) => t.stop())
+      setStream(null)
+    }
+    setCameraOpen(false)
+  }
+
+  // Capturar frame del video como imagen
+  const capturePhoto = () => {
+    const video = videoRef.current
+    const canvas = canvasRef.current
+    if (!video || !canvas) return
+
+    const w = video.videoWidth || 640
+    const h = video.videoHeight || 480
+    canvas.width = w
+    canvas.height = h
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+    ctx.drawImage(video, 0, 0, w, h)
+
+    canvas.toBlob(
+      (blob) => {
+        if (!blob) {
+          toast.error("No se pudo capturar la foto")
+          return
+        }
+        const file = new File([blob], `envase_${lot.lotNumber}.jpg`, {
+          type: "image/jpeg",
+        })
+        setUploading(true)
+        uploadMutation.mutate(file, {
+          onSettled: () => {
+            setUploading(false)
+            closeCamera()
+          },
+        })
+      },
+      "image/jpeg",
+      0.85
+    )
+  }
+
+  // Limpiar cámara al desmontar
+  useEffect(() => {
+    return () => {
+      if (stream) {
+        stream.getTracks().forEach((t) => t.stop())
+      }
+    }
+  }, [stream])
 
   return (
     <div>
@@ -807,28 +910,100 @@ function ContainerPhotoSection({
                 onChange={handleFile}
                 className="hidden"
               />
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => inputRef.current?.click()}
-                disabled={uploading}
-              >
-                {uploading ? (
-                  <>
-                    <Upload className="mr-1.5 h-4 w-4 animate-pulse" />
-                    Subiendo…
-                  </>
-                ) : (
-                  <>
-                    <Camera className="mr-1.5 h-4 w-4" />
-                    {lot.containerPhoto ? "Cambiar foto" : "Subir foto"}
-                  </>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => inputRef.current?.click()}
+                  disabled={uploading || cameraOpen}
+                >
+                  {uploading && !cameraOpen ? (
+                    <>
+                      <Upload className="mr-1.5 h-4 w-4 animate-pulse" />
+                      Subiendo…
+                    </>
+                  ) : (
+                    <>
+                      <ImageIcon className="mr-1.5 h-4 w-4" />
+                      Subir imagen
+                    </>
+                  )}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={openCamera}
+                  disabled={uploading || cameraOpen}
+                >
+                  <Camera className="mr-1.5 h-4 w-4" />
+                  Tomar foto
+                </Button>
+                {lot.containerPhoto && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => removeMutation.mutate()}
+                    disabled={removeMutation.isPending || uploading}
+                  >
+                    <Trash2 className="mr-1.5 h-4 w-4" />
+                    Eliminar
+                  </Button>
                 )}
-              </Button>
+              </div>
             </>
           )}
         </div>
       </div>
+
+      {/* Modal de cámara */}
+      {cameraOpen && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 p-4">
+          <div className="w-full max-w-2xl space-y-3">
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-medium text-white">
+                Captura del envase
+              </p>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={closeCamera}
+                className="text-white hover:bg-white/10"
+              >
+                Cancelar
+              </Button>
+            </div>
+            <div className="relative overflow-hidden rounded-lg bg-black">
+              <video
+                ref={videoRef}
+                autoPlay
+                playsInline
+                muted
+                className="h-auto max-h-[60vh] w-full object-contain"
+              />
+              <canvas ref={canvasRef} className="hidden" />
+            </div>
+            <div className="flex justify-center">
+              <Button
+                onClick={capturePhoto}
+                disabled={uploading || !stream}
+                className="min-w-[160px]"
+              >
+                {uploading ? (
+                  <>
+                    <RefreshCw className="mr-1.5 h-4 w-4 animate-spin" />
+                    Guardando…
+                  </>
+                ) : (
+                  <>
+                    <Camera className="mr-1.5 h-4 w-4" />
+                    Capturar foto
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

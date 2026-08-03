@@ -358,37 +358,35 @@ export async function POST(req: NextRequest) {
       supplier: string
       purchaseDaysAgo: number
       initial: number
-      current: number
       warehouseId: string
       location?: string
+      status: "ACTIVO" | "EN_USO" | "CONSUMIDO" | "VENCIDO"
     }> = [
-      { drugIdx: 0, lotNumber: "AC-2401", expiry: 365, supplier: "Cicarrelli", purchaseDaysAgo: 60, initial: 2500, current: 1850, warehouseId: depositoPrincipal.id, location: "Estante A-3" },
-      { drugIdx: 0, lotNumber: "AC-2308", expiry: -15, supplier: "Anedra", purchaseDaysAgo: 300, initial: 1000, current: 320, warehouseId: depositoPrincipal.id, location: "Estante A-3" },
-      { drugIdx: 1, lotNumber: "ET-2415", expiry: 540, supplier: "Merck", purchaseDaysAgo: 30, initial: 5000, current: 4100, warehouseId: depositoPrincipal.id, location: "Estante A-3" },
-      { drugIdx: 1, lotNumber: "ET-2402", expiry: 60, supplier: "Cicarelli", purchaseDaysAgo: 120, initial: 1000, current: 180, warehouseId: labSintesis.id, location: "Mesada 1" },
-      { drugIdx: 2, lotNumber: "HCl-2403", expiry: 720, supplier: "Anedra", purchaseDaysAgo: 90, initial: 2500, current: 2200, warehouseId: depositoPrincipal.id, location: "Cámara ácidos - C-1" },
-      { drugIdx: 3, lotNumber: "NaOH-2410", expiry: 900, supplier: "Biopack", purchaseDaysAgo: 15, initial: 1000, current: 980, warehouseId: depositoPrincipal.id, location: "Estante B-2" },
-      { drugIdx: 3, lotNumber: "NaOH-2301", expiry: 20, supplier: "Anedra", purchaseDaysAgo: 350, initial: 500, current: 45, warehouseId: labAnalisis.id, location: "Mesada 2" },
-      { drugIdx: 4, lotNumber: "H2SO4-2420", expiry: 1000, supplier: "Merck", purchaseDaysAgo: 10, initial: 2500, current: 2480, warehouseId: depositoPrincipal.id, location: "Cámara ácidos - C-2" },
-      { drugIdx: 5, lotNumber: "MeOH-2411", expiry: 300, supplier: "Sintorgan", purchaseDaysAgo: 45, initial: 2500, current: 1200, warehouseId: depositoPrincipal.id, location: "Estante A-4" },
-      { drugIdx: 5, lotNumber: "MeOH-2407", expiry: 25, supplier: "Cicarrelli", purchaseDaysAgo: 200, initial: 1000, current: 60, warehouseId: labSintesis.id, location: "Campana 1" },
-      { drugIdx: 6, lotNumber: "DCM-2412", expiry: 400, supplier: "Merck", purchaseDaysAgo: 20, initial: 1000, current: 850, warehouseId: depositoPrincipal.id, location: "Cámara disolventes D-1" },
-      { drugIdx: 7, lotNumber: "H2O2-2413", expiry: 180, supplier: "Cicarelli", purchaseDaysAgo: 40, initial: 1000, current: 920, warehouseId: depositoPrincipal.id, location: "Refrigerador R-1" },
-      { drugIdx: 8, lotNumber: "TOL-2406", expiry: 250, supplier: "Anedra", purchaseDaysAgo: 100, initial: 2500, current: 1600, warehouseId: depositoPrincipal.id, location: "Cámara disolventes D-2" },
-      { drugIdx: 9, lotNumber: "CuSO4-2409", expiry: 1200, supplier: "Biopack", purchaseDaysAgo: 70, initial: 500, current: 420, warehouseId: depositoPrincipal.id, location: "Estante B-1" },
-      { drugIdx: 10, lotNumber: "ET2O-2414", expiry: 90, supplier: "Sintorgan", purchaseDaysAgo: 50, initial: 1000, current: 700, warehouseId: depositoPrincipal.id, location: "Refrigerador R-2" },
-      { drugIdx: 11, lotNumber: "NaCl-2405", expiry: 1500, supplier: "Anedra", purchaseDaysAgo: 80, initial: 1000, current: 880, warehouseId: depositoPrincipal.id, location: "Estante B-4" },
-      { drugIdx: 12, lotNumber: "AgNO3-2408", expiry: 600, supplier: "Merck", purchaseDaysAgo: 60, initial: 100, current: 78, warehouseId: depositoPrincipal.id, location: "Estante E-1" },
-      { drugIdx: 13, lotNumber: "ACN-2416", expiry: 280, supplier: "Sintorgan", purchaseDaysAgo: 25, initial: 2500, current: 2350, warehouseId: labAnalisis.id, location: "Mesada 3" },
+      { drugIdx: 0, lotNumber: "AC-2401", expiry: 365, supplier: "Cicarrelli", purchaseDaysAgo: 60, initial: 2500, warehouseId: depositoPrincipal.id, location: "Estante A-3", status: "ACTIVO" },
+      { drugIdx: 0, lotNumber: "AC-2308", expiry: -15, supplier: "Anedra", purchaseDaysAgo: 300, initial: 1000, warehouseId: depositoPrincipal.id, location: "Estante A-3", status: "VENCIDO" },
+      { drugIdx: 1, lotNumber: "ET-2415", expiry: 540, supplier: "Merck", purchaseDaysAgo: 30, initial: 5000, warehouseId: depositoPrincipal.id, location: "Estante A-3", status: "ACTIVO" },
+      { drugIdx: 1, lotNumber: "ET-2402", expiry: 60, supplier: "Cicarelli", purchaseDaysAgo: 120, initial: 1000, warehouseId: labSintesis.id, location: "Mesada 1", status: "EN_USO" },
+      { drugIdx: 2, lotNumber: "HCl-2403", expiry: 720, supplier: "Anedra", purchaseDaysAgo: 90, initial: 2500, warehouseId: depositoPrincipal.id, location: "Cámara ácidos - C-1", status: "ACTIVO" },
+      { drugIdx: 3, lotNumber: "NaOH-2410", expiry: 900, supplier: "Biopack", purchaseDaysAgo: 15, initial: 1000, warehouseId: depositoPrincipal.id, location: "Estante B-2", status: "ACTIVO" },
+      { drugIdx: 3, lotNumber: "NaOH-2301", expiry: 20, supplier: "Anedra", purchaseDaysAgo: 350, initial: 500, warehouseId: labAnalisis.id, location: "Mesada 2", status: "CONSUMIDO" },
+      { drugIdx: 4, lotNumber: "H2SO4-2420", expiry: 1000, supplier: "Merck", purchaseDaysAgo: 10, initial: 2500, warehouseId: depositoPrincipal.id, location: "Cámara ácidos - C-2", status: "ACTIVO" },
+      { drugIdx: 5, lotNumber: "MeOH-2411", expiry: 300, supplier: "Sintorgan", purchaseDaysAgo: 45, initial: 2500, warehouseId: depositoPrincipal.id, location: "Estante A-4", status: "ACTIVO" },
+      { drugIdx: 5, lotNumber: "MeOH-2407", expiry: 25, supplier: "Cicarrelli", purchaseDaysAgo: 200, initial: 1000, warehouseId: labSintesis.id, location: "Campana 1", status: "EN_USO" },
+      { drugIdx: 6, lotNumber: "DCM-2412", expiry: 400, supplier: "Merck", purchaseDaysAgo: 20, initial: 1000, warehouseId: depositoPrincipal.id, location: "Cámara disolventes D-1", status: "ACTIVO" },
+      { drugIdx: 7, lotNumber: "H2O2-2413", expiry: 180, supplier: "Cicarelli", purchaseDaysAgo: 40, initial: 1000, warehouseId: depositoPrincipal.id, location: "Refrigerador R-1", status: "ACTIVO" },
+      { drugIdx: 8, lotNumber: "TOL-2406", expiry: 250, supplier: "Anedra", purchaseDaysAgo: 100, initial: 2500, warehouseId: depositoPrincipal.id, location: "Cámara disolventes D-2", status: "ACTIVO" },
+      { drugIdx: 9, lotNumber: "CuSO4-2409", expiry: 1200, supplier: "Biopack", purchaseDaysAgo: 70, initial: 500, warehouseId: depositoPrincipal.id, location: "Estante B-1", status: "CONSUMIDO" },
+      { drugIdx: 10, lotNumber: "ET2O-2414", expiry: 90, supplier: "Sintorgan", purchaseDaysAgo: 50, initial: 1000, warehouseId: depositoPrincipal.id, location: "Refrigerador R-2", status: "ACTIVO" },
+      { drugIdx: 11, lotNumber: "NaCl-2405", expiry: 1500, supplier: "Anedra", purchaseDaysAgo: 80, initial: 1000, warehouseId: depositoPrincipal.id, location: "Estante B-4", status: "ACTIVO" },
+      { drugIdx: 12, lotNumber: "AgNO3-2408", expiry: 600, supplier: "Merck", purchaseDaysAgo: 60, initial: 100, warehouseId: labAnalisis.id, location: "Mesada 3", status: "EN_USO" },
+      { drugIdx: 13, lotNumber: "ACN-2416", expiry: 280, supplier: "Sintorgan", purchaseDaysAgo: 25, initial: 2500, warehouseId: labAnalisis.id, location: "Mesada 3", status: "ACTIVO" },
     ]
 
     const createdLots = []
     for (const ld of lotDefs) {
       const drug = createdDrugs[ld.drugIdx]
       const expiry = daysFromNow(ld.expiry)
-      let status = "ACTIVO"
-      if (ld.expiry < 0) status = "VENCIDO"
-      else if (ld.current <= 0) status = "AGOTADO"
+      const currentQuantity = ld.status === "CONSUMIDO" ? 0 : ld.initial
       const lot = await db.lot.create({
         data: {
           drugId: drug.id,
@@ -398,11 +396,11 @@ export async function POST(req: NextRequest) {
           supplier: ld.supplier,
           purchaseDate: daysAgo(ld.purchaseDaysAgo),
           initialQuantity: ld.initial,
-          currentQuantity: ld.current,
+          currentQuantity,
           unit: drug.unit ?? "g",
           warehouseId: ld.warehouseId,
           location: ld.location ?? drug.defaultLocation,
-          status,
+          status: ld.status,
         },
       })
       createdLots.push(lot)
@@ -419,17 +417,40 @@ export async function POST(req: NextRequest) {
         },
       })
 
-      const consumed = ld.initial - ld.current
-      if (consumed > 0) {
+      const operario = ld.drugIdx % 2 === 0 ? operario1 : operario2
+
+      if (ld.status === "EN_USO") {
+        await db.movement.create({
+          data: {
+            lotId: lot.id,
+            type: "HABILITACION",
+            quantity: ld.initial,
+            balanceAfter: ld.initial,
+            userId: operario.id,
+            reason: "Frasco habilitado para uso",
+          },
+        })
+      }
+
+      if (ld.status === "CONSUMIDO") {
+        await db.movement.create({
+          data: {
+            lotId: lot.id,
+            type: "HABILITACION",
+            quantity: ld.initial,
+            balanceAfter: ld.initial,
+            userId: operario.id,
+            reason: "Frasco habilitado para uso",
+          },
+        })
         await db.movement.create({
           data: {
             lotId: lot.id,
             type: "CONSUMO",
-            fromWarehouseId: ld.warehouseId,
-            quantity: consumed,
-            balanceAfter: ld.current,
-            userId: (ld.drugIdx % 2 === 0 ? operario1 : operario2).id,
-            reason: "Consumo en ensayo",
+            quantity: ld.initial,
+            balanceAfter: 0,
+            userId: operario.id,
+            reason: "Frasco consumido completamente",
           },
         })
       }

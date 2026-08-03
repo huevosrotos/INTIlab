@@ -84,7 +84,7 @@ model Lot {
   location        String?
   containerPhoto  String?
   labelPhoto      String?
-  status          String   @default("ACTIVO") // ACTIVO | AGOTADO | VENCIDO | DADO_DE_BAJA
+  status          String   @default("ACTIVO") // ACTIVO | EN_USO | CONSUMIDO | VENCIDO | DADO_DE_BAJA
   movements       Movement[]
   alerts          Alert[]
   createdAt       DateTime @default(now())

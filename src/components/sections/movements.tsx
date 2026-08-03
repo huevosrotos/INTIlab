@@ -122,7 +122,7 @@ async function fetchWarehouses(): Promise<{ warehouses: Warehouse[] }> {
 }
 
 async function fetchActiveLots(): Promise<{ lots: Lot[] }> {
-  const res = await fetch("/api/lots?status=ACTIVO", { cache: "no-store" })
+  const res = await fetch("/api/lots", { cache: "no-store" })
   if (!res.ok) throw new Error("Error al cargar lotes")
   return res.json()
 }
@@ -528,11 +528,13 @@ function RegisterMovementDialog({
     enabled: open,
   })
 
-  const lots = lotsData?.lots ?? []
+  const lots = (lotsData?.lots ?? []).filter(
+    (l) => l.status === "ACTIVO" || l.status === "EN_USO"
+  )
   const warehouses = whData?.warehouses ?? []
 
   const [lotId, setLotId] = useState<string>("")
-  const [type, setType] = useState<string>("CONSUMO")
+  const [type, setType] = useState<string>("HABILITACION")
   const [quantity, setQuantity] = useState<string>("")
   const [toWarehouseId, setToWarehouseId] = useState<string>("")
   const [reason, setReason] = useState<string>("")
@@ -543,7 +545,7 @@ function RegisterMovementDialog({
 
   const reset = () => {
     setLotId("")
-    setType("CONSUMO")
+    setType("HABILITACION")
     setQuantity("")
     setToWarehouseId("")
     setReason("")
@@ -552,6 +554,7 @@ function RegisterMovementDialog({
 
   const isAjuste = type === "AJUSTE"
   const isTransfer = type === "TRANSFERENCIA"
+  const isFullBottle = ["HABILITACION", "CONSUMO", "DEVOLUCION", "BAJA"].includes(type)
 
   const diff = isAjuste && selectedLot && newStock
     ? Number(newStock) - Number(selectedLot.currentQuantity)
@@ -564,6 +567,12 @@ function RegisterMovementDialog({
       if (!selectedLot) return false
       return true
     }
+    if (isFullBottle) {
+      // Frasco completo: solo necesita lote seleccionado
+      if (!selectedLot) return false
+      return true
+    }
+    // TRANSFERENCIA
     if (!quantity || isNaN(Number(quantity)) || Number(quantity) <= 0) return false
     if (isTransfer && !toWarehouseId) return false
     return true
@@ -574,11 +583,19 @@ function RegisterMovementDialog({
       const body: any = {
         lotId,
         type,
-        quantity: isAjuste ? Math.abs(diff) : Number(quantity),
         reason,
       }
-      if (isTransfer) body.toWarehouseId = toWarehouseId
-      if (isAjuste) body.diff = diff
+      if (isAjuste) {
+        body.diff = diff
+        body.quantity = Math.abs(diff)
+      } else if (isFullBottle) {
+        // Frasco completo: la API usa el stock actual del lote
+        body.quantity = selectedLot?.currentQuantity ?? 0
+      } else {
+        // TRANSFERENCIA
+        body.quantity = Number(quantity)
+        if (isTransfer) body.toWarehouseId = toWarehouseId
+      }
 
       const res = await fetch("/api/movements", {
         method: "POST",
@@ -721,9 +738,10 @@ function RegisterMovementDialog({
                 <SelectContent>
                   {(
                     [
-                      "TRANSFERENCIA",
+                      "HABILITACION",
                       "CONSUMO",
                       "DEVOLUCION",
+                      "TRANSFERENCIA",
                       "BAJA",
                       "AJUSTE",
                     ] as MovementType[]
@@ -781,10 +799,28 @@ function RegisterMovementDialog({
                   </span>
                 </div>
               </div>
+            ) : isFullBottle ? (
+              <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
+                <p className="font-medium text-primary">
+                  {type === "CONSUMO" && "Se consumirá todo el frasco completo."}
+                  {type === "HABILITACION" && "Se habilitará el frasco para uso."}
+                  {type === "DEVOLUCION" && "Se devolverá el frasco al depósito."}
+                  {type === "BAJA" && "Se dará de baja el frasco completo."}
+                </p>
+                {selectedLot && (
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Cantidad:{" "}
+                    <span className="font-semibold">
+                      {selectedLot.currentQuantity} {selectedLot.unit}
+                    </span>
+                    {(type === "CONSUMO" || type === "BAJA") && " → 0"}
+                  </p>
+                )}
+              </div>
             ) : (
               <div className="space-y-1.5">
                 <Label className="text-xs text-muted-foreground">
-                  Cantidad {isTransfer ? "a transferir" : type === "CONSUMO" ? "a consumir" : type === "BAJA" ? "a dar de baja" : ""} *
+                  Cantidad a transferir *
                 </Label>
                 <Input
                   type="number"

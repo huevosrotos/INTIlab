@@ -45,8 +45,9 @@ import {
   History,
   FlaskConical,
   Upload,
-  ArrowDownRight,
-  ArrowUpRight,
+  PlayCircle,
+  CheckCircle2,
+  RotateCcw,
   Repeat,
   Ban,
   SlidersHorizontal,
@@ -448,39 +449,50 @@ function LotDetail({
     allowed: boolean
     variant: "default" | "outline" | "secondary" | "destructive"
   }[] = [
+    // Acciones para lotes ACTIVOS
     {
-      type: "CONSUMO",
-      label: "Consumo",
-      icon: ArrowDownRight,
-      allowed: canConsume,
-      variant: "secondary",
+      type: "HABILITACION",
+      label: "Habilitar para uso",
+      icon: PlayCircle,
+      allowed: canConsume && lot.status === "ACTIVO",
+      variant: "default",
     },
     {
       type: "TRANSFERENCIA",
       label: "Transferir",
       icon: Repeat,
-      allowed: canEdit,
+      allowed: canEdit && lot.status === "ACTIVO",
       variant: "outline",
+    },
+    // Acciones para lotes EN_USO
+    {
+      type: "CONSUMO",
+      label: "Marcar consumido",
+      icon: CheckCircle2,
+      allowed: canConsume && lot.status === "EN_USO",
+      variant: "secondary",
     },
     {
       type: "DEVOLUCION",
-      label: "Devolución",
-      icon: ArrowUpRight,
-      allowed: canEdit,
+      label: "Devolver al depósito",
+      icon: RotateCcw,
+      allowed: canEdit && lot.status === "EN_USO",
       variant: "outline",
     },
+    // Baja: disponible desde cualquier estado activo
     {
       type: "BAJA",
       label: "Dar de baja",
       icon: Ban,
-      allowed: canEdit,
+      allowed: canEdit && (lot.status === "ACTIVO" || lot.status === "EN_USO"),
       variant: "outline",
     },
+    // Ajuste: solo para admin/encargado, cualquier estado activo
     {
       type: "AJUSTE",
       label: "Ajustar",
       icon: SlidersHorizontal,
-      allowed: canEdit,
+      allowed: canEdit && (lot.status === "ACTIVO" || lot.status === "EN_USO"),
       variant: "outline",
     },
   ]

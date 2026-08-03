@@ -23,6 +23,9 @@ import {
   Loader2,
   QrCode,
   RotateCcw,
+  PlayCircle,
+  CheckCircle2,
+  Ban,
 } from "lucide-react"
 import { useAppStore } from "@/store/app-store"
 import { useAuth } from "@/components/app-provider"
@@ -123,6 +126,9 @@ export function Scanner() {
   const [camError, setCamError] = useState<string | null>(null)
   const [consumoOpen, setConsumoOpen] = useState(false)
   const [transferOpen, setTransferOpen] = useState(false)
+  const [habilitacionOpen, setHabilitacionOpen] = useState(false)
+  const [devolucionOpen, setDevolucionOpen] = useState(false)
+  const [bajaOpen, setBajaOpen] = useState(false)
 
   const canEdit = user?.role === "ADMIN" || user?.role === "ENCARGADO"
   const canConsume =
@@ -317,6 +323,12 @@ export function Scanner() {
           setConsumoOpen={setConsumoOpen}
           transferOpen={transferOpen}
           setTransferOpen={setTransferOpen}
+          habilitacionOpen={habilitacionOpen}
+          setHabilitacionOpen={setHabilitacionOpen}
+          devolucionOpen={devolucionOpen}
+          setDevolucionOpen={setDevolucionOpen}
+          bajaOpen={bajaOpen}
+          setBajaOpen={setBajaOpen}
         />
       ) : (
         <>
@@ -434,6 +446,12 @@ function FoundLotCard({
   setConsumoOpen,
   transferOpen,
   setTransferOpen,
+  habilitacionOpen,
+  setHabilitacionOpen,
+  devolucionOpen,
+  setDevolucionOpen,
+  bajaOpen,
+  setBajaOpen,
 }: {
   lot: Lot
   onReset: () => void
@@ -446,6 +464,12 @@ function FoundLotCard({
   setConsumoOpen: (o: boolean) => void
   transferOpen: boolean
   setTransferOpen: (o: boolean) => void
+  habilitacionOpen: boolean
+  setHabilitacionOpen: (o: boolean) => void
+  devolucionOpen: boolean
+  setDevolucionOpen: (o: boolean) => void
+  bajaOpen: boolean
+  setBajaOpen: (o: boolean) => void
 }) {
   const picts = parsePictograms(lot.drug.pictograms)
   const exp = expiryInfo(lot.expiryDate)
@@ -530,28 +554,30 @@ function FoundLotCard({
         </CardContent>
       </Card>
 
-      {/* Acciones */}
+      {/* Acciones contextuales según el estado del lote */}
       <div className="flex flex-wrap gap-2">
         <Button onClick={onGotoInventory} variant="default">
           <Boxes className="mr-1.5 h-4 w-4" />
           Ver en inventario
         </Button>
-        {canConsume && (
+
+        {/* Si está ACTIVO: habilitar para uso, transferir */}
+        {canConsume && lot.status === "ACTIVO" && (
           <MovementDialog
             lot={lot}
-            type="CONSUMO"
-            open={consumoOpen}
-            onOpenChange={setConsumoOpen}
+            type="HABILITACION"
+            open={habilitacionOpen}
+            onOpenChange={setHabilitacionOpen}
             onDone={onRefresh}
             trigger={
-              <Button variant="secondary">
-                <ArrowLeftRight className="mr-1.5 h-4 w-4" />
-                Registrar consumo
+              <Button variant="default">
+                <PlayCircle className="mr-1.5 h-4 w-4" />
+                Habilitar para uso
               </Button>
             }
           />
         )}
-        {canEdit && (
+        {canEdit && lot.status === "ACTIVO" && (
           <MovementDialog
             lot={lot}
             type="TRANSFERENCIA"
@@ -566,6 +592,56 @@ function FoundLotCard({
             }
           />
         )}
+
+        {/* Si está EN_USO: marcar consumido, devolver */}
+        {canConsume && lot.status === "EN_USO" && (
+          <MovementDialog
+            lot={lot}
+            type="CONSUMO"
+            open={consumoOpen}
+            onOpenChange={setConsumoOpen}
+            onDone={onRefresh}
+            trigger={
+              <Button variant="secondary">
+                <CheckCircle2 className="mr-1.5 h-4 w-4" />
+                Marcar consumido
+              </Button>
+            }
+          />
+        )}
+        {canEdit && lot.status === "EN_USO" && (
+          <MovementDialog
+            lot={lot}
+            type="DEVOLUCION"
+            open={devolucionOpen}
+            onOpenChange={setDevolucionOpen}
+            onDone={onRefresh}
+            trigger={
+              <Button variant="outline">
+                <RotateCcw className="mr-1.5 h-4 w-4" />
+                Devolver al depósito
+              </Button>
+            }
+          />
+        )}
+
+        {/* Dar de baja: desde ACTIVO o EN_USO */}
+        {canEdit && (lot.status === "ACTIVO" || lot.status === "EN_USO") && (
+          <MovementDialog
+            lot={lot}
+            type="BAJA"
+            open={bajaOpen}
+            onOpenChange={setBajaOpen}
+            onDone={onRefresh}
+            trigger={
+              <Button variant="outline">
+                <Ban className="mr-1.5 h-4 w-4" />
+                Dar de baja
+              </Button>
+            }
+          />
+        )}
+
         <Button onClick={onGotoMovements} variant="outline">
           <History className="mr-1.5 h-4 w-4" />
           Ver movimientos

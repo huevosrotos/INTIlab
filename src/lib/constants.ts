@@ -27,6 +27,7 @@ export const WAREHOUSE_TYPE_LABELS: Record<string, string> = {
 export const MOVEMENT_TYPES = {
   INGRESO: "INGRESO",
   TRANSFERENCIA: "TRANSFERENCIA",
+  HABILITACION: "HABILITACION",
   CONSUMO: "CONSUMO",
   DEVOLUCION: "DEVOLUCION",
   BAJA: "BAJA",
@@ -36,8 +37,9 @@ export const MOVEMENT_TYPES = {
 export const MOVEMENT_TYPE_LABELS: Record<string, string> = {
   INGRESO: "Ingreso",
   TRANSFERENCIA: "Transferencia",
-  CONSUMO: "Consumo",
-  DEVOLUCION: "Devolución",
+  HABILITACION: "Habilitación para uso",
+  CONSUMO: "Consumo (frasco completo)",
+  DEVOLUCION: "Devolución al depósito",
   BAJA: "Baja / Descarte",
   AJUSTE: "Ajuste de inventario",
 }
@@ -45,6 +47,7 @@ export const MOVEMENT_TYPE_LABELS: Record<string, string> = {
 export const MOVEMENT_TYPE_COLORS: Record<string, string> = {
   INGRESO: "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300",
   TRANSFERENCIA: "bg-sky-100 text-sky-700 border-sky-200 dark:bg-sky-950 dark:text-sky-300",
+  HABILITACION: "bg-teal-100 text-teal-700 border-teal-200 dark:bg-teal-950 dark:text-teal-300",
   CONSUMO: "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300",
   DEVOLUCION: "bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-950 dark:text-violet-300",
   BAJA: "bg-rose-100 text-rose-700 border-rose-200 dark:bg-rose-950 dark:text-rose-300",
@@ -67,21 +70,24 @@ export const PHYSICAL_STATE_LABELS: Record<string, string> = {
 
 export const LOT_STATUSES = {
   ACTIVO: "ACTIVO",
-  AGOTADO: "AGOTADO",
+  EN_USO: "EN_USO",
+  CONSUMIDO: "CONSUMIDO",
   VENCIDO: "VENCIDO",
   DADO_DE_BAJA: "DADO_DE_BAJA",
 } as const
 
 export const LOT_STATUS_LABELS: Record<string, string> = {
   ACTIVO: "Activo",
-  AGOTADO: "Agotado",
+  EN_USO: "En uso",
+  CONSUMIDO: "Consumido",
   VENCIDO: "Vencido",
   DADO_DE_BAJA: "Dado de baja",
 }
 
 export const LOT_STATUS_COLORS: Record<string, string> = {
   ACTIVO: "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300",
-  AGOTADO: "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300",
+  EN_USO: "bg-teal-100 text-teal-700 border-teal-200 dark:bg-teal-950 dark:text-teal-300",
+  CONSUMIDO: "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-950 dark:text-amber-300",
   VENCIDO: "bg-rose-100 text-rose-700 border-rose-200 dark:bg-rose-950 dark:text-rose-300",
   DADO_DE_BAJA: "bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-400",
 }

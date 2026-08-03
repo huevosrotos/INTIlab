@@ -42,10 +42,8 @@ export async function POST(req: NextRequest) {
   if (!r.ok) return r.res
   const body = await req.json()
 
-  const { lotId, type, quantity, toWarehouseId, reason } = body
+  const { lotId, type, toWarehouseId, reason } = body
   if (!lotId || !type) return err("Faltan datos del movimiento")
-  const qty = Number(quantity)
-  if (isNaN(qty) || qty <= 0) return err("La cantidad debe ser mayor a 0")
 
   const lot = await db.lot.findUnique({ where: { id: lotId }, include: { drug: true } })
   if (!lot) return err("Lote no encontrado")
@@ -53,9 +51,12 @@ export async function POST(req: NextRequest) {
   const fromWarehouseId = lot.warehouseId
   let newBalance = lot.currentQuantity
   let updatedLotId = lot.id
+  let movementQuantity = lot.currentQuantity // por defecto, el frasco completo
 
   switch (type) {
     case "INGRESO": {
+      const qty = Number(body.quantity)
+      if (isNaN(qty) || qty <= 0) return err("La cantidad debe ser mayor a 0")
       if (!toWarehouseId) return err("Debe indicar el depósito de destino")
       newBalance = lot.currentQuantity + qty
       await db.lot.update({
@@ -67,11 +68,15 @@ export async function POST(req: NextRequest) {
           status: "ACTIVO",
         },
       })
+      movementQuantity = qty
       break
     }
     case "TRANSFERENCIA": {
+      const qty = Number(body.quantity)
+      if (isNaN(qty) || qty <= 0) return err("La cantidad debe ser mayor a 0")
       if (!toWarehouseId) return err("Debe indicar el depósito de destino")
       if (toWarehouseId === fromWarehouseId) return err("El depósito origen y destino son el mismo")
+      if (lot.status !== "ACTIVO") return err("Solo se pueden transferir lotes activos")
       if (qty >= lot.currentQuantity) {
         // Mover todo el lote
         newBalance = lot.currentQuantity
@@ -103,7 +108,6 @@ export async function POST(req: NextRequest) {
           },
         })
         updatedLotId = subLot.id
-        // Registrar movimiento de ingreso del sublote
         await db.movement.create({
           data: {
             lotId: subLot.id,
@@ -117,51 +121,70 @@ export async function POST(req: NextRequest) {
         })
         await refreshLotAlerts(subLot.id)
       }
+      movementQuantity = qty
+      break
+    }
+    case "HABILITACION": {
+      // Habilitar frasco para uso: ACTIVO → EN_USO (sin cambiar stock)
+      if (lot.status !== "ACTIVO") return err("Solo se pueden habilitar lotes activos")
+      await db.lot.update({
+        where: { id: lot.id },
+        data: { status: "EN_USO" },
+      })
+      movementQuantity = lot.currentQuantity
       break
     }
     case "CONSUMO": {
-      if (qty > lot.currentQuantity) return err("La cantidad a consumir excede el stock disponible")
-      newBalance = lot.currentQuantity - qty
+      // Consumo de frasco completo: EN_USO → CONSUMIDO, stock a 0
+      if (lot.status !== "EN_USO") return err("Solo se pueden consumir lotes habilitados para uso (EN_USO)")
+      movementQuantity = lot.currentQuantity
+      newBalance = 0
       await db.lot.update({
         where: { id: lot.id },
         data: {
-          currentQuantity: newBalance,
-          status: newBalance <= 0 ? "AGOTADO" : lot.status,
+          currentQuantity: 0,
+          status: "CONSUMIDO",
         },
       })
       break
     }
     case "DEVOLUCION": {
-      newBalance = lot.currentQuantity + qty
+      // Devolver frasco al depósito: EN_USO → ACTIVO (sin cambiar stock)
+      if (lot.status !== "EN_USO") return err("Solo se pueden devolver lotes habilitados para uso (EN_USO)")
       await db.lot.update({
         where: { id: lot.id },
-        data: { currentQuantity: newBalance, status: "ACTIVO" },
+        data: { status: "ACTIVO" },
       })
+      movementQuantity = lot.currentQuantity
       break
     }
     case "BAJA": {
-      if (qty > lot.currentQuantity) return err("La cantidad a dar de baja excede el stock disponible")
-      newBalance = lot.currentQuantity - qty
+      // Dar de baja el frasco completo: cualquier estado → DADO_DE_BAJA, stock a 0
+      if (lot.status === "DADO_DE_BAJA") return err("El lote ya está dado de baja")
+      movementQuantity = lot.currentQuantity
+      newBalance = 0
       await db.lot.update({
         where: { id: lot.id },
         data: {
-          currentQuantity: newBalance,
-          status: newBalance <= 0 ? "DADO_DE_BAJA" : lot.status,
+          currentQuantity: 0,
+          status: "DADO_DE_BAJA",
         },
       })
       break
     }
     case "AJUSTE": {
-      // qty es la diferencia: positivo suma, negativo resta
-      const diff = Number(body.diff ?? qty)
+      // Ajuste manual de inventario (corrección)
+      const diff = Number(body.diff)
+      if (isNaN(diff) || diff === 0) return err("La diferencia debe ser distinta de 0")
       newBalance = Math.max(0, lot.currentQuantity + diff)
       await db.lot.update({
         where: { id: lot.id },
         data: {
           currentQuantity: newBalance,
-          status: newBalance <= 0 ? "AGOTADO" : lot.status,
+          status: newBalance <= 0 ? "CONSUMIDO" : lot.status === "CONSUMIDO" ? "ACTIVO" : lot.status,
         },
       })
+      movementQuantity = diff
       break
     }
     default:
@@ -174,7 +197,7 @@ export async function POST(req: NextRequest) {
       type,
       fromWarehouseId: fromWarehouseId,
       toWarehouseId: toWarehouseId || null,
-      quantity: type === "AJUSTE" ? Number(body.diff ?? qty) : qty,
+      quantity: movementQuantity,
       balanceAfter: newBalance,
       userId: r.user.id,
       reason: reason || null,

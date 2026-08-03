@@ -956,7 +956,7 @@ function LowStockReport() {
       l.currentQuantity,
       l.drug.minStock ?? 0,
       l.unit,
-      l.currentQuantity <= 0 ? "AGOTADO" : "STOCK BAJO",
+      l.currentQuantity <= 0 ? "CONSUMIDO" : "STOCK BAJO",
     ]),
   ]
 
@@ -1082,7 +1082,7 @@ function LowStockReport() {
                 <td>{l.currentQuantity}</td>
                 <td>{l.drug.minStock ?? 0}</td>
                 <td>{l.unit}</td>
-                <td>{l.currentQuantity <= 0 ? "AGOTADO" : "STOCK BAJO"}</td>
+                <td>{l.currentQuantity <= 0 ? "CONSUMIDO" : "STOCK BAJO"}</td>
               </tr>
             ))}
           </tbody>

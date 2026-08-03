@@ -26,6 +26,7 @@ import { toast } from "sonner"
 import { MOVEMENT_TYPE_LABELS } from "@/lib/constants"
 
 export type MovementType =
+  | "HABILITACION"
   | "CONSUMO"
   | "TRANSFERENCIA"
   | "DEVOLUCION"
@@ -37,6 +38,7 @@ type LotInfo = {
   currentQuantity: number
   unit: string
   lotNumber: string
+  status: string
   warehouseId?: string | null
 }
 
@@ -48,14 +50,17 @@ async function fetchWarehouses(): Promise<{ warehouses: Warehouse[] }> {
   return res.json()
 }
 
+// Tipos que operan con frasco completo (sin ingreso de cantidad)
+const FULL_BOTTLE_TYPES: MovementType[] = ["HABILITACION", "CONSUMO", "DEVOLUCION", "BAJA"]
+
 const DESCRIPTIONS: Record<MovementType, string> = {
-  CONSUMO: "Registre el consumo del lote. El stock disminuirá.",
+  HABILITACION: "Habilita el frasco para uso. El lote queda en estado “En uso”.",
+  CONSUMO: "Marca el frasco como totalmente consumido. Se resta del inventario (stock → 0).",
   TRANSFERENCIA:
     "Mueva stock a otro depósito. Si la cantidad es parcial, se creará un sub-lote en destino.",
-  DEVOLUCION: "Registre la devolución de material al lote. El stock aumentará.",
-  BAJA: "Dé de baja parte o todo el lote (descarte, derrame, vencido, etc.).",
-  AJUSTE:
-    "Ajuste el inventario. Use valor negativo para restar y positivo para sumar.",
+  DEVOLUCION: "Devuelve el frasco al depósito. El lote vuelve a estado “Activo”.",
+  BAJA: "Da de baja el frasco completo (descarte, derrame, vencido, etc.). Stock → 0.",
+  AJUSTE: "Ajuste manual del inventario. Use valor negativo para restar y positivo para sumar.",
 }
 
 export function MovementDialog({
@@ -83,10 +88,14 @@ export function MovementDialog({
   const [diff, setDiff] = useState("")
   const [reason, setReason] = useState("")
 
+  const isFullBottle = FULL_BOTTLE_TYPES.includes(type)
+  const isAdjust = type === "AJUSTE"
+  const needsWarehouse = type === "TRANSFERENCIA"
+
   const { data: whData } = useQuery({
     queryKey: ["warehouses"],
     queryFn: fetchWarehouses,
-    enabled: isOpen && type === "TRANSFERENCIA",
+    enabled: isOpen && needsWarehouse,
   })
   const warehouses: Warehouse[] = whData?.warehouses ?? []
 
@@ -104,12 +113,16 @@ export function MovementDialog({
         type,
         reason: reason || undefined,
       }
-      if (type === "AJUSTE") {
+      if (isAdjust) {
         body.diff = Number(diff)
         body.quantity = Number(diff)
+      } else if (isFullBottle) {
+        // Frasco completo: la API usa el stock actual del lote
+        body.quantity = lot.currentQuantity
       } else {
+        // TRANSFERENCIA con cantidad
         body.quantity = Number(quantity)
-        if (type === "TRANSFERENCIA") body.toWarehouseId = toWarehouseId
+        if (needsWarehouse) body.toWarehouseId = toWarehouseId
       }
       const res = await fetch("/api/movements", {
         method: "POST",
@@ -137,19 +150,20 @@ export function MovementDialog({
     onError: (e: Error) => toast.error(e.message),
   })
 
-  const needsWarehouse = type === "TRANSFERENCIA"
-  const isAdjust = type === "AJUSTE"
-
   const canSubmit = isAdjust
     ? diff !== "" && !isNaN(Number(diff)) && Number(diff) !== 0
-    : quantity !== "" &&
-      Number(quantity) > 0 &&
-      (!needsWarehouse || !!toWarehouseId)
+    : isFullBottle
+      ? true // frasco completo, siempre confirmable
+      : quantity !== "" &&
+        Number(quantity) > 0 &&
+        (!needsWarehouse || !!toWarehouseId)
 
   const newBalancePreview = isAdjust
     ? Math.max(0, lot.currentQuantity + (Number(diff) || 0))
-    : type === "DEVOLUCION"
-      ? lot.currentQuantity + (Number(quantity) || 0)
+    : isFullBottle
+      ? type === "CONSUMO" || type === "BAJA"
+        ? 0
+        : lot.currentQuantity
       : lot.currentQuantity - (Number(quantity) || 0)
 
   return (
@@ -179,7 +193,26 @@ export function MovementDialog({
             </p>
           </div>
 
-          {isAdjust ? (
+          {isFullBottle ? (
+            <div className="rounded-lg border border-primary/30 bg-primary/5 p-3 text-sm">
+              <p className="font-medium text-primary">
+                {type === "CONSUMO" && "Se consumirá todo el frasco completo."}
+                {type === "HABILITACION" && "Se habilitará el frasco para uso."}
+                {type === "DEVOLUCION" && "Se devolverá el frasco al depósito."}
+                {type === "BAJA" && "Se dará de baja el frasco completo."}
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Cantidad:{" "}
+                <span className="font-semibold">
+                  {lot.currentQuantity} {lot.unit}
+                </span>
+                {" → "}
+                <span className="font-semibold">
+                  {newBalancePreview} {lot.unit}
+                </span>
+              </p>
+            </div>
+          ) : isAdjust ? (
             <Field
               label="Diferencia (+ suma, − resta)"
               hint={`Nuevo stock: ${newBalancePreview} ${lot.unit}`}
@@ -195,9 +228,7 @@ export function MovementDialog({
           ) : (
             <Field
               label={`Cantidad${
-                type === "CONSUMO" || type === "BAJA"
-                  ? ` (máx ${lot.currentQuantity})`
-                  : ""
+                type === "TRANSFERENCIA" ? ` (máx ${lot.currentQuantity})` : ""
               }`}
               hint={`Nuevo stock: ${newBalancePreview} ${lot.unit}`}
             >
@@ -247,6 +278,7 @@ export function MovementDialog({
           <Button
             onClick={() => mutation.mutate()}
             disabled={mutation.isPending || !canSubmit}
+            variant={type === "BAJA" ? "destructive" : "default"}
           >
             {mutation.isPending ? "Procesando…" : "Confirmar"}
           </Button>

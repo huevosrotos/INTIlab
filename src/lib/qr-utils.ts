@@ -27,10 +27,13 @@ export function extractQrCode(raw: string): string {
 }
 
 // Construye la URL completa para codificar en el QR de la etiqueta.
-// Usa el origin actual del navegador (ej: http://192.168.2.62:3000).
-// Así, al escanear con el celu, abre la app directamente.
+// Siempre usa HTTPS (sin puerto explícito, asume Caddy en 443) para que
+// el escáner del celular funcione — los navegadores exigen HTTPS para
+// acceder a la cámara. Toma el hostname del navegador actual.
 export function buildQrUrl(code: string): string {
   if (typeof window === "undefined") return code
-  const origin = window.location.origin
-  return `${origin}/?qr=${encodeURIComponent(code)}`
+  // Usar el hostname actual (ej: 192.168.2.62 o droglab.midominio.com)
+  // pero forzar HTTPS en el puerto 443 (sin :443 explícito).
+  const hostname = window.location.hostname
+  return `https://${hostname}/?qr=${encodeURIComponent(code)}`
 }

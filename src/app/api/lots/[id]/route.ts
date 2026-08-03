@@ -38,19 +38,29 @@ export async function PUT(
   const existing = await db.lot.findUnique({ where: { id } })
   if (!existing) return err("Lote no encontrado", 404)
 
+  // Distinguir "campo no enviado" (undefined) de "campo enviado como null"
+  // para permitir eliminar la foto con null explícito.
+  const data: any = {
+    lotNumber: body.lotNumber,
+    expiryDate: body.expiryDate ? new Date(body.expiryDate) : null,
+    supplier: body.supplier || null,
+    purchaseDate: body.purchaseDate ? new Date(body.purchaseDate) : null,
+    warehouseId: body.warehouseId || null,
+    location: body.location || null,
+    status: body.status ?? existing.status,
+  }
+  // Solo actualizar fotos si el campo vino explícitamente en el body
+  // (permite setear a null para eliminar)
+  if (body.containerPhoto !== undefined) {
+    data.containerPhoto = body.containerPhoto
+  }
+  if (body.labelPhoto !== undefined) {
+    data.labelPhoto = body.labelPhoto
+  }
+
   const lot = await db.lot.update({
     where: { id },
-    data: {
-      lotNumber: body.lotNumber,
-      expiryDate: body.expiryDate ? new Date(body.expiryDate) : null,
-      supplier: body.supplier || null,
-      purchaseDate: body.purchaseDate ? new Date(body.purchaseDate) : null,
-      warehouseId: body.warehouseId || null,
-      location: body.location || null,
-      containerPhoto: body.containerPhoto ?? existing.containerPhoto,
-      labelPhoto: body.labelPhoto ?? existing.labelPhoto,
-      status: body.status ?? existing.status,
-    },
+    data,
     include: { drug: true, warehouse: true },
   })
   await refreshLotAlerts(id)

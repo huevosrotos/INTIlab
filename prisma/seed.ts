@@ -345,26 +345,27 @@ async function main() {
     initial: number
     warehouseId: string
     location?: string
+    notes?: string
     status: "ACTIVO" | "EN_USO" | "CONSUMIDO" | "VENCIDO"
   }> = [
     { drugIdx: 0, lotNumber: "AC-2401", expiry: 365, supplier: "Cicarrelli", purchaseDaysAgo: 60, initial: 2500, warehouseId: depositoPrincipal.id, location: "Estante A-3", status: "ACTIVO" },
-    { drugIdx: 0, lotNumber: "AC-2308", expiry: -15, supplier: "Anedra", purchaseDaysAgo: 300, initial: 1000, warehouseId: depositoPrincipal.id, location: "Estante A-3", status: "VENCIDO" },
+    { drugIdx: 0, lotNumber: "AC-2308", expiry: -15, supplier: "Anedra", purchaseDaysAgo: 300, initial: 1000, warehouseId: depositoPrincipal.id, location: "Estante A-3", status: "VENCIDO", notes: "Frasco congelado, descartar" },
     { drugIdx: 1, lotNumber: "ET-2415", expiry: 540, supplier: "Merck", purchaseDaysAgo: 30, initial: 5000, warehouseId: depositoPrincipal.id, location: "Estante A-3", status: "ACTIVO" },
-    { drugIdx: 1, lotNumber: "ET-2402", expiry: 60, supplier: "Cicarelli", purchaseDaysAgo: 120, initial: 1000, warehouseId: labSintesis.id, location: "Mesada 1", status: "EN_USO" },
+    { drugIdx: 1, lotNumber: "ET-2402", expiry: 60, supplier: "Cicarelli", purchaseDaysAgo: 120, initial: 1000, warehouseId: labSintesis.id, location: "Mesada 1", status: "EN_USO", notes: "Prestado al Lab. Docencia" },
     { drugIdx: 2, lotNumber: "HCl-2403", expiry: 720, supplier: "Anedra", purchaseDaysAgo: 90, initial: 2500, warehouseId: depositoPrincipal.id, location: "Cámara ácidos - C-1", status: "ACTIVO" },
     { drugIdx: 3, lotNumber: "NaOH-2410", expiry: 900, supplier: "Biopack", purchaseDaysAgo: 15, initial: 1000, warehouseId: depositoPrincipal.id, location: "Estante B-2", status: "ACTIVO" },
     { drugIdx: 3, lotNumber: "NaOH-2301", expiry: 20, supplier: "Anedra", purchaseDaysAgo: 350, initial: 500, warehouseId: labAnalisis.id, location: "Mesada 2", status: "CONSUMIDO" },
     { drugIdx: 4, lotNumber: "H2SO4-2420", expiry: 1000, supplier: "Merck", purchaseDaysAgo: 10, initial: 2500, warehouseId: depositoPrincipal.id, location: "Cámara ácidos - C-2", status: "ACTIVO" },
     { drugIdx: 5, lotNumber: "MeOH-2411", expiry: 300, supplier: "Sintorgan", purchaseDaysAgo: 45, initial: 2500, warehouseId: depositoPrincipal.id, location: "Estante A-4", status: "ACTIVO" },
-    { drugIdx: 5, lotNumber: "MeOH-2407", expiry: 25, supplier: "Cicarrelli", purchaseDaysAgo: 200, initial: 1000, warehouseId: labSintesis.id, location: "Campana 1", status: "EN_USO" },
+    { drugIdx: 5, lotNumber: "MeOH-2407", expiry: 25, supplier: "Cicarrelli", purchaseDaysAgo: 200, initial: 1000, warehouseId: labSintesis.id, location: "Campana 1", status: "EN_USO", notes: "Tapón roto, manipular con cuidado" },
     { drugIdx: 6, lotNumber: "DCM-2412", expiry: 400, supplier: "Merck", purchaseDaysAgo: 20, initial: 1000, warehouseId: depositoPrincipal.id, location: "Cámara disolventes D-1", status: "ACTIVO" },
     { drugIdx: 7, lotNumber: "H2O2-2413", expiry: 180, supplier: "Cicarelli", purchaseDaysAgo: 40, initial: 1000, warehouseId: depositoPrincipal.id, location: "Refrigerador R-1", status: "ACTIVO" },
     { drugIdx: 8, lotNumber: "TOL-2406", expiry: 250, supplier: "Anedra", purchaseDaysAgo: 100, initial: 2500, warehouseId: depositoPrincipal.id, location: "Cámara disolventes D-2", status: "ACTIVO" },
-    { drugIdx: 9, lotNumber: "CuSO4-2409", expiry: 1200, supplier: "Biopack", purchaseDaysAgo: 70, initial: 500, warehouseId: depositoPrincipal.id, location: "Estante B-1", status: "CONSUMIDO" },
+    { drugIdx: 9, lotNumber: "CuSO4-2409", expiry: 1200, supplier: "Biopack", purchaseDaysAgo: 70, initial: 500, warehouseId: depositoPrincipal.id, location: "Estante B-1", status: "CONSUMIDO", notes: "Contaminado, no usar" },
     { drugIdx: 10, lotNumber: "ET2O-2414", expiry: 90, supplier: "Sintorgan", purchaseDaysAgo: 50, initial: 1000, warehouseId: depositoPrincipal.id, location: "Refrigerador R-2", status: "ACTIVO" },
     { drugIdx: 11, lotNumber: "NaCl-2405", expiry: 1500, supplier: "Anedra", purchaseDaysAgo: 80, initial: 1000, warehouseId: depositoPrincipal.id, location: "Estante B-4", status: "ACTIVO" },
     { drugIdx: 12, lotNumber: "AgNO3-2408", expiry: 600, supplier: "Merck", purchaseDaysAgo: 60, initial: 100, warehouseId: labAnalisis.id, location: "Mesada 3", status: "EN_USO" },
-    { drugIdx: 13, lotNumber: "ACN-2416", expiry: 280, supplier: "Sintorgan", purchaseDaysAgo: 25, initial: 2500, warehouseId: labAnalisis.id, location: "Mesada 3", status: "ACTIVO" },
+    { drugIdx: 13, lotNumber: "ACN-2416", expiry: 280, supplier: "Sintorgan", purchaseDaysAgo: 25, initial: 2500, warehouseId: labAnalisis.id, location: "Mesada 3", status: "ACTIVO", notes: "Lote nuevo, verificar pureza antes de usar" },
   ]
 
   const createdLots = []
@@ -386,6 +387,7 @@ async function main() {
         unit: drug.unit ?? "g",
         warehouseId: ld.warehouseId,
         location: ld.location ?? drug.defaultLocation,
+        notes: ld.notes ?? null,
         status: ld.status,
       },
     })

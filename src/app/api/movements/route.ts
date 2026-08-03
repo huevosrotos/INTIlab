@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { requireUser, requireEditor, err, refreshLotAlerts } from "@/lib/api-helpers"
-import { randomBytes } from "crypto"
-
-function genQrCode(): string {
-  return "DL-" + randomBytes(4).toString("hex").toUpperCase()
-}
 
 export async function GET(req: NextRequest) {
   const r = await requireUser()
@@ -72,56 +67,18 @@ export async function POST(req: NextRequest) {
       break
     }
     case "TRANSFERENCIA": {
-      const qty = Number(body.quantity)
-      if (isNaN(qty) || qty <= 0) return err("La cantidad debe ser mayor a 0")
+      // Transferencia de frasco completo: el lote entero cambia de depósito.
+      // No se permiten fracciones (coherente con el modelo de frasco completo).
       if (!toWarehouseId) return err("Debe indicar el depósito de destino")
       if (toWarehouseId === fromWarehouseId) return err("El depósito origen y destino son el mismo")
       if (lot.status !== "ACTIVO") return err("Solo se pueden transferir lotes activos")
-      if (qty >= lot.currentQuantity) {
-        // Mover todo el lote
-        newBalance = lot.currentQuantity
-        await db.lot.update({
-          where: { id: lot.id },
-          data: { warehouseId: toWarehouseId },
-        })
-      } else {
-        // Transferencia parcial: crear sub-lote en destino
-        newBalance = lot.currentQuantity - qty
-        await db.lot.update({
-          where: { id: lot.id },
-          data: { currentQuantity: newBalance },
-        })
-        const subLot = await db.lot.create({
-          data: {
-            drugId: lot.drugId,
-            lotNumber: lot.lotNumber,
-            qrCode: genQrCode(),
-            expiryDate: lot.expiryDate,
-            supplier: lot.supplier,
-            purchaseDate: lot.purchaseDate,
-            initialQuantity: qty,
-            currentQuantity: qty,
-            unit: lot.unit,
-            warehouseId: toWarehouseId,
-            location: lot.location,
-            status: "ACTIVO",
-          },
-        })
-        updatedLotId = subLot.id
-        await db.movement.create({
-          data: {
-            lotId: subLot.id,
-            type: "INGRESO",
-            toWarehouseId,
-            quantity: qty,
-            balanceAfter: qty,
-            userId: r.user.id,
-            reason: `Ingreso por transferencia desde ${lot.lotNumber}`,
-          },
-        })
-        await refreshLotAlerts(subLot.id)
-      }
-      movementQuantity = qty
+      // Mover todo el lote al nuevo depósito
+      newBalance = lot.currentQuantity
+      movementQuantity = lot.currentQuantity
+      await db.lot.update({
+        where: { id: lot.id },
+        data: { warehouseId: toWarehouseId },
+      })
       break
     }
     case "HABILITACION": {

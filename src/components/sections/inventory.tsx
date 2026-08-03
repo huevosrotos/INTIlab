@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -58,6 +59,8 @@ import {
   ChevronDown,
   RefreshCw,
   Trash2,
+  Pencil,
+  StickyNote,
 } from "lucide-react"
 import {
   LOT_STATUS_LABELS,
@@ -101,6 +104,7 @@ type Lot = {
   unit: string
   status: string
   location: string | null
+  notes: string | null
   containerPhoto: string | null
   warehouseId: string | null
   warehouse: Warehouse | null
@@ -409,6 +413,15 @@ function LotCard({ lot, onClick }: { lot: Lot; onClick: () => void }) {
             </span>
           </div>
 
+          {lot.notes && (
+            <div className="mt-2 flex items-start gap-1.5 rounded-md border border-amber-200 bg-amber-50 px-2 py-1 dark:border-amber-900 dark:bg-amber-950/30">
+              <StickyNote className="mt-0.5 h-3 w-3 shrink-0 text-amber-600 dark:text-amber-400" />
+              <p className="line-clamp-2 text-[11px] text-amber-800 dark:text-amber-300">
+                {lot.notes}
+              </p>
+            </div>
+          )}
+
           <div className="mt-auto flex items-end justify-between pt-3">
             <div>
               <p className="text-[10px] text-muted-foreground">Stock</p>
@@ -637,6 +650,10 @@ function LotDetail({
             />
           </div>
 
+          {/* Observaciones del lote */}
+          <Separator className="my-5" />
+          <NotesSection lot={lot} canEdit={canEdit} />
+
           {/* Foto del envase */}
           <Separator className="my-5" />
           <ContainerPhotoSection lot={lot} canEdit={canEdit} />
@@ -754,6 +771,94 @@ function InfoTile({
       </p>
       <p className={cn("mt-0.5 text-sm font-medium", valueClass)}>{value}</p>
       {sub && <p className="text-[10px] text-muted-foreground">{sub}</p>}
+    </div>
+  )
+}
+
+function NotesSection({ lot, canEdit }: { lot: Lot; canEdit: boolean }) {
+  const qc = useQueryClient()
+  const [editing, setEditing] = useState(false)
+  const [notes, setNotes] = useState(lot.notes ?? "")
+  const [saving, setSaving] = useState(false)
+
+  const saveMutation = useMutation({
+    mutationFn: async () => {
+      const res = await fetch(`/api/lots/${lot.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ notes }),
+      })
+      if (!res.ok) throw new Error("Error al guardar las observaciones")
+      return res.json()
+    },
+    onSuccess: () => {
+      toast.success("Observaciones guardadas")
+      setEditing(false)
+      qc.invalidateQueries({ queryKey: ["lot", lot.id] })
+      qc.invalidateQueries({ queryKey: ["lots"] })
+    },
+    onError: (e: Error) => toast.error(e.message),
+  })
+
+  const startEdit = () => {
+    setNotes(lot.notes ?? "")
+    setEditing(true)
+  }
+
+  const cancelEdit = () => {
+    setEditing(false)
+    setNotes(lot.notes ?? "")
+  }
+
+  const save = () => {
+    setSaving(true)
+    saveMutation.mutate(undefined, {
+      onSettled: () => setSaving(false),
+    })
+  }
+
+  return (
+    <div>
+      <div className="mb-2 flex items-center justify-between">
+        <p className="text-xs font-medium text-muted-foreground">
+          Observaciones del lote
+        </p>
+        {canEdit && !editing && (
+          <Button variant="ghost" size="sm" onClick={startEdit} className="h-7 text-xs">
+            <Pencil className="mr-1 h-3 w-3" />
+            {lot.notes ? "Editar" : "Agregar"}
+          </Button>
+        )}
+      </div>
+      {editing ? (
+        <div className="space-y-2">
+          <Textarea
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+            rows={3}
+            placeholder="Ej: Está húmedo, No funciona, Es prestado, Contaminado…"
+            autoFocus
+          />
+          <div className="flex gap-2">
+            <Button size="sm" onClick={save} disabled={saving || saving}>
+              {saving ? "Guardando…" : "Guardar"}
+            </Button>
+            <Button size="sm" variant="outline" onClick={cancelEdit}>
+              Cancelar
+            </Button>
+          </div>
+        </div>
+      ) : lot.notes ? (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 dark:border-amber-900 dark:bg-amber-950/30">
+          <p className="whitespace-pre-wrap text-sm text-amber-900 dark:text-amber-200">
+            {lot.notes}
+          </p>
+        </div>
+      ) : (
+        <p className="text-sm text-muted-foreground/60">
+          Sin observaciones. Ej: húmedo, prestado, contaminado, no funciona…
+        </p>
+      )}
     </div>
   )
 }

@@ -69,6 +69,7 @@ export async function POST(req: NextRequest) {
       unit: body.unit || drug.unit || "g",
       warehouseId,
       location: body.location || drug.defaultLocation || null,
+      notes: body.notes?.trim() || null,
       status: "ACTIVO",
     },
     include: { drug: true, warehouse: true },

@@ -51,13 +51,13 @@ async function fetchWarehouses(): Promise<{ warehouses: Warehouse[] }> {
 }
 
 // Tipos que operan con frasco completo (sin ingreso de cantidad)
-const FULL_BOTTLE_TYPES: MovementType[] = ["HABILITACION", "CONSUMO", "DEVOLUCION", "BAJA"]
+const FULL_BOTTLE_TYPES: MovementType[] = ["HABILITACION", "CONSUMO", "DEVOLUCION", "BAJA", "TRANSFERENCIA"]
 
 const DESCRIPTIONS: Record<MovementType, string> = {
   HABILITACION: "Habilita el frasco para uso. El lote queda en estado “En uso”.",
   CONSUMO: "Marca el frasco como totalmente consumido. Se resta del inventario (stock → 0).",
   TRANSFERENCIA:
-    "Mueva stock a otro depósito. Si la cantidad es parcial, se creará un sub-lote en destino.",
+    "Transfiere el frasco completo a otro depósito. No se permiten fracciones.",
   DEVOLUCION: "Devuelve el frasco al depósito. El lote vuelve a estado “Activo”.",
   BAJA: "Da de baja el frasco completo (descarte, derrame, vencido, etc.). Stock → 0.",
   AJUSTE: "Ajuste manual del inventario. Use valor negativo para restar y positivo para sumar.",
@@ -119,8 +119,10 @@ export function MovementDialog({
       } else if (isFullBottle) {
         // Frasco completo: la API usa el stock actual del lote
         body.quantity = lot.currentQuantity
+        // TRANSFERENCIA también necesita el depósito destino
+        if (needsWarehouse) body.toWarehouseId = toWarehouseId
       } else {
-        // TRANSFERENCIA con cantidad
+        // No debería llegar acá (todos los tipos son full-bottle o ajuste)
         body.quantity = Number(quantity)
         if (needsWarehouse) body.toWarehouseId = toWarehouseId
       }
@@ -153,7 +155,7 @@ export function MovementDialog({
   const canSubmit = isAdjust
     ? diff !== "" && !isNaN(Number(diff)) && Number(diff) !== 0
     : isFullBottle
-      ? true // frasco completo, siempre confirmable
+      ? !needsWarehouse || !!toWarehouseId // frasco completo; transferencia necesita depósito
       : quantity !== "" &&
         Number(quantity) > 0 &&
         (!needsWarehouse || !!toWarehouseId)
@@ -200,16 +202,21 @@ export function MovementDialog({
                 {type === "HABILITACION" && "Se habilitará el frasco para uso."}
                 {type === "DEVOLUCION" && "Se devolverá el frasco al depósito."}
                 {type === "BAJA" && "Se dará de baja el frasco completo."}
+                {type === "TRANSFERENCIA" && "Se transferirá el frasco completo al depósito destino."}
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
                 Cantidad:{" "}
                 <span className="font-semibold">
                   {lot.currentQuantity} {lot.unit}
                 </span>
-                {" → "}
-                <span className="font-semibold">
-                  {newBalancePreview} {lot.unit}
-                </span>
+                {type === "CONSUMO" || type === "BAJA" ? (
+                  <>
+                    {" → "}
+                    <span className="font-semibold">0 {lot.unit}</span>
+                  </>
+                ) : type === "TRANSFERENCIA" ? (
+                  <span className="text-muted-foreground"> (sin cambios)</span>
+                ) : null}
               </p>
             </div>
           ) : isAdjust ? (

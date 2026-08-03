@@ -554,7 +554,7 @@ function RegisterMovementDialog({
 
   const isAjuste = type === "AJUSTE"
   const isTransfer = type === "TRANSFERENCIA"
-  const isFullBottle = ["HABILITACION", "CONSUMO", "DEVOLUCION", "BAJA"].includes(type)
+  const isFullBottle = ["HABILITACION", "CONSUMO", "DEVOLUCION", "BAJA", "TRANSFERENCIA"].includes(type)
 
   const diff = isAjuste && selectedLot && newStock
     ? Number(newStock) - Number(selectedLot.currentQuantity)
@@ -568,14 +568,13 @@ function RegisterMovementDialog({
       return true
     }
     if (isFullBottle) {
-      // Frasco completo: solo necesita lote seleccionado
+      // Frasco completo: necesita lote seleccionado
       if (!selectedLot) return false
+      // TRANSFERENCIA también necesita depósito destino
+      if (isTransfer && !toWarehouseId) return false
       return true
     }
-    // TRANSFERENCIA
-    if (!quantity || isNaN(Number(quantity)) || Number(quantity) <= 0) return false
-    if (isTransfer && !toWarehouseId) return false
-    return true
+    return false
   })()
 
   const saveMutation = useMutation({
@@ -591,9 +590,7 @@ function RegisterMovementDialog({
       } else if (isFullBottle) {
         // Frasco completo: la API usa el stock actual del lote
         body.quantity = selectedLot?.currentQuantity ?? 0
-      } else {
-        // TRANSFERENCIA
-        body.quantity = Number(quantity)
+        // TRANSFERENCIA también necesita depósito destino
         if (isTransfer) body.toWarehouseId = toWarehouseId
       }
 
@@ -806,6 +803,7 @@ function RegisterMovementDialog({
                   {type === "HABILITACION" && "Se habilitará el frasco para uso."}
                   {type === "DEVOLUCION" && "Se devolverá el frasco al depósito."}
                   {type === "BAJA" && "Se dará de baja el frasco completo."}
+                  {type === "TRANSFERENCIA" && "Se transferirá el frasco completo al depósito destino."}
                 </p>
                 {selectedLot && (
                   <p className="mt-1 text-xs text-muted-foreground">
@@ -813,31 +811,15 @@ function RegisterMovementDialog({
                     <span className="font-semibold">
                       {selectedLot.currentQuantity} {selectedLot.unit}
                     </span>
-                    {(type === "CONSUMO" || type === "BAJA") && " → 0"}
+                    {type === "CONSUMO" || type === "BAJA"
+                      ? " → 0"
+                      : type === "TRANSFERENCIA"
+                        ? " (sin cambios)"
+                        : ""}
                   </p>
                 )}
               </div>
-            ) : (
-              <div className="space-y-1.5">
-                <Label className="text-xs text-muted-foreground">
-                  Cantidad a transferir *
-                </Label>
-                <Input
-                  type="number"
-                  step="0.01"
-                  min="0"
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
-                  placeholder="0"
-                  className="h-9"
-                />
-                {selectedLot && (
-                  <p className="text-[11px] text-muted-foreground">
-                    Disponible: {selectedLot.currentQuantity} {selectedLot.unit}
-                  </p>
-                )}
-              </div>
-            )}
+            ) : null}
 
             {isTransfer && (
               <div className="space-y-1.5">

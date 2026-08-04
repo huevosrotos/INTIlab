@@ -552,10 +552,10 @@ function LotDetail({
         <CardContent className="p-5 sm:p-6">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="flex min-w-0 flex-1 items-start gap-4">
-              <QrBadge code={lot.qrCode} size={80} />
+              <QrBadge code={lot.qrCode} size={80} className="hidden sm:block" />
               <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2">
-                  <h1 className="text-xl font-bold sm:text-2xl">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h1 className="break-words text-xl font-bold sm:text-2xl">
                     {lot.drug.chemicalName}
                   </h1>
                   <Badge

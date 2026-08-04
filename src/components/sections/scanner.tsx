@@ -481,9 +481,9 @@ function FoundLotCard({
         <CardContent className="p-5 sm:p-6">
           <div className="flex items-start justify-between gap-3">
             <div className="flex min-w-0 flex-1 items-start gap-3">
-              <QrBadge code={lot.qrCode} size={72} />
+              <QrBadge code={lot.qrCode} size={72} className="hidden sm:block" />
               <div className="min-w-0 flex-1">
-                <h2 className="truncate text-xl font-bold sm:text-2xl">
+                <h2 className="break-words text-xl font-bold sm:text-2xl">
                   {lot.drug.chemicalName}
                 </h2>
                 {lot.drug.commercialName && (

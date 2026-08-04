@@ -18,6 +18,10 @@ COPY package.json bun.lock* ./
 COPY prisma ./prisma
 
 RUN bun install --frozen-lockfile
+# Instalar effect explicitamente porque Prisma CLI la necesita como
+# dependencia transitiva de @prisma/config, y bun install --frozen-lockfile
+# a veces no la resuelve. Es idempotente (si ya está, no hace nada).
+RUN bun add effect || true
 
 # ---------- Stage 2: Build de Next.js ----------
 FROM oven/bun:1.3-debian AS builder
@@ -27,6 +31,9 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Verificar que effect está disponible (debug)
+RUN ls node_modules/effect/package.json && echo "effect OK"
 
 # Generar cliente Prisma y construir Next.js (standalone)
 RUN bun run db:generate

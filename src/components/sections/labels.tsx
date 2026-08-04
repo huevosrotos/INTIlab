@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { Skeleton } from "@/components/ui/skeleton"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
   Select,
   SelectContent,
@@ -25,6 +26,8 @@ import {
   MapPin,
   Tag,
   Settings2,
+  Layers,
+  X,
 } from "lucide-react"
 import { LABEL_SIZES, LOT_STATUS_COLORS, LOT_STATUS_LABELS } from "@/lib/constants"
 import { toast } from "sonner"
@@ -108,6 +111,8 @@ export function Labels() {
   const [customW, setCustomW] = useState(50)
   const [customH, setCustomH] = useState(30)
   const [qrDataUrl, setQrDataUrl] = useState<string>("")
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+  const [bulkPrintOpen, setBulkPrintOpen] = useState(false)
 
   const { data: lotsData, isLoading: lotsLoading } = useQuery({
     queryKey: ["labels-lots", query],
@@ -207,49 +212,100 @@ export function Labels() {
                   No se encontraron lotes
                 </p>
               ) : (
-                <div className="max-h-72 overflow-y-auto rounded-lg border">
-                  {lots.map((lot) => {
-                    const active = lot.id === selectedLotId
-                    return (
-                      <button
-                        key={lot.id}
-                        onClick={() => {
-                          setQrDataUrl("")
-                          setSelectedLotId(lot.id)
+                <>
+                  {/* Barra de selección masiva */}
+                  <div className="flex items-center justify-between gap-2 rounded-lg border bg-muted/30 p-2">
+                    <div className="flex items-center gap-2">
+                      <Checkbox
+                        id="select-all"
+                        checked={lots.length > 0 && selectedIds.size === lots.length}
+                        onCheckedChange={(checked) => {
+                          if (checked) {
+                            setSelectedIds(new Set(lots.map((l) => l.id)))
+                          } else {
+                            setSelectedIds(new Set())
+                          }
                         }}
-                        className={cn(
-                          "flex w-full items-center gap-3 border-b px-3 py-2.5 text-left transition-colors last:border-b-0",
-                          active
-                            ? "bg-primary/10"
-                            : "hover:bg-accent"
-                        )}
-                      >
-                        <div className="min-w-0 flex-1">
-                          <p className="truncate text-sm font-medium">
-                            {lot.drug.chemicalName}
-                          </p>
-                          <p className="truncate font-mono text-[11px] text-muted-foreground">
-                            {lot.lotNumber} · {lot.qrCode}
-                          </p>
-                        </div>
-                        <div className="shrink-0 text-right">
-                          <Badge
-                            variant="outline"
-                            className={cn(
-                              "text-[9px]",
-                              LOT_STATUS_COLORS[lot.status]
-                            )}
+                      />
+                      <Label htmlFor="select-all" className="text-xs cursor-pointer">
+                        {selectedIds.size === 0
+                          ? "Seleccionar todos"
+                          : `${selectedIds.size} seleccionado${selectedIds.size === 1 ? "" : "s"}`}
+                      </Label>
+                    </div>
+                    <Button
+                      size="sm"
+                      variant="default"
+                      disabled={selectedIds.size === 0}
+                      onClick={() => setBulkPrintOpen(true)}
+                    >
+                      <Layers className="mr-1.5 h-4 w-4" />
+                      Imprimir {selectedIds.size > 0 ? `(${selectedIds.size})` : ""}
+                    </Button>
+                  </div>
+
+                  <div className="max-h-72 overflow-y-auto rounded-lg border">
+                    {lots.map((lot) => {
+                      const active = lot.id === selectedLotId
+                      const checked = selectedIds.has(lot.id)
+                      return (
+                        <div
+                          key={lot.id}
+                          className={cn(
+                            "flex w-full items-center gap-3 border-b px-3 py-2.5 text-left transition-colors last:border-b-0",
+                            active
+                              ? "bg-primary/10"
+                              : checked
+                                ? "bg-primary/5"
+                                : "hover:bg-accent"
+                          )}
+                        >
+                          <Checkbox
+                            checked={checked}
+                            onCheckedChange={(c) => {
+                              setSelectedIds((prev) => {
+                                const next = new Set(prev)
+                                if (c) next.add(lot.id)
+                                else next.delete(lot.id)
+                                return next
+                              })
+                            }}
+                          />
+                          <button
+                            onClick={() => {
+                              setQrDataUrl("")
+                              setSelectedLotId(lot.id)
+                            }}
+                            className="flex min-w-0 flex-1 items-center gap-3 text-left"
                           >
-                            {LOT_STATUS_LABELS[lot.status]}
-                          </Badge>
-                          <p className="mt-0.5 text-[10px] text-muted-foreground">
-                            {lot.currentQuantity} {lot.unit}
-                          </p>
+                            <div className="min-w-0 flex-1">
+                              <p className="truncate text-sm font-medium">
+                                {lot.drug.chemicalName}
+                              </p>
+                              <p className="truncate font-mono text-[11px] text-muted-foreground">
+                                {lot.lotNumber} · {lot.qrCode}
+                              </p>
+                            </div>
+                            <div className="shrink-0 text-right">
+                              <Badge
+                                variant="outline"
+                                className={cn(
+                                  "text-[9px]",
+                                  LOT_STATUS_COLORS[lot.status]
+                                )}
+                              >
+                                {LOT_STATUS_LABELS[lot.status]}
+                              </Badge>
+                              <p className="mt-0.5 text-[10px] text-muted-foreground">
+                                {lot.currentQuantity} {lot.unit}
+                              </p>
+                            </div>
+                          </button>
                         </div>
-                      </button>
-                    )
-                  })}
-                </div>
+                      )
+                    })}
+                  </div>
+                </>
               )}
             </CardContent>
           </Card>
@@ -364,6 +420,245 @@ export function Labels() {
           </Card>
         </div>
       </div>
+
+      {/* Diálogo de impresión masiva */}
+      <BulkPrintDialog
+        open={bulkPrintOpen}
+        onOpenChange={setBulkPrintOpen}
+        lots={lots.filter((l) => selectedIds.has(l.id))}
+        w={w}
+        h={h}
+      />
+    </div>
+  )
+}
+
+// Hook para generar QRs en lote
+function useBulkQrCodes(codes: string[]): Record<string, string> {
+  const [urls, setUrls] = useState<Record<string, string>>({})
+  const codesKey = codes.join(",")
+
+  useEffect(() => {
+    let active = true
+    const generate = async () => {
+      const result: Record<string, string> = {}
+      for (const code of codes) {
+        try {
+          const url = await QRCode.toDataURL(buildQrUrl(code), {
+            margin: 1,
+            width: 600,
+            errorCorrectionLevel: "M",
+            color: { dark: "#000000", light: "#ffffff" },
+          })
+          result[code] = url
+        } catch {}
+      }
+      if (active) setUrls(result)
+    }
+    if (codes.length > 0) {
+      void generate()
+    }
+    return () => {
+      active = false
+    }
+  }, [codesKey])
+
+  return urls
+}
+
+function BulkPrintDialog({
+  open,
+  onOpenChange,
+  lots,
+  w,
+  h,
+}: {
+  open: boolean
+  onOpenChange: (o: boolean) => void
+  lots: LotListItem[]
+  w: number
+  h: number
+}) {
+  const codes = lots.map((l) => l.qrCode)
+  const qrUrls = useBulkQrCodes(codes)
+
+  const handlePrint = () => {
+    window.print()
+  }
+
+  if (!open) return null
+
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col bg-background">
+      {/* Header (no se imprime) */}
+      <div className="no-print flex items-center justify-between border-b p-4">
+        <div>
+          <h2 className="text-lg font-bold">
+            Imprimir {lots.length} etiqueta{lots.length === 1 ? "" : "s"}
+          </h2>
+          <p className="text-xs text-muted-foreground">
+            {w} × {h} mm cada una · {lots.length} etiquetas en una hoja
+          </p>
+        </div>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => onOpenChange(false)}>
+            <X className="mr-1.5 h-4 w-4" />
+            Cerrar
+          </Button>
+          <Button onClick={handlePrint}>
+            <Printer className="mr-1.5 h-4 w-4" />
+            Imprimir
+          </Button>
+        </div>
+      </div>
+
+      {/* Hoja de etiquetas (se imprime) */}
+      <div className="flex-1 overflow-auto bg-muted/30 p-4">
+        <div className="bulk-print-sheet mx-auto bg-white p-4 shadow-lg" style={{ maxWidth: "210mm" }}>
+          <div
+            className="flex flex-wrap gap-2"
+            style={{ gap: "2mm" }}
+          >
+            {lots.map((lot) => {
+              const qrUrl = qrUrls[lot.qrCode] ?? ""
+              const location =
+                lot.location?.trim() || lot.drug.defaultLocation?.trim() || null
+              const expiry = lot.expiryDate
+                ? format(new Date(lot.expiryDate), "dd/MM/yy", { locale: es })
+                : null
+              const picts = parsePictograms(lot.drug.pictograms)
+              const minDim = Math.min(w, h)
+              const landscape = w >= h
+              const qrMm = Math.round(Math.min(h * 0.74, w * 0.46) * 10) / 10
+              const pictMm = clamp(minDim * 0.2, 3, 10)
+              const pictPx = Math.round(pictMm * 3.7795)
+              const nameMm = clamp(minDim * 0.13, 1.8, 4.8)
+              const smallMm = clamp(minDim * 0.085, 1.2, 3)
+              const locMm = clamp(minDim * 0.1, 1.4, 3.4)
+
+              return (
+                <div
+                  key={lot.id}
+                  className="print-label relative flex overflow-hidden border border-black bg-white"
+                  style={{
+                    width: `${w}mm`,
+                    height: `${h}mm`,
+                    flexDirection: landscape ? "row" : "column",
+                    WebkitPrintColorAdjust: "exact",
+                    printColorAdjust: "exact",
+                  }}
+                >
+                  {/* QR */}
+                  <div
+                    className="flex shrink-0 items-center justify-center"
+                    style={{
+                      width: landscape ? `${qrMm}mm` : "100%",
+                      height: landscape ? "100%" : `${qrMm}mm`,
+                      padding: `${Math.max(0.5, minDim * 0.02)}mm`,
+                    }}
+                  >
+                    {qrUrl ? (
+                      <img
+                        src={qrUrl}
+                        alt={`QR ${lot.qrCode}`}
+                        style={{
+                          width: `${qrMm - Math.max(1, minDim * 0.04)}mm`,
+                          height: `${qrMm - Math.max(1, minDim * 0.04)}mm`,
+                          objectFit: "contain",
+                        }}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          width: `${qrMm - Math.max(1, minDim * 0.04)}mm`,
+                          height: `${qrMm - Math.max(1, minDim * 0.04)}mm`,
+                        }}
+                        className="animate-pulse bg-muted"
+                      />
+                    )}
+                  </div>
+
+                  {/* Texto */}
+                  <div
+                    className="flex min-w-0 flex-1 flex-col justify-center text-black"
+                    style={{
+                      padding: `${Math.max(0.4, minDim * 0.03)}mm`,
+                      gap: `${Math.max(0.3, minDim * 0.02)}mm`,
+                    }}
+                  >
+                    <p
+                      className="font-bold leading-tight"
+                      style={{ fontSize: `${nameMm}mm`, lineHeight: 1.05 }}
+                    >
+                      {lot.drug.chemicalName}
+                    </p>
+
+                    {picts.length > 0 && (
+                      <div className="flex flex-wrap" style={{ gap: `${Math.max(0.2, minDim * 0.015)}mm` }}>
+                        {picts.map((p) => (
+                          <Ghspictogram key={p} code={p} size={pictPx} />
+                        ))}
+                      </div>
+                    )}
+
+                    {location && (
+                      <p
+                        className="flex items-center font-medium leading-tight"
+                        style={{ fontSize: `${locMm}mm`, lineHeight: 1.1 }}
+                      >
+                        <MapPin
+                          className="shrink-0"
+                          style={{
+                            width: `${locMm}mm`,
+                            height: `${locMm}mm`,
+                            marginRight: `${Math.max(0.2, minDim * 0.015)}mm`,
+                          }}
+                        />
+                        <span className="truncate">{location}</span>
+                      </p>
+                    )}
+
+                    <div
+                      className="font-mono leading-tight text-black/80"
+                      style={{ fontSize: `${smallMm}mm`, lineHeight: 1.15 }}
+                    >
+                      <p className="truncate">Lote: {lot.lotNumber}</p>
+                      {lot.drug.cas && (
+                        <p className="truncate">CAS: {lot.drug.cas}</p>
+                      )}
+                      {expiry && <p className="truncate">Vence: {expiry}</p>}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        @media print {
+          .no-print { display: none !important; }
+          body * { visibility: hidden !important; }
+          .bulk-print-sheet, .bulk-print-sheet * { visibility: visible !important; }
+          .bulk-print-sheet {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            margin: 0 !important;
+            padding: 5mm !important;
+            box-shadow: none !important;
+            max-width: none !important;
+            width: 100% !important;
+          }
+          .print-label {
+            border: 1px solid #000 !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          @page { margin: 5mm; }
+        }
+      `}</style>
     </div>
   )
 }

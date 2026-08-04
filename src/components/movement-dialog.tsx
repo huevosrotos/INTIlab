@@ -54,7 +54,7 @@ async function fetchWarehouses(): Promise<{ warehouses: Warehouse[] }> {
 const FULL_BOTTLE_TYPES: MovementType[] = ["HABILITACION", "CONSUMO", "DEVOLUCION", "BAJA", "TRANSFERENCIA"]
 
 const DESCRIPTIONS: Record<MovementType, string> = {
-  HABILITACION: "Habilita el frasco para uso. El lote queda en estado “En uso”.",
+  HABILITACION: "Habilita el frasco para uso e indica a qué laboratorio/sector se destina. El lote queda en estado “En uso”.",
   CONSUMO: "Marca el frasco como totalmente consumido. Se resta del inventario (stock → 0).",
   TRANSFERENCIA:
     "Transfiere el frasco completo a otro depósito. No se permiten fracciones.",
@@ -90,7 +90,8 @@ export function MovementDialog({
 
   const isFullBottle = FULL_BOTTLE_TYPES.includes(type)
   const isAdjust = type === "AJUSTE"
-  const needsWarehouse = type === "TRANSFERENCIA"
+  // TRANSFERENCIA y HABILITACION necesitan depósito destino
+  const needsWarehouse = type === "TRANSFERENCIA" || type === "HABILITACION"
 
   const { data: whData } = useQuery({
     queryKey: ["warehouses"],
@@ -251,14 +252,23 @@ export function MovementDialog({
           )}
 
           {needsWarehouse && (
-            <Field label="Depósito destino *">
+            <Field
+              label={
+                type === "HABILITACION"
+                  ? "Laboratorio / sector de destino *"
+                  : "Depósito destino *"
+              }
+            >
               <Select value={toWarehouseId} onValueChange={setToWarehouseId}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Seleccionar depósito" />
+                  <SelectValue placeholder="Seleccionar destino" />
                 </SelectTrigger>
                 <SelectContent>
                   {warehouses
-                    .filter((w) => w.id !== lot.warehouseId)
+                    // Transferencia: excluir el origen. Habilitación: mostrar todos.
+                    .filter((w) =>
+                      type === "TRANSFERENCIA" ? w.id !== lot.warehouseId : true
+                    )
                     .map((w) => (
                       <SelectItem key={w.id} value={w.id}>
                         {w.name} ({w.code})

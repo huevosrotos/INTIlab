@@ -82,11 +82,15 @@ export async function POST(req: NextRequest) {
       break
     }
     case "HABILITACION": {
-      // Habilitar frasco para uso: ACTIVO → EN_USO (sin cambiar stock)
+      // Habilitar frasco para uso: ACTIVO → EN_USO.
+      // Si se indica depósito destino, el frasco se traslada ahí (laboratorio/sector).
       if (lot.status !== "ACTIVO") return err("Solo se pueden habilitar lotes activos")
       await db.lot.update({
         where: { id: lot.id },
-        data: { status: "EN_USO" },
+        data: {
+          status: "EN_USO",
+          warehouseId: toWarehouseId || fromWarehouseId,
+        },
       })
       movementQuantity = lot.currentQuantity
       break

@@ -53,6 +53,9 @@ export async function PUT(
   if (body.notes !== undefined) {
     data.notes = body.notes?.trim() || null
   }
+  if (body.purity !== undefined) {
+    data.purity = body.purity?.trim() || null
+  }
   // Solo actualizar fotos si el campo vino explícitamente en el body
   // (permite setear a null para eliminar)
   if (body.containerPhoto !== undefined) {

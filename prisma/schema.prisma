@@ -82,7 +82,8 @@ model Lot {
   warehouseId     String?
   warehouse       Warehouse? @relation(fields: [warehouseId], references: [id])
   location        String?
-  notes            String?  // observaciones del lote (ej: "húmedo", "prestado", "contaminado")
+  purity          String?  // pureza del lote (ej: "≥99,5%"); si es null usa el de la droga
+  notes           String?  // observaciones del lote (ej: "húmedo", "prestado", "contaminado")
   containerPhoto  String?
   labelPhoto      String?
   status          String   @default("ACTIVO") // ACTIVO | EN_USO | CONSUMIDO | VENCIDO | DADO_DE_BAJA

@@ -104,6 +104,7 @@ type Lot = {
   unit: string
   status: string
   location: string | null
+  purity: string | null
   notes: string | null
   containerPhoto: string | null
   warehouseId: string | null
@@ -648,6 +649,12 @@ function LotDetail({
                   : undefined
               }
             />
+            <InfoTile
+              icon={Package}
+              label="Pureza del lote"
+              value={lot.purity ?? lot.drug.purity ?? "—"}
+              sub={lot.purity ? null : lot.drug.purity ? "(de la droga)" : undefined}
+            />
           </div>
 
           {/* Observaciones del lote */}
@@ -1158,6 +1165,7 @@ function NewLotDialog({ warehouses }: { warehouses: Warehouse[] }) {
     purchaseDate: "",
     warehouseId: "",
     location: "",
+    purity: "",
   })
 
   const { data: drugData, isLoading: drugsLoading } = useQuery({
@@ -1180,6 +1188,7 @@ function NewLotDialog({ warehouses }: { warehouses: Warehouse[] }) {
       purchaseDate: "",
       warehouseId: "",
       location: "",
+      purity: "",
     })
   }
 
@@ -1198,6 +1207,7 @@ function NewLotDialog({ warehouses }: { warehouses: Warehouse[] }) {
           purchaseDate: form.purchaseDate || undefined,
           warehouseId: form.warehouseId || undefined,
           location: form.location || undefined,
+          purity: form.purity || undefined,
         }),
       })
       if (!res.ok) {
@@ -1417,6 +1427,22 @@ function NewLotDialog({ warehouses }: { warehouses: Warehouse[] }) {
                     setForm({ ...form, location: e.target.value })
                   }
                   placeholder="Estante A-3"
+                />
+              </Field>
+              <Field
+                label="Pureza / concentración"
+                hint={
+                  selectedDrug?.purity
+                    ? `Por defecto: ${selectedDrug.purity}`
+                    : undefined
+                }
+              >
+                <Input
+                  value={form.purity}
+                  onChange={(e) =>
+                    setForm({ ...form, purity: e.target.value })
+                  }
+                  placeholder="≥99,5%"
                 />
               </Field>
             </div>

@@ -360,11 +360,12 @@ export async function POST(req: NextRequest) {
       initial: number
       warehouseId: string
       location?: string
+      purity?: string
       notes?: string
       status: "ACTIVO" | "EN_USO" | "CONSUMIDO" | "VENCIDO"
     }> = [
       { drugIdx: 0, lotNumber: "AC-2401", expiry: 365, supplier: "Cicarrelli", purchaseDaysAgo: 60, initial: 2500, warehouseId: depositoPrincipal.id, location: "Estante A-3", status: "ACTIVO" },
-      { drugIdx: 0, lotNumber: "AC-2308", expiry: -15, supplier: "Anedra", purchaseDaysAgo: 300, initial: 1000, warehouseId: depositoPrincipal.id, location: "Estante A-3", status: "VENCIDO", notes: "Frasco congelado, descartar" },
+      { drugIdx: 0, lotNumber: "AC-2308", expiry: -15, supplier: "Anedra", purchaseDaysAgo: 300, initial: 1000, warehouseId: depositoPrincipal.id, location: "Estante A-3", status: "VENCIDO", purity: "≥99,0%", notes: "Frasco congelado, descartar" },
       { drugIdx: 1, lotNumber: "ET-2415", expiry: 540, supplier: "Merck", purchaseDaysAgo: 30, initial: 5000, warehouseId: depositoPrincipal.id, location: "Estante A-3", status: "ACTIVO" },
       { drugIdx: 1, lotNumber: "ET-2402", expiry: 60, supplier: "Cicarelli", purchaseDaysAgo: 120, initial: 1000, warehouseId: labSintesis.id, location: "Mesada 1", status: "EN_USO", notes: "Prestado al Lab. Docencia" },
       { drugIdx: 2, lotNumber: "HCl-2403", expiry: 720, supplier: "Anedra", purchaseDaysAgo: 90, initial: 2500, warehouseId: depositoPrincipal.id, location: "Cámara ácidos - C-1", status: "ACTIVO" },
@@ -401,6 +402,7 @@ export async function POST(req: NextRequest) {
           unit: drug.unit ?? "g",
           warehouseId: ld.warehouseId,
           location: ld.location ?? drug.defaultLocation,
+          purity: ld.purity ?? null,
           notes: ld.notes ?? null,
           status: ld.status,
         },

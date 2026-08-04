@@ -61,6 +61,7 @@ export async function POST(req: NextRequest) {
           warehouseId: toWarehouseId,
           initialQuantity: lot.initialQuantity + qty,
           status: "ACTIVO",
+          receivedDate: lot.receivedDate ?? new Date(),
         },
       })
       movementQuantity = qty
@@ -71,7 +72,9 @@ export async function POST(req: NextRequest) {
       // No se permiten fracciones (coherente con el modelo de frasco completo).
       if (!toWarehouseId) return err("Debe indicar el depósito de destino")
       if (toWarehouseId === fromWarehouseId) return err("El depósito origen y destino son el mismo")
-      if (lot.status !== "ACTIVO") return err("Solo se pueden transferir lotes activos")
+      // Se pueden transferir lotes activos o vencidos (sigue siendo válido moverlo)
+      if (lot.status !== "ACTIVO" && lot.status !== "VENCIDO")
+        return err("Solo se pueden transferir lotes activos o vencidos")
       // Mover todo el lote al nuevo depósito
       newBalance = lot.currentQuantity
       movementQuantity = lot.currentQuantity
@@ -82,22 +85,25 @@ export async function POST(req: NextRequest) {
       break
     }
     case "HABILITACION": {
-      // Habilitar frasco para uso: ACTIVO → EN_USO.
+      // Habilitar frasco para uso: ACTIVO o VENCIDO → EN_USO.
       // Si se indica depósito destino, el frasco se traslada ahí (laboratorio/sector).
-      if (lot.status !== "ACTIVO") return err("Solo se pueden habilitar lotes activos")
+      if (lot.status !== "ACTIVO" && lot.status !== "VENCIDO")
+        return err("Solo se pueden habilitar lotes activos o vencidos")
       await db.lot.update({
         where: { id: lot.id },
         data: {
           status: "EN_USO",
           warehouseId: toWarehouseId || fromWarehouseId,
+          openedDate: lot.openedDate ?? new Date(),
         },
       })
       movementQuantity = lot.currentQuantity
       break
     }
     case "CONSUMO": {
-      // Consumo de frasco completo: EN_USO → CONSUMIDO, stock a 0
-      if (lot.status !== "EN_USO") return err("Solo se pueden consumir lotes habilitados para uso (EN_USO)")
+      // Consumo de frasco completo: EN_USO o VENCIDO → CONSUMIDO, stock a 0
+      if (lot.status !== "EN_USO" && lot.status !== "VENCIDO")
+        return err("Solo se pueden consumir lotes habilitados para uso (EN_USO) o vencidos")
       movementQuantity = lot.currentQuantity
       newBalance = 0
       await db.lot.update({
@@ -105,12 +111,14 @@ export async function POST(req: NextRequest) {
         data: {
           currentQuantity: 0,
           status: "CONSUMIDO",
+          consumedDate: new Date(),
         },
       })
       break
     }
     case "DEVOLUCION": {
       // Devolver frasco al depósito: EN_USO → ACTIVO (sin cambiar stock)
+      // (los vencidos no se devuelven porque ya no están "en uso")
       if (lot.status !== "EN_USO") return err("Solo se pueden devolver lotes habilitados para uso (EN_USO)")
       await db.lot.update({
         where: { id: lot.id },
@@ -120,7 +128,7 @@ export async function POST(req: NextRequest) {
       break
     }
     case "BAJA": {
-      // Dar de baja el frasco completo: cualquier estado → DADO_DE_BAJA, stock a 0
+      // Dar de baja el frasco completo: cualquier estado (excepto DADO_DE_BAJA) → DADO_DE_BAJA, stock a 0
       if (lot.status === "DADO_DE_BAJA") return err("El lote ya está dado de baja")
       movementQuantity = lot.currentQuantity
       newBalance = 0
@@ -129,6 +137,7 @@ export async function POST(req: NextRequest) {
         data: {
           currentQuantity: 0,
           status: "DADO_DE_BAJA",
+          discardedDate: new Date(),
         },
       })
       break

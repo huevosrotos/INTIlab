@@ -375,6 +375,15 @@ async function main() {
     const expiry = daysFromNow(ld.expiry)
     // En el modelo de frasco completo: current = 0 solo si está CONSUMIDO
     const currentQuantity = ld.status === "CONSUMIDO" ? 0 : ld.initial
+    // Fechas de trazabilidad según el estado
+    const receivedDate = daysAgo(ld.purchaseDaysAgo)
+    const openedDate = (ld.status === "EN_USO" || ld.status === "CONSUMIDO")
+      ? daysAgo(Math.floor(ld.purchaseDaysAgo / 2))
+      : null
+    const consumedDate = ld.status === "CONSUMIDO"
+      ? daysAgo(Math.floor(ld.purchaseDaysAgo / 3))
+      : null
+    const discardedDate = null // el seed no crea lotes DADO_DE_BAJA
     const lot = await db.lot.create({
       data: {
         drugId: drug.id,
@@ -391,6 +400,10 @@ async function main() {
         purity: ld.purity ?? null,
         notes: ld.notes ?? null,
         status: ld.status,
+        receivedDate,
+        openedDate,
+        consumedDate,
+        discardedDate,
       },
     })
     createdLots.push(lot)

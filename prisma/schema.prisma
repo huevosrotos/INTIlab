@@ -87,6 +87,11 @@ model Lot {
   containerPhoto  String?
   labelPhoto      String?
   status          String   @default("ACTIVO") // ACTIVO | EN_USO | CONSUMIDO | VENCIDO | DADO_DE_BAJA
+  // Fechas de trazabilidad del ciclo de vida del frasco
+  receivedDate    DateTime? // fecha de recibido (ingreso al sistema)
+  openedDate      DateTime? // fecha de apertura del frasco (habilitación para uso)
+  consumedDate    DateTime? // fecha de consumo (frasco totalmente consumido)
+  discardedDate   DateTime? // fecha de baja (descarte/derrame)
   movements       Movement[]
   alerts          Alert[]
   createdAt       DateTime @default(now())

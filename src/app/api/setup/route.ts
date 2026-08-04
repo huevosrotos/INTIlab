@@ -389,6 +389,15 @@ export async function POST(req: NextRequest) {
       const drug = createdDrugs[ld.drugIdx]
       const expiry = daysFromNow(ld.expiry)
       const currentQuantity = ld.status === "CONSUMIDO" ? 0 : ld.initial
+      // Fechas de trazabilidad según el estado
+      const receivedDate = daysAgo(ld.purchaseDaysAgo)
+      const openedDate = (ld.status === "EN_USO" || ld.status === "CONSUMIDO")
+        ? daysAgo(Math.floor(ld.purchaseDaysAgo / 2))
+        : null
+      const consumedDate = ld.status === "CONSUMIDO"
+        ? daysAgo(Math.floor(ld.purchaseDaysAgo / 3))
+        : null
+      const discardedDate = null
       const lot = await db.lot.create({
         data: {
           drugId: drug.id,
@@ -405,6 +414,10 @@ export async function POST(req: NextRequest) {
           purity: ld.purity ?? null,
           notes: ld.notes ?? null,
           status: ld.status,
+          receivedDate,
+          openedDate,
+          consumedDate,
+          discardedDate,
         },
       })
       createdLots.push(lot)

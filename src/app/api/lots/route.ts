@@ -72,6 +72,7 @@ export async function POST(req: NextRequest) {
       purity: body.purity?.trim() || null,
       notes: body.notes?.trim() || null,
       status: "ACTIVO",
+      receivedDate: body.receivedDate ? new Date(body.receivedDate) : new Date(),
     },
     include: { drug: true, warehouse: true },
   })

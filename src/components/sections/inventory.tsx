@@ -108,6 +108,10 @@ type Lot = {
   notes: string | null
   containerPhoto: string | null
   warehouseId: string | null
+  receivedDate: string | null
+  openedDate: string | null
+  consumedDate: string | null
+  discardedDate: string | null
   warehouse: Warehouse | null
   drug: Drug
 }
@@ -627,29 +631,31 @@ function LotDetail({
     allowed: boolean
     variant: "default" | "outline" | "secondary" | "destructive"
   }[] = [
-    // Acciones para lotes ACTIVOS
+    // Habilitar: ACTIVO o VENCIDO (un frasco vencido puede habilitarse para uso)
     {
       type: "HABILITACION",
       label: "Habilitar para uso",
       icon: PlayCircle,
-      allowed: canConsume && lot.status === "ACTIVO",
+      allowed: canConsume && (lot.status === "ACTIVO" || lot.status === "VENCIDO"),
       variant: "default",
     },
+    // Transferir: ACTIVO o VENCIDO
     {
       type: "TRANSFERENCIA",
       label: "Transferir",
       icon: Repeat,
-      allowed: canEdit && lot.status === "ACTIVO",
+      allowed: canEdit && (lot.status === "ACTIVO" || lot.status === "VENCIDO"),
       variant: "outline",
     },
-    // Acciones para lotes EN_USO
+    // Consumir: EN_USO o VENCIDO (puede consumirse aunque esté vencido)
     {
       type: "CONSUMO",
       label: "Marcar consumido",
       icon: CheckCircle2,
-      allowed: canConsume && lot.status === "EN_USO",
+      allowed: canConsume && (lot.status === "EN_USO" || lot.status === "VENCIDO"),
       variant: "secondary",
     },
+    // Devolver: solo EN_USO (un vencido no se "devuelve", se da de baja)
     {
       type: "DEVOLUCION",
       label: "Devolver al depósito",
@@ -657,20 +663,26 @@ function LotDetail({
       allowed: canEdit && lot.status === "EN_USO",
       variant: "outline",
     },
-    // Baja: disponible desde cualquier estado activo
+    // Baja: disponible desde cualquier estado excepto DADO_DE_BAJA y CONSUMIDO
     {
       type: "BAJA",
       label: "Dar de baja",
       icon: Ban,
-      allowed: canEdit && (lot.status === "ACTIVO" || lot.status === "EN_USO"),
+      allowed:
+        canEdit &&
+        lot.status !== "DADO_DE_BAJA" &&
+        lot.status !== "CONSUMIDO",
       variant: "outline",
     },
-    // Ajuste: solo para admin/encargado, cualquier estado activo
+    // Ajuste: admin/encargado, cualquier estado excepto DADO_DE_BAJA y CONSUMIDO
     {
       type: "AJUSTE",
       label: "Ajustar",
       icon: SlidersHorizontal,
-      allowed: canEdit && (lot.status === "ACTIVO" || lot.status === "EN_USO"),
+      allowed:
+        canEdit &&
+        lot.status !== "DADO_DE_BAJA" &&
+        lot.status !== "CONSUMIDO",
       variant: "outline",
     },
   ]
@@ -787,6 +799,36 @@ function LotDetail({
               value={lot.purity ?? lot.drug.purity ?? "—"}
               sub={lot.purity ? null : lot.drug.purity ? "(de la droga)" : undefined}
             />
+          </div>
+
+          {/* Trazabilidad: ciclo de vida del frasco */}
+          <Separator className="my-5" />
+          <div>
+            <p className="mb-2 text-xs font-medium text-muted-foreground">
+              Trazabilidad (ciclo de vida)
+            </p>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+              <InfoTile
+                icon={CalendarClock}
+                label="Recibido"
+                value={lot.receivedDate ? format(new Date(lot.receivedDate), "dd/MM/yyyy", { locale: es }) : "—"}
+              />
+              <InfoTile
+                icon={PlayCircle}
+                label="Apertura (habilitación)"
+                value={lot.openedDate ? format(new Date(lot.openedDate), "dd/MM/yyyy", { locale: es }) : "—"}
+              />
+              <InfoTile
+                icon={CheckCircle2}
+                label="Consumido"
+                value={lot.consumedDate ? format(new Date(lot.consumedDate), "dd/MM/yyyy", { locale: es }) : "—"}
+              />
+              <InfoTile
+                icon={Ban}
+                label="Dado de baja"
+                value={lot.discardedDate ? format(new Date(lot.discardedDate), "dd/MM/yyyy", { locale: es }) : "—"}
+              />
+            </div>
           </div>
 
           {/* Observaciones del lote */}

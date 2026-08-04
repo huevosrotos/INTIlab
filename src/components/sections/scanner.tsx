@@ -565,8 +565,8 @@ function FoundLotCard({
           Ver en inventario
         </Button>
 
-        {/* Si está ACTIVO: habilitar para uso, transferir */}
-        {canConsume && lot.status === "ACTIVO" && (
+        {/* Habilitar: ACTIVO o VENCIDO */}
+        {canConsume && (lot.status === "ACTIVO" || lot.status === "VENCIDO") && (
           <MovementDialog
             lot={lot}
             type="HABILITACION"
@@ -581,7 +581,8 @@ function FoundLotCard({
             }
           />
         )}
-        {canEdit && lot.status === "ACTIVO" && (
+        {/* Transferir: ACTIVO o VENCIDO */}
+        {canEdit && (lot.status === "ACTIVO" || lot.status === "VENCIDO") && (
           <MovementDialog
             lot={lot}
             type="TRANSFERENCIA"
@@ -597,8 +598,8 @@ function FoundLotCard({
           />
         )}
 
-        {/* Si está EN_USO: marcar consumido, devolver */}
-        {canConsume && lot.status === "EN_USO" && (
+        {/* Consumir: EN_USO o VENCIDO */}
+        {canConsume && (lot.status === "EN_USO" || lot.status === "VENCIDO") && (
           <MovementDialog
             lot={lot}
             type="CONSUMO"
@@ -613,6 +614,7 @@ function FoundLotCard({
             }
           />
         )}
+        {/* Devolver: solo EN_USO */}
         {canEdit && lot.status === "EN_USO" && (
           <MovementDialog
             lot={lot}
@@ -629,8 +631,8 @@ function FoundLotCard({
           />
         )}
 
-        {/* Dar de baja: desde ACTIVO o EN_USO */}
-        {canEdit && (lot.status === "ACTIVO" || lot.status === "EN_USO") && (
+        {/* Dar de baja: cualquier estado excepto DADO_DE_BAJA y CONSUMIDO */}
+        {canEdit && lot.status !== "DADO_DE_BAJA" && lot.status !== "CONSUMIDO" && (
           <MovementDialog
             lot={lot}
             type="BAJA"

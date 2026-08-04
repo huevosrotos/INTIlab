@@ -2,9 +2,19 @@
 # DrogLab — Docker Compose
 # ============================================================
 # Uso:
-#   docker compose up -d --build   # construir y levantar
-#   docker compose logs -f         # ver logs
-#   docker compose down            # detener
+#   docker compose up -d --build     # construir y levantar
+#   docker compose logs -f           # ver logs
+#   docker compose down              # detener
+#
+# Para inicializar la DB con datos de muestra (solo la primera vez):
+#   curl -X POST http://localhost:3000/api/setup \
+#     -H "Authorization: Bearer droglab-setup-2024"
+#
+# Para migrar a MariaDB en el futuro:
+#   1. Descomentar el servicio 'db' abajo
+#   2. Cambiar DATABASE_URL en droglab a: mysql://droglab:droglab@db:3306/droglab
+#   3. Cambiar provider en prisma/schema.prisma de sqlite a mysql
+#   4. docker compose up -d --build
 # ============================================================
 
 services:
@@ -19,6 +29,8 @@ services:
       - NODE_ENV=production
       - DATABASE_URL=file:/app/db/custom.db
       - NEXT_TELEMETRY_DISABLED=1
+      # Para usar MariaDB externa, cambiar DATABASE_URL:
+      # - DATABASE_URL=mysql://admin:inti1957@192.168.2.205:3306/droglab
     volumes:
       # Base de datos SQLite persistente
       - ./data/db:/app/db
@@ -30,3 +42,39 @@ services:
       timeout: 5s
       retries: 3
       start_period: 20s
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: droglab-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - droglab
+
+  # ============================================================
+  # MariaDB opcional — descomentar para migrar la DB en el futuro
+  # ============================================================
+  # db:
+  #   image: mariadb:11
+  #   container_name: droglab-db
+  #   restart: unless-stopped
+  #   environment:
+  #     - MARIADB_ROOT_PASSWORD=droglab_root
+  #     - MARIADB_DATABASE=droglab
+  #     - MARIADB_USER=droglab
+  #     - MARIADB_PASSWORD=droglab
+  #   volumes:
+  #     - mariadb_data:/var/lib/mysql
+  #   ports:
+  #     - "3306:3306"
+
+volumes:
+  caddy_data:
+  caddy_config:
+  # mariadb_data:  # descomentar con el servicio db

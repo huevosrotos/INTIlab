@@ -1,23 +1,25 @@
-:81 {
-	@transform_port_query {
-		query XTransformPort=*
-	}
+# ============================================================
+# DrogLab — Configuración de Caddy (reverse proxy + HTTPS)
+# ============================================================
+# Caddy gestiona certificados automáticamente. Para IPs locales
+# usa un certificado autofirmado (tls internal). Para dominios
+# públicos obtiene certificados Let's Encrypt automáticamente.
+#
+# Cambiar la IP/dominio abajo según tu entorno:
+#   - Local: usa tls internal (autofirmado, aceptar advertencia)
+#   - Dominio: comentar 'tls internal' para Let's Encrypt
+# ============================================================
 
-	handle @transform_port_query {
-		reverse_proxy localhost:{query.XTransformPort} {
-			header_up Host {host}
-			header_up X-Forwarded-For {remote_host}
-			header_up X-Forwarded-Proto {scheme}
-			header_up X-Real-IP {remote_host}
-		}
-	}
-
-	handle {
-		reverse_proxy localhost:3000 {
-			header_up Host {host}
-			header_up X-Forwarded-For {remote_host}
-			header_up X-Forwarded-Proto {scheme}
-			header_up X-Real-IP {remote_host}
-		}
-	}
+# Para acceso por IP local (autofirmado):
+https://0.0.0.0, https://localhost {
+    reverse_proxy droglab:3000
+    tls internal
 }
+
+# Para acceso por dominio público (Let's Encrypt automático):
+# Descomentar y cambiar 'droglab.tudominio.com':
+#
+# droglab.tudominio.com {
+#     reverse_proxy droglab:3000
+#     # tls automático (no hace falta tls internal)
+# }

@@ -51,12 +51,12 @@ COPY --from=builder --chown=app:app /app/.next/standalone ./
 COPY --from=builder --chown=app:app /app/.next/static ./.next/static
 COPY --from=builder --chown=app:app /app/public ./public
 
-# --- Copiar Prisma (schema + cliente + CLI para db push) ---
+# --- Copiar Prisma y todas sus dependencias para que db push funcione ---
+# El CLI de Prisma tiene dependencias transitivas (effect, @effect, etc.)
+# que se necesitan en runtime. Copiamos node_modules completo para evitar
+# errores de "Cannot find package X" al ejecutar prisma db push.
 COPY --from=builder --chown=app:app /app/prisma ./prisma
-COPY --from=builder --chown=app:app /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder --chown=app:app /app/node_modules/@prisma ./node_modules/@prisma
-COPY --from=builder --chown=app:app /app/node_modules/prisma ./node_modules/prisma
-COPY --from=builder --chown=app:app /app/node_modules/.bin ./node_modules/.bin
+COPY --from=builder --chown=app:app /app/node_modules ./node_modules
 
 # --- Crear directorios de datos persistentes ---
 RUN mkdir -p /app/db /app/uploads && \

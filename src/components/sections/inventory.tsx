@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useMemo } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -227,6 +227,7 @@ export function LotsList() {
   } = useAppStore()
   const [statusFilter, setStatusFilter] = useState<string>("ALL")
   const [query, setQuery] = useState("")
+  const [viewMode, setViewMode] = useState<"lots" | "drugs">("lots")
 
   const canEdit = user?.role === "ADMIN" || user?.role === "ENCARGADO"
 
@@ -272,7 +273,15 @@ export function LotsList() {
             {lots.length} lote{lots.length === 1 ? "" : "s"} en stock
           </p>
         </div>
-        {canEdit && <NewLotDialog warehouses={whData?.warehouses ?? []} />}
+        <div className="flex items-center gap-2">
+          <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "lots" | "drugs")}>
+            <TabsList className="h-9">
+              <TabsTrigger value="lots" className="text-xs">Por lote</TabsTrigger>
+              <TabsTrigger value="drugs" className="text-xs">Por sustancia</TabsTrigger>
+            </TabsList>
+          </Tabs>
+          {canEdit && <NewLotDialog warehouses={whData?.warehouses ?? []} />}
+        </div>
       </div>
 
       {/* Filtros */}
@@ -352,7 +361,7 @@ export function LotsList() {
             </p>
           </CardContent>
         </Card>
-      ) : (
+      ) : viewMode === "lots" ? (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {lots.map((lot) => (
             <LotCard
@@ -362,7 +371,125 @@ export function LotsList() {
             />
           ))}
         </div>
+      ) : (
+        <DrugGroupsView lots={lots} onLotClick={(id) => setActiveLotId(id)} />
       )}
+    </div>
+  )
+}
+
+function DrugGroupsView({ lots, onLotClick }: { lots: Lot[]; onLotClick: (id: string) => void }) {
+  // Agrupar por drugId
+  const groups = useMemo(() => {
+    const map = new Map<string, { drug: Lot["drug"]; lots: Lot[] }>()
+    for (const lot of lots) {
+      const existing = map.get(lot.drug.id)
+      if (existing) {
+        existing.lots.push(lot)
+      } else {
+        map.set(lot.drug.id, { drug: lot.drug, lots: [lot] })
+      }
+    }
+    // Ordenar por nombre de droga
+    return Array.from(map.values()).sort((a, b) =>
+      a.drug.chemicalName.localeCompare(b.drug.chemicalName)
+    )
+  }, [lots])
+
+  return (
+    <div className="space-y-3">
+      {groups.map((group) => {
+        const picts = parsePictograms(group.drug.pictograms)
+        const activeLots = group.lots.filter((l) => l.status === "ACTIVO" || l.status === "EN_USO")
+        const warehouses = new Set(group.lots.map((l) => l.warehouse?.name).filter(Boolean))
+        const purities = new Set(
+          group.lots.map((l) => l.purity ?? l.drug.purity).filter(Boolean) as string[]
+        )
+        return (
+          <Card key={group.drug.id}>
+            <CardContent className="p-4">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="font-semibold">{group.drug.chemicalName}</h3>
+                    <Badge variant="secondary" className="text-[10px]">
+                      {group.lots.length} {group.lots.length === 1 ? "frasco" : "frascos"}
+                    </Badge>
+                    <Badge variant="outline" className="text-[10px] text-emerald-600">
+                      {activeLots.length} activo{activeLots.length === 1 ? "" : "s"}
+                    </Badge>
+                  </div>
+                  {group.drug.commercialName && (
+                    <p className="text-xs text-muted-foreground">{group.drug.commercialName}</p>
+                  )}
+                  <div className="mt-1.5 flex flex-wrap gap-1.5">
+                    {group.drug.cas && (
+                      <Badge variant="outline" className="text-[9px] font-mono">
+                        CAS {group.drug.cas}
+                      </Badge>
+                    )}
+                    {picts.slice(0, 5).map((p) => (
+                      <Ghspictogram key={p} code={p} size={16} />
+                    ))}
+                  </div>
+                  {purities.size > 0 && (
+                    <p className="mt-1 text-[11px] text-muted-foreground">
+                      Pureza: {Array.from(purities).join(" · ")}
+                    </p>
+                  )}
+                  <p className="mt-1 text-[11px] text-muted-foreground">
+                    En: {Array.from(warehouses).join(", ") || "Sin depósito"}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {group.lots.map((lot) => {
+                  const exp = expiryInfo(lot.expiryDate)
+                  const lotPurity = lot.purity ?? group.drug.purity
+                  return (
+                    <button
+                      key={lot.id}
+                      onClick={() => onLotClick(lot.id)}
+                      className="rounded-lg border p-2.5 text-left transition-colors hover:border-primary/40 hover:bg-accent/50"
+                    >
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="truncate font-mono text-[11px] font-medium">
+                          {lot.lotNumber}
+                        </span>
+                        <Badge
+                          variant="outline"
+                          className={cn("shrink-0 text-[9px]", LOT_STATUS_COLORS[lot.status])}
+                        >
+                          {LOT_STATUS_LABELS[lot.status]}
+                        </Badge>
+                      </div>
+                      <p className="mt-0.5 truncate text-[11px] text-muted-foreground">
+                        {lot.warehouse?.name ?? "Sin depósito"}
+                      </p>
+                      <div className="mt-1 flex items-center justify-between gap-1 text-[11px]">
+                        <span className="font-semibold">
+                          {lot.currentQuantity} {lot.unit}
+                        </span>
+                        {lotPurity && (
+                          <span className="text-muted-foreground">{lotPurity}</span>
+                        )}
+                      </div>
+                      <p className={cn("mt-0.5 text-[10px]", toneClass[exp.tone])}>
+                        {exp.label}
+                      </p>
+                      {lot.notes && (
+                        <p className="mt-1 line-clamp-1 text-[10px] text-amber-600 dark:text-amber-400">
+                          ⚠ {lot.notes}
+                        </p>
+                      )}
+                    </button>
+                  )
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        )
+      })}
     </div>
   )
 }
@@ -402,6 +529,11 @@ function LotCard({ lot, onClick }: { lot: Lot; onClick: () => void }) {
             {lot.drug.cas && (
               <Badge variant="secondary" className="text-[10px] font-mono">
                 CAS {lot.drug.cas}
+              </Badge>
+            )}
+            {(lot.purity || lot.drug.purity) && (
+              <Badge variant="outline" className="text-[10px]">
+                {(lot.purity ?? lot.drug.purity) + (lot.purity ? "" : " *")}
               </Badge>
             )}
           </div>

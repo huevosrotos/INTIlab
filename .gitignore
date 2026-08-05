@@ -52,3 +52,13 @@ prompt
 server.log
 # Skills directory
 /skills/
+
+# Base de datos local y uploads (NO se versionan para no sobrescribir datos reales)
+db/*.db
+db/*.db-journal
+uploads/*
+!uploads/.gitkeep
+data/
+
+# Datos de seed generados (incluidos en el repo para setup inicial)
+# prisma/seed-data.json SÍ se versiona

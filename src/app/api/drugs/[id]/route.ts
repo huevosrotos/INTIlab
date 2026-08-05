@@ -36,6 +36,7 @@ export async function PUT(
   const drug = await db.drug.update({
     where: { id },
     data: {
+      code: body.code !== undefined ? body.code : undefined,
       chemicalName: body.chemicalName,
       commercialName: body.commercialName || null,
       cas: body.cas || null,
@@ -46,6 +47,7 @@ export async function PUT(
       hazardClass: body.hazardClass || null,
       pictograms: JSON.stringify(body.pictograms || []),
       hStatements: body.hStatements ? JSON.stringify(body.hStatements) : null,
+      chemicalClasses: body.chemicalClasses ? JSON.stringify(body.chemicalClasses) : undefined,
       defaultWarehouseId: body.defaultWarehouseId || null,
       defaultLocation: body.defaultLocation || null,
       minStock: body.minStock != null ? Number(body.minStock) : 0,

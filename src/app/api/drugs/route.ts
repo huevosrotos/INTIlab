@@ -8,6 +8,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const q = searchParams.get("q")?.trim()
   const warehouseId = searchParams.get("warehouseId")
+  const classes = searchParams.get("classes")?.split(",").filter(Boolean) ?? []
 
   const where: any = {}
   if (q) {
@@ -16,7 +17,14 @@ export async function GET(req: NextRequest) {
       { commercialName: { contains: q } },
       { cas: { contains: q } },
       { formula: { contains: q } },
+      { code: { contains: q } },
     ]
+  }
+  // Filtro por clases químicas (AND: debe tener todas las clases seleccionadas)
+  if (classes.length > 0) {
+    where.AND = classes.map((c) => ({
+      chemicalClasses: { contains: `"${c}"` },
+    }))
   }
 
   const drugs = await db.drug.findMany({
@@ -39,10 +47,11 @@ export async function GET(req: NextRequest) {
   })
 
   const result = drugs.map((d) => {
-    const activeLots = d.lots.filter((l) => l.status === "ACTIVO")
+    const activeLots = d.lots.filter((l) => l.status === "ACTIVO" || l.status === "EN_USO")
     const totalStock = activeLots.reduce((s, l) => s + l.currentQuantity, 0)
     return {
       id: d.id,
+      code: d.code,
       chemicalName: d.chemicalName,
       commercialName: d.commercialName,
       cas: d.cas,
@@ -53,6 +62,7 @@ export async function GET(req: NextRequest) {
       hazardClass: d.hazardClass,
       pictograms: d.pictograms,
       hStatements: d.hStatements,
+      chemicalClasses: d.chemicalClasses,
       defaultWarehouseId: d.defaultWarehouseId,
       defaultLocation: d.defaultLocation,
       minStock: d.minStock,
@@ -79,6 +89,7 @@ export async function POST(req: NextRequest) {
 
   const drug = await db.drug.create({
     data: {
+      code: body.code || null,
       chemicalName: body.chemicalName,
       commercialName: body.commercialName || null,
       cas: body.cas || null,
@@ -89,6 +100,7 @@ export async function POST(req: NextRequest) {
       hazardClass: body.hazardClass || null,
       pictograms: JSON.stringify(body.pictograms || []),
       hStatements: body.hStatements ? JSON.stringify(body.hStatements) : null,
+      chemicalClasses: JSON.stringify(body.chemicalClasses || []),
       defaultWarehouseId: body.defaultWarehouseId || null,
       defaultLocation: body.defaultLocation || null,
       minStock: body.minStock != null ? Number(body.minStock) : 0,

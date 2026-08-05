@@ -21,6 +21,8 @@ model User {
   warehouse    Warehouse? @relation("WarehouseMembers", fields: [warehouseId], references: [id])
   responsibleOf Warehouse? @relation("WarehouseResponsible")
   movements    Movement[]
+  resetToken      String?  // token de recuperación de contraseña
+  resetTokenExpiry DateTime? // expiración del token
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }

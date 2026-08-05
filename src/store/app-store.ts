@@ -12,6 +12,7 @@ export type Section =
   | "warehouses"
   | "reports"
   | "users"
+  | "help"
 
 interface AppState {
   section: Section

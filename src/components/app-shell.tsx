@@ -12,6 +12,7 @@ import {
   Warehouse as WarehouseIcon,
   FileBarChart,
   Users,
+  HelpCircle,
   LogOut,
   Menu,
   X,
@@ -39,6 +40,7 @@ import { Movements } from "@/components/sections/movements"
 import { Warehouses } from "@/components/sections/warehouses"
 import { Reports } from "@/components/sections/reports"
 import { UsersSection } from "@/components/sections/users"
+import { Help } from "@/components/sections/help"
 
 interface NavItem {
   id: Section
@@ -56,6 +58,7 @@ const NAV_ITEMS: NavItem[] = [
   { id: "warehouses", label: "Depósitos", icon: WarehouseIcon },
   { id: "reports", label: "Reportes", icon: FileBarChart },
   { id: "users", label: "Usuarios", icon: Users, adminOnly: true },
+  { id: "help", label: "Ayuda", icon: HelpCircle },
 ]
 
 export function AppShell() {
@@ -248,6 +251,8 @@ function renderSection(section: Section) {
       return <Reports />
     case "users":
       return <UsersSection />
+    case "help":
+      return <Help />
     default:
       return <Dashboard />
   }

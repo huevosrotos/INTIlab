@@ -16,11 +16,6 @@ https://192.168.2.63, https://localhost {
     reverse_proxy droglab:3000
 }
 
-# HTTP (puerto 80) — acceso directo sin HTTPS
-http://0.0.0.0:80 {
-    reverse_proxy droglab:3000
-}
-
 # Para acceso por dominio público (Let's Encrypt automático):
 # Descomentar y cambiar 'droglab.tudominio.com':
 #

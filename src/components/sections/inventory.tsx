@@ -663,15 +663,13 @@ function LotDetail({
       allowed: canEdit && lot.status === "EN_USO",
       variant: "outline",
     },
-    // Baja: disponible desde cualquier estado excepto DADO_DE_BAJA y CONSUMIDO
+    // Baja: disponible desde cualquier estado excepto DADO_DE_BAJA
+    // (un lote consumido puede darse de baja para descartar el frasco vacío)
     {
       type: "BAJA",
       label: "Dar de baja",
       icon: Ban,
-      allowed:
-        canEdit &&
-        lot.status !== "DADO_DE_BAJA" &&
-        lot.status !== "CONSUMIDO",
+      allowed: canEdit && lot.status !== "DADO_DE_BAJA",
       variant: "outline",
     },
     // Ajuste: admin/encargado, cualquier estado excepto DADO_DE_BAJA y CONSUMIDO

@@ -631,8 +631,8 @@ function FoundLotCard({
           />
         )}
 
-        {/* Dar de baja: cualquier estado excepto DADO_DE_BAJA y CONSUMIDO */}
-        {canEdit && lot.status !== "DADO_DE_BAJA" && lot.status !== "CONSUMIDO" && (
+        {/* Dar de baja: cualquier estado excepto DADO_DE_BAJA */}
+        {canEdit && lot.status !== "DADO_DE_BAJA" && (
           <MovementDialog
             lot={lot}
             type="BAJA"

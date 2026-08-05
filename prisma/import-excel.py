@@ -56,7 +56,7 @@ def categorize(name: str, tipo: str) -> list:
     solvents = ["acetona", "etanol", "metanol", "isopropanol", "tolueno", "xileno",
                  "éter", "eter", "cloroformo", "dicloro", "acetonitrilo", "hexano",
                  "heptano", "petróleo", "petroleo", "benceno", "acetato de etilo",
-                 "acetato de", "piridina", "tetrahidrofurano", "dimetil", "dmso",
+                 "piridina", "tetrahidrofurano", "dimetil", "dmso",
                  "alcohol"]
     for sol in solvents:
         if sol in text:
@@ -274,24 +274,81 @@ def detect_warehouse(sheet_name: str) -> str:
 
 
 # ============================================================
-# Mapear nombre + tipo a nombre químico limpio
+# Mapear nombre (B) + tipo (C) a nombre químico limpio
 # ============================================================
-def clean_name(name: str, tipo: str) -> str:
-    """Limpia el nombre: a veces nombre y tipo están invertidos."""
-    name = (name or "").strip()
-    tipo = (tipo or "").strip()
-    if not name:
-        return tipo
-    # Si tipo empieza con "Ácido" o "Cloruro de", probablemente va primero
-    if tipo and any(tipo.lower().startswith(x) for x in ["ácido", "acido", "cloruro", "sulfato", "nitrato", "óxido", "oxido", "carbonato", "fosfato", "cianuro"]):
-        # Caso: nombre="mercurio", tipo="Bicloruro de" → "Bicloruro de mercurio"
-        # Caso: nombre="plata", tipo="Nitrato de" → "Nitrato de plata"
-        return f"{tipo} {name}".strip()
-    # Caso: nombre="Ácido periódico", tipo="Ácido" → "Ácido periódico"
-    if tipo and name.lower().startswith("ácido") or name.lower().startswith("acido"):
-        return name
-    # Default
-    return name if name else tipo
+# El Excel tiene las columnas B y C que a veces están invertidas:
+# - Caso normal: B="Ácido sulfúrico", C=None → "Ácido sulfúrico"
+# - Sal con anión en C: B="zinc", C="Sulfato de" → "Sulfato de zinc"
+# - Sal con catión en C: B="Cloruro de", C="mercurio" → "Cloruro de mercurio"
+# - Ácido: B="Ácido", C="perídico" → "Ácido periódico"
+
+# Aniones que pueden ir en C (como "Sulfato de zinc")
+ANION_PREFIXES = [
+    "cloruro", "sulfato", "nitrato", "carbonato", "fosfato", "acetato",
+    "oxalato", "citrato", "tartrato", "cianuro", "bromuro", "yoduro",
+    "fluoruro", "permanganato", "dicromato", "tiocianato", "oxido", "óxido",
+    "hidróxido", "hidroxido", "nitrato", "clorato", "perclorato", "sulfuro",
+    "nitrito", "borato", "silicato", "tiosulfato", "bicarbonato", "bisulfato",
+    "cromato", "molibdato", "tungstato", "vanadato", "arseniato", "arsenito",
+    "selenito", "telurito", "permanganato", "dihidrato", "hidrato",
+]
+
+def clean_name(name_b: str, tipo_c: str) -> str:
+    """Combina B y C para obtener el nombre químico correcto."""
+    b = (name_b or "").strip()
+    c = (tipo_c or "").strip()
+
+    # Si no hay C, devolver B con capitalización correcta
+    if not c:
+        if not b:
+            return ""
+        return b[0].upper() + b[1:] if b else b
+
+    # Si no hay B, devolver C
+    if not b:
+        return c
+
+    b_lower = b.lower()
+    c_lower = c.lower()
+
+    # Caso 1: C es un anión/prefijo que va antes del catión
+    # ej: B="zinc", C="Sulfato de" → "Sulfato de zinc"
+    # ej: B="plata", C="Nitrato de" → "Nitrato de plata"
+    for anion in ANION_PREFIXES:
+        if c_lower.startswith(anion) or c_lower == anion:
+            # Capitalizar el catión
+            cat = b[0].upper() + b[1:] if b else b
+            # Si C termina con "de", armar "C catión"
+            if c_lower.endswith("de") or c_lower.endswith("de "):
+                return f"{c} {cat}".strip()
+            # Si C no tiene "de", agregarlo
+            return f"{c} de {cat}".strip()
+
+    # Caso 2: B es un anión/prefijo que va antes del catión
+    # ej: B="Cloruro de", C="mercurio" → "Cloruro de mercurio"
+    # ej: B="Nitrato de", C="plata" → "Nitrato de plata"
+    for anion in ANION_PREFIXES:
+        if b_lower.startswith(anion):
+            cat = c[0].upper() + c[1:] if c else c
+            if b_lower.endswith("de") or b_lower.endswith("de "):
+                return f"{b} {cat}".strip()
+            return f"{b} de {cat}".strip()
+
+    # Caso 3: B="Ácido", C="perídico" → "Ácido periódico"
+    if b_lower in ["ácido", "acido"] and c:
+        return f"Ácido {c}".strip()
+
+    # Caso 4: C="Ácido", B="perídico" → "Ácido periódico"
+    if c_lower in ["ácido", "acido"] and b:
+        return f"Ácido {b}".strip()
+
+    # Caso 5: Ambos son texto, concatenar "B C"
+    # ej: B="Paladium", C="Nitrato Hidrato" → "Paladium Nitrato Hidrato"
+    if b and c and not c_lower.startswith("de"):
+        return f"{b} {c}".strip()
+
+    # Default: solo B
+    return b if b else c
 
 
 # ============================================================
@@ -318,17 +375,32 @@ def main():
 
             name_raw = str(row[1]).strip() if row[1] else ""
             tipo_raw = str(row[2]).strip() if row[2] else ""
+            # Columna E = Cantidad/stock (índice 4)
             stock_raw = str(row[4]).strip() if row[4] else ""
+            # Columna F = Calidad (índice 5)
             calidad = str(row[5]).strip() if row[5] else ""
+            # Columna G = Marca (índice 6)
             marca = str(row[6]).strip() if len(row) > 6 and row[6] else ""
+            # Columna H = Ubicación/depósito (índice 7)
+            ubic_raw = str(row[7]).strip() if len(row) > 7 and row[7] else ""
 
-            # Limpiar nombre
+            # Determinar depósito: si la columna H tiene "DEPOSITO", usar el de la hoja
+            # (la columna H a veces tiene info de ubicación física)
+            lot_warehouse = warehouse
+            if ubic_raw and ubic_raw.lower() not in ["deposito", ",", ".", ""]:
+                lot_warehouse = ubic_raw  # usar la ubicación específica si existe
+
+            # Limpiar nombre combinando B y C
             nombre = clean_name(name_raw, tipo_raw)
+            # Normalizar: quitar espacios dobles, capitalizar primera letra
+            nombre = re.sub(r"\s+", " ", nombre).strip()
+            if nombre:
+                nombre = nombre[0].upper() + nombre[1:]
             if not nombre or len(nombre) < 2:
                 continue
 
-            # Categorizar
-            clases = categorize(nombre, tipo_raw)
+            # Categorizar usando el nombre completo
+            clases = categorize(nombre, "")
 
             # Estado y unidad
             state, unit = detect_state_and_unit(nombre, stock_raw)
@@ -336,8 +408,8 @@ def main():
             # Extraer cantidad numérica del stock
             qty = 0
             if stock_raw:
-                # Buscar número seguido de unidad
-                m = re.search(r"(\d+(?:[.,]\d+)?)", stock_raw.replace(",", "."))
+                # Buscar número (puede tener coma decimal)
+                m = re.search(r"(\d+(?:[.,]\d+)?)", stock_raw)
                 if m:
                     try:
                         qty = float(m.group(1).replace(",", "."))
@@ -345,6 +417,14 @@ def main():
                         qty = 0
             if qty == 0:
                 qty = 1  # default
+
+            # Limpiar marca (a veces tiene notas entre paréntesis)
+            marca_clean = marca
+            if marca:
+                # Quitar paréntesis con notas (ej: "Biopack(baja 22/05/17)" → "Biopack")
+                marca_clean = re.sub(r"\(.*?\)", "", marca).strip()
+                if not marca_clean:
+                    marca_clean = marca
 
             # Inicializar drug si no existe
             if codigo not in drugs:
@@ -364,7 +444,7 @@ def main():
             lot_counter[codigo] += 1
             drugs[codigo]["lotes"].append({
                 "lotNumber": f"{codigo}-{lot_counter[codigo]}",
-                "supplier": marca if marca else None,
+                "supplier": marca_clean if marca_clean else None,
                 "initialQuantity": qty,
                 "currentQuantity": qty,
                 "purity": calidad if calidad else None,

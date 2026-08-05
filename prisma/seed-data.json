@@ -183,439 +183,205 @@
       "correlativo": 4
     },
     {
-      "codigo_viejo": "523",
-      "chemicalName": "Acido (HS03NH2) sulfamico",
+      "codigo_viejo": "566",
+      "chemicalName": "Acetato de Bario",
       "clases": [
-        "ACIDO",
-        "INORGANICO"
+        "SAL",
+        "COMPUESTO_METALICO",
+        "ORGANICO"
       ],
       "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
+      "unit": "g",
+      "purity": "p.a.",
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "523-1",
-          "supplier": "Alkemit",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
+          "lotNumber": "566-1",
+          "supplier": "Lab. Bellaco",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "566-2",
+          "supplier": "Pautene-Freres",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
         }
       ],
-      "code": "AC-1A-005",
+      "code": "SA-1A-005",
       "armario": 1,
       "estante": "A",
       "correlativo": 5
     },
     {
-      "codigo_viejo": "135",
-      "chemicalName": "Acido acetico tricloro",
+      "codigo_viejo": "536",
+      "chemicalName": "Acetato de basico de Plomo",
       "clases": [
-        "ACIDO",
+        "SAL",
+        "TOXICO",
         "COMPUESTO_METALICO",
         "ORGANICO"
       ],
       "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
+      "unit": "g",
+      "purity": "p.a.",
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "135-1",
-          "supplier": null,
+          "lotNumber": "536-1",
+          "supplier": "Merck",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "536-2",
+          "supplier": "Riedel-de Haen",
           "initialQuantity": 1,
           "currentQuantity": 1,
-          "purity": null
+          "purity": "p.a."
         }
       ],
-      "code": "AC-1A-006",
+      "code": "SA-1A-006",
       "armario": 1,
       "estante": "A",
       "correlativo": 6
     },
     {
-      "codigo_viejo": "551",
-      "chemicalName": "Acido anidro galico",
+      "codigo_viejo": "712",
+      "chemicalName": "Acetato de Zinc",
       "clases": [
-        "ACIDO",
-        "INORGANICO"
+        "SAL",
+        "COMPUESTO_METALICO",
+        "ORGANICO"
       ],
       "state": "SOLIDO",
-      "unit": "u",
+      "unit": "g",
       "purity": null,
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "551-1",
-          "supplier": "Anedra",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
+          "lotNumber": "712-1",
+          "supplier": "Thomas and tigrerCo",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
           "purity": null
         }
       ],
-      "code": "AC-1A-007",
+      "code": "SA-1A-007",
       "armario": 1,
       "estante": "A",
       "correlativo": 7
     },
     {
-      "codigo_viejo": "506",
-      "chemicalName": "acido benzoico",
+      "codigo_viejo": "602",
+      "chemicalName": "Acetato de(cristal) de Sodio",
       "clases": [
-        "ACIDO",
+        "COLORANTE",
+        "SAL",
+        "COMPUESTO_METALICO",
         "ORGANICO"
       ],
       "state": "SOLIDO",
       "unit": "u",
-      "purity": null,
+      "purity": "puro",
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "506-1",
+          "lotNumber": "602-1",
+          "supplier": null,
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": "puro"
+        },
+        {
+          "lotNumber": "602-2",
           "supplier": "Merck",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": "puro"
+        },
+        {
+          "lotNumber": "602-3",
+          "supplier": "Timper",
           "initialQuantity": 1,
           "currentQuantity": 1,
           "purity": null
         },
         {
-          "lotNumber": "506-2",
+          "lotNumber": "602-4",
           "supplier": "Merck",
           "initialQuantity": 1,
           "currentQuantity": 1,
-          "purity": null
+          "purity": "puro"
         },
         {
-          "lotNumber": "506-3",
-          "supplier": "RP",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
+          "lotNumber": "602-5",
+          "supplier": "Anedra",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "602-6",
+          "supplier": "Merck",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "602-7",
+          "supplier": "Merck",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "602-8",
+          "supplier": "Merck",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
           "purity": "p.a."
         }
       ],
-      "code": "AC-1A-008",
+      "code": "CO-1A-008",
       "armario": 1,
       "estante": "A",
       "correlativo": 8
     },
     {
-      "codigo_viejo": "719",
-      "chemicalName": "acido bromihidrico",
+      "codigo_viejo": "307",
+      "chemicalName": "Acetato dihidrato de Zinc",
       "clases": [
-        "ACIDO",
-        "INORGANICO"
+        "COMPUESTO_METALICO",
+        "ORGANICO"
       ],
       "state": "SOLIDO",
-      "unit": "u",
+      "unit": "g",
       "purity": null,
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "719-1",
-          "supplier": null,
+          "lotNumber": "307-1",
+          "supplier": "Biopack",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": null
+        },
+        {
+          "lotNumber": "307-2",
+          "supplier": "Merck",
           "initialQuantity": 1,
           "currentQuantity": 1,
           "purity": null
         }
       ],
-      "code": "AC-1A-009",
+      "code": "CM-1A-009",
       "armario": 1,
       "estante": "A",
       "correlativo": 9
-    },
-    {
-      "codigo_viejo": "216",
-      "chemicalName": "acido calcon carboxilico",
-      "clases": [
-        "ACIDO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "216-1",
-          "supplier": "Merck",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "216-2",
-          "supplier": "Merck",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "AC-1A-010",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 10
-    },
-    {
-      "codigo_viejo": "441",
-      "chemicalName": "acido citrico",
-      "clases": [
-        "ACIDO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "441-1",
-          "supplier": "betsil",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "441-2",
-          "supplier": "timper(baja 27/06/2017)",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "441-3",
-          "supplier": "Mallinchrodt(baja15/06/17)",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "441-4",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "AC-1A-011",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 11
-    },
-    {
-      "codigo_viejo": "510",
-      "chemicalName": "acido de ortofosfato amonio",
-      "clases": [
-        "ACIDO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "510-1",
-          "supplier": "Analack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "AC-1A-012",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 12
-    },
-    {
-      "codigo_viejo": "713",
-      "chemicalName": "acido fenico",
-      "clases": [
-        "ACIDO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "713-1",
-          "supplier": null,
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "AC-1A-013",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 13
-    },
-    {
-      "codigo_viejo": "592",
-      "chemicalName": "Acido L-Tartarico",
-      "clases": [
-        "ACIDO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "592-1",
-          "supplier": null,
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "592-2",
-          "supplier": "Alkemit",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "592-3",
-          "supplier": "Alkemit",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "AC-1A-014",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 14
-    },
-    {
-      "codigo_viejo": "522",
-      "chemicalName": "Acido salicilico",
-      "clases": [
-        "ACIDO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "522-1",
-          "supplier": null,
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "522-2",
-          "supplier": "BDH",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": "purísima"
-        }
-      ],
-      "code": "AC-1A-015",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 15
-    },
-    {
-      "codigo_viejo": "722",
-      "chemicalName": "Acido salicilico",
-      "clases": [
-        "ACIDO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "722-1",
-          "supplier": null,
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "722-2",
-          "supplier": "BDH",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": "p.a."
-        }
-      ],
-      "code": "AC-1A-016",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 16
-    },
-    {
-      "codigo_viejo": "217",
-      "chemicalName": "Acido succinico",
-      "clases": [
-        "ACIDO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "217-1",
-          "supplier": "Analar",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "217-2",
-          "supplier": "Analar",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "217-3",
-          "supplier": "Analar",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "AC-1A-017",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 17
-    },
-    {
-      "codigo_viejo": "425",
-      "chemicalName": "acido tioglicolico",
-      "clases": [
-        "ACIDO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "425-1",
-          "supplier": "R.P",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "AC-1A-018",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 18
     },
     {
       "codigo_viejo": "330",
@@ -636,10 +402,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1A-019",
+      "code": "IO-1A-010",
       "armario": 1,
       "estante": "A",
-      "correlativo": 19
+      "correlativo": 10
     },
     {
       "codigo_viejo": "474",
@@ -661,14 +427,14 @@
           "purity": null
         }
       ],
-      "code": "BA-1A-020",
+      "code": "BA-1A-011",
       "armario": 1,
       "estante": "A",
-      "correlativo": 20
+      "correlativo": 11
     },
     {
       "codigo_viejo": "400",
-      "chemicalName": "alfanaftol",
+      "chemicalName": "Alfanaftol",
       "clases": [
         "INORGANICO"
       ],
@@ -685,10 +451,10 @@
           "purity": null
         }
       ],
-      "code": "IO-1A-021",
+      "code": "IO-1A-012",
       "armario": 1,
       "estante": "A",
-      "correlativo": 21
+      "correlativo": 12
     },
     {
       "codigo_viejo": "313",
@@ -725,10 +491,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IR-1A-022",
+      "code": "IR-1A-013",
       "armario": 1,
       "estante": "A",
-      "correlativo": 22
+      "correlativo": 13
     },
     {
       "codigo_viejo": "553",
@@ -765,10 +531,10 @@
           "purity": null
         }
       ],
-      "code": "ME-1A-023",
+      "code": "ME-1A-014",
       "armario": 1,
       "estante": "A",
-      "correlativo": 23
+      "correlativo": 14
     },
     {
       "codigo_viejo": "415",
@@ -790,10 +556,10 @@
           "purity": null
         }
       ],
-      "code": "CM-1A-024",
+      "code": "CM-1A-015",
       "armario": 1,
       "estante": "A",
-      "correlativo": 24
+      "correlativo": 15
     },
     {
       "codigo_viejo": "110",
@@ -815,17 +581,16 @@
           "purity": null
         }
       ],
-      "code": "CO-1A-025",
+      "code": "CO-1A-016",
       "armario": 1,
       "estante": "A",
-      "correlativo": 25
+      "correlativo": 16
     },
     {
-      "codigo_viejo": "301",
-      "chemicalName": "amonio",
+      "codigo_viejo": "510",
+      "chemicalName": "Amonio acido de ortofosfato",
       "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
+        "ACIDO",
         "INORGANICO"
       ],
       "state": "SOLIDO",
@@ -834,28 +599,21 @@
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "301-1",
-          "supplier": "Timper",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "301-2",
-          "supplier": "Timper",
+          "lotNumber": "510-1",
+          "supplier": "Analack",
           "initialQuantity": 1,
           "currentQuantity": 1,
           "purity": null
         }
       ],
-      "code": "SA-1A-026",
+      "code": "AC-1A-017",
       "armario": 1,
       "estante": "A",
-      "correlativo": 26
+      "correlativo": 17
     },
     {
       "codigo_viejo": "405",
-      "chemicalName": "amonio",
+      "chemicalName": "Amonio Fosfomolibdato de",
       "clases": [
         "INORGANICO"
       ],
@@ -872,53 +630,14 @@
           "purity": null
         }
       ],
-      "code": "IO-1A-027",
+      "code": "IO-1A-018",
       "armario": 1,
       "estante": "A",
-      "correlativo": 27
-    },
-    {
-      "codigo_viejo": "410",
-      "chemicalName": "amonio",
-      "clases": [
-        "SAL",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "410-1",
-          "supplier": "Timper",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "410-2",
-          "supplier": "Alkemit",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "410-3",
-          "supplier": "Alkemit",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "SA-1A-028",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 28
+      "correlativo": 18
     },
     {
       "codigo_viejo": "459",
-      "chemicalName": "amonio",
+      "chemicalName": "Amonio Metavanadato de",
       "clases": [
         "INORGANICO"
       ],
@@ -942,88 +661,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1A-029",
+      "code": "IO-1A-019",
       "armario": 1,
       "estante": "A",
-      "correlativo": 29
-    },
-    {
-      "codigo_viejo": "469",
-      "chemicalName": "amonio",
-      "clases": [
-        "SAL",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "469-1",
-          "supplier": "Sintethix",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "SA-1A-030",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 30
-    },
-    {
-      "codigo_viejo": "524",
-      "chemicalName": "Amonio",
-      "clases": [
-        "SAL",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "524-1",
-          "supplier": null,
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "SA-1A-031",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 31
-    },
-    {
-      "codigo_viejo": "534",
-      "chemicalName": "amonio",
-      "clases": [
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "534-1",
-          "supplier": "BDH",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "IO-1A-032",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 32
+      "correlativo": 19
     },
     {
       "codigo_viejo": "585",
-      "chemicalName": "amonio",
+      "chemicalName": "Amonio Persulfato de",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -1042,15 +687,41 @@
           "purity": null
         }
       ],
-      "code": "SA-1A-033",
+      "code": "SA-1A-020",
       "armario": 1,
       "estante": "A",
-      "correlativo": 33
+      "correlativo": 20
     },
     {
-      "codigo_viejo": "605",
-      "chemicalName": "amonio",
+      "codigo_viejo": "534",
+      "chemicalName": "Amonio Sulfamato de",
       "clases": [
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "534-1",
+          "supplier": "BDH",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "IO-1A-021",
+      "armario": 1,
+      "estante": "A",
+      "correlativo": 21
+    },
+    {
+      "codigo_viejo": "569",
+      "chemicalName": "Arseniato acido de Sodio",
+      "clases": [
+        "ACIDO",
+        "COMPUESTO_METALICO",
         "INORGANICO"
       ],
       "state": "SOLIDO",
@@ -1059,44 +730,30 @@
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "605-1",
-          "supplier": "Cicarelli",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
+          "lotNumber": "569-1",
+          "supplier": "Merck",
+          "initialQuantity": 100.0,
+          "currentQuantity": 100.0,
           "purity": "p.a."
         },
         {
-          "lotNumber": "605-2",
+          "lotNumber": "569-2",
           "supplier": "Merck",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "605-3",
-          "supplier": "Merck",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "605-4",
-          "supplier": "Merck",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
+          "initialQuantity": 100.0,
+          "currentQuantity": 100.0,
           "purity": "p.a."
         }
       ],
-      "code": "IO-1A-034",
+      "code": "AC-1A-022",
       "armario": 1,
       "estante": "A",
-      "correlativo": 34
+      "correlativo": 22
     },
     {
-      "codigo_viejo": "620",
-      "chemicalName": "amonio",
+      "codigo_viejo": "485",
+      "chemicalName": "Arsenito de Sodio",
       "clases": [
-        "COLORANTE",
+        "COMPUESTO_METALICO",
         "INORGANICO"
       ],
       "state": "SOLIDO",
@@ -1105,81 +762,17 @@
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "620-1",
-          "supplier": "Schering-Kahlbaum",
+          "lotNumber": "485-1",
+          "supplier": null,
           "initialQuantity": 1,
           "currentQuantity": 1,
           "purity": null
         }
       ],
-      "code": "CO-1A-035",
+      "code": "CM-1A-023",
       "armario": 1,
       "estante": "A",
-      "correlativo": 35
-    },
-    {
-      "codigo_viejo": "705",
-      "chemicalName": "amonio",
-      "clases": [
-        "SAL",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "705-1",
-          "supplier": "Merck",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "SA-1A-036",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 36
-    },
-    {
-      "codigo_viejo": "709",
-      "chemicalName": "amonio",
-      "clases": [
-        "SAL",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "709-1",
-          "supplier": "Cicarelli",
-          "initialQuantity": 100.0,
-          "currentQuantity": 100.0,
-          "purity": null
-        },
-        {
-          "lotNumber": "709-2",
-          "supplier": "Hartns",
-          "initialQuantity": 100.0,
-          "currentQuantity": 100.0,
-          "purity": null
-        },
-        {
-          "lotNumber": "709-3",
-          "supplier": "Proton",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": null
-        }
-      ],
-      "code": "SA-1A-037",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 37
+      "correlativo": 23
     },
     {
       "codigo_viejo": "209",
@@ -1214,10 +807,10 @@
           "purity": null
         }
       ],
-      "code": "IO-1A-038",
+      "code": "IO-1A-024",
       "armario": 1,
       "estante": "A",
-      "correlativo": 38
+      "correlativo": 24
     },
     {
       "codigo_viejo": "103",
@@ -1240,10 +833,10 @@
           "purity": null
         }
       ],
-      "code": "IP-1A-039",
+      "code": "IP-1A-025",
       "armario": 1,
       "estante": "A",
-      "correlativo": 39
+      "correlativo": 25
     },
     {
       "codigo_viejo": "214",
@@ -1266,10 +859,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IP-1A-040",
+      "code": "IP-1A-026",
       "armario": 1,
       "estante": "A",
-      "correlativo": 40
+      "correlativo": 26
     },
     {
       "codigo_viejo": "422",
@@ -1292,10 +885,10 @@
           "purity": null
         }
       ],
-      "code": "IR-1A-041",
+      "code": "IR-1A-027",
       "armario": 1,
       "estante": "A",
-      "correlativo": 41
+      "correlativo": 27
     },
     {
       "codigo_viejo": "335",
@@ -1317,70 +910,10 @@
           "purity": null
         }
       ],
-      "code": "CO-1A-042",
+      "code": "CO-1A-028",
       "armario": 1,
       "estante": "A",
-      "correlativo": 42
-    },
-    {
-      "codigo_viejo": "531",
-      "chemicalName": "bario",
-      "clases": [
-        "BASE",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "531-1",
-          "supplier": "Mallinchrodt",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "BA-1A-043",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 43
-    },
-    {
-      "codigo_viejo": "566",
-      "chemicalName": "bario",
-      "clases": [
-        "SOLVENTE",
-        "SAL",
-        "COMPUESTO_METALICO",
-        "ORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "566-1",
-          "supplier": "Lab. Bellaco",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "566-2",
-          "supplier": "Pautene-Freres",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "SO-1A-044",
-      "armario": 1,
-      "estante": "A",
-      "correlativo": 44
+      "correlativo": 28
     },
     {
       "codigo_viejo": "205",
@@ -1402,10 +935,10 @@
           "purity": null
         }
       ],
-      "code": "TO-1A-045",
+      "code": "TO-1A-029",
       "armario": 1,
       "estante": "A",
-      "correlativo": 45
+      "correlativo": 29
     },
     {
       "codigo_viejo": "638",
@@ -1426,14 +959,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "OR-1A-046",
+      "code": "OR-1A-030",
       "armario": 1,
       "estante": "A",
-      "correlativo": 46
+      "correlativo": 30
     },
     {
       "codigo_viejo": "568",
-      "chemicalName": "benzidina",
+      "chemicalName": "Benzidina Clorhidrato de",
       "clases": [
         "ORGANICO"
       ],
@@ -1450,10 +983,57 @@
           "purity": null
         }
       ],
-      "code": "OR-1A-047",
+      "code": "OR-1A-031",
       "armario": 1,
       "estante": "A",
-      "correlativo": 47
+      "correlativo": 31
+    },
+    {
+      "codigo_viejo": "618",
+      "chemicalName": "Bicarbonato de Sodio",
+      "clases": [
+        "BASE",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "618-1",
+          "supplier": "Biopack",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "618-2",
+          "supplier": "Biopack",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "618-3",
+          "supplier": "Biopack",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "618-4",
+          "supplier": "Biopack",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "BA-1A-032",
+      "armario": 1,
+      "estante": "A",
+      "correlativo": 32
     },
     {
       "codigo_viejo": "347",
@@ -1474,10 +1054,43 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1A-048",
+      "code": "IO-1A-033",
       "armario": 1,
       "estante": "A",
-      "correlativo": 48
+      "correlativo": 33
+    },
+    {
+      "codigo_viejo": "458",
+      "chemicalName": "Bromuro de Potasio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "458-1",
+          "supplier": "Cicarelli",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "458-2",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-1A-034",
+      "armario": 1,
+      "estante": "A",
+      "correlativo": 34
     },
     {
       "codigo_viejo": "922",
@@ -1499,10 +1112,10 @@
           "purity": null
         }
       ],
-      "code": "BU-1A-049",
+      "code": "BU-1A-035",
       "armario": 1,
       "estante": "A",
-      "correlativo": 49
+      "correlativo": 35
     },
     {
       "codigo_viejo": "657",
@@ -1531,36 +1144,10 @@
           "purity": null
         }
       ],
-      "code": "BA-1A-050",
+      "code": "BA-1A-036",
       "armario": 1,
       "estante": "A",
-      "correlativo": 50
-    },
-    {
-      "codigo_viejo": "603",
-      "chemicalName": "calcio",
-      "clases": [
-        "BASE",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "603-1",
-          "supplier": "Baker",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "BA-1B-001",
-      "armario": 1,
-      "estante": "B",
-      "correlativo": 1
+      "correlativo": 36
     },
     {
       "codigo_viejo": "421",
@@ -1583,14 +1170,14 @@
           "purity": null
         }
       ],
-      "code": "ME-1B-002",
+      "code": "ME-1A-037",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 2
+      "estante": "A",
+      "correlativo": 37
     },
     {
       "codigo_viejo": "537",
-      "chemicalName": "carbamato",
+      "chemicalName": "Carbamato Dietilenamonio dietilditio",
       "clases": [
         "INORGANICO"
       ],
@@ -1614,10 +1201,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1B-003",
+      "code": "IO-1A-038",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 3
+      "estante": "A",
+      "correlativo": 38
     },
     {
       "codigo_viejo": "430",
@@ -1638,40 +1225,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1B-004",
+      "code": "IO-1A-039",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 4
-    },
-    {
-      "codigo_viejo": "634",
-      "chemicalName": "Carbonato  de calcio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "634-1",
-          "supplier": "GPR",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": null
-        }
-      ],
-      "code": "SA-1B-005",
-      "armario": 1,
-      "estante": "B",
-      "correlativo": 5
+      "estante": "A",
+      "correlativo": 39
     },
     {
       "codigo_viejo": "567",
-      "chemicalName": "Carbonato de bario",
+      "chemicalName": "Carbonato de Bario",
       "clases": [
         "BASE",
         "COMPUESTO_METALICO",
@@ -1697,14 +1258,40 @@
           "purity": "p.a."
         }
       ],
-      "code": "BA-1B-006",
+      "code": "BA-1A-040",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 6
+      "estante": "A",
+      "correlativo": 40
+    },
+    {
+      "codigo_viejo": "634",
+      "chemicalName": "Carbonato de Calcio",
+      "clases": [
+        "BASE",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "634-1",
+          "supplier": "GPR",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": null
+        }
+      ],
+      "code": "BA-1A-041",
+      "armario": 1,
+      "estante": "A",
+      "correlativo": 41
     },
     {
       "codigo_viejo": "710",
-      "chemicalName": "Carbonato de magnesio",
+      "chemicalName": "Carbonato de Magnesio",
       "clases": [
         "BASE",
         "COMPUESTO_METALICO",
@@ -1723,14 +1310,41 @@
           "purity": "p.a."
         }
       ],
-      "code": "BA-1B-007",
+      "code": "BA-1A-042",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 7
+      "estante": "A",
+      "correlativo": 42
+    },
+    {
+      "codigo_viejo": "651",
+      "chemicalName": "Carbonato de Niquel",
+      "clases": [
+        "BASE",
+        "TOXICO",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "LIQUIDO",
+      "unit": "L",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "651-1",
+          "supplier": "Sterling",
+          "initialQuantity": 360.0,
+          "currentQuantity": 360.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "BA-1A-043",
+      "armario": 1,
+      "estante": "A",
+      "correlativo": 43
     },
     {
       "codigo_viejo": "597",
-      "chemicalName": "Carbonato de potasio",
+      "chemicalName": "Carbonato de Potasio",
       "clases": [
         "BASE",
         "COMPUESTO_METALICO",
@@ -1749,14 +1363,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "BA-1B-008",
+      "code": "BA-1A-044",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 8
+      "estante": "A",
+      "correlativo": 44
     },
     {
       "codigo_viejo": "578",
-      "chemicalName": "Carbonato de(anhidro) sodio",
+      "chemicalName": "Carbonato de(anhidro) de Sodio",
       "clases": [
         "BASE",
         "COMPUESTO_METALICO",
@@ -1782,37 +1396,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "BA-1B-009",
+      "code": "BA-1A-045",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 9
-    },
-    {
-      "codigo_viejo": "651",
-      "chemicalName": "Carbonato Niquel",
-      "clases": [
-        "SAL",
-        "TOXICO",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "LIQUIDO",
-      "unit": "L",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "651-1",
-          "supplier": "Sterling",
-          "initialQuantity": 360.0,
-          "currentQuantity": 360.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "SA-1B-010",
-      "armario": 1,
-      "estante": "B",
-      "correlativo": 10
+      "estante": "A",
+      "correlativo": 45
     },
     {
       "codigo_viejo": "412",
@@ -1835,10 +1422,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "CA-1B-011",
+      "code": "CA-1A-046",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 11
+      "estante": "A",
+      "correlativo": 46
     },
     {
       "codigo_viejo": "606",
@@ -1868,10 +1455,10 @@
           "purity": null
         }
       ],
-      "code": "CA-1B-012",
+      "code": "CA-1A-047",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 12
+      "estante": "A",
+      "correlativo": 47
     },
     {
       "codigo_viejo": "560",
@@ -1914,10 +1501,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "CO-1B-013",
+      "code": "CO-1A-048",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 13
+      "estante": "A",
+      "correlativo": 48
     },
     {
       "codigo_viejo": "906",
@@ -1938,10 +1525,10 @@
           "purity": null
         }
       ],
-      "code": "IO-1B-014",
+      "code": "IO-1A-049",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 14
+      "estante": "A",
+      "correlativo": 49
     },
     {
       "codigo_viejo": "222",
@@ -1964,14 +1551,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1B-015",
+      "code": "SA-1A-050",
       "armario": 1,
-      "estante": "B",
-      "correlativo": 15
+      "estante": "A",
+      "correlativo": 50
     },
     {
       "codigo_viejo": "417",
-      "chemicalName": "Cianuro de potasio",
+      "chemicalName": "Cianuro de Potasio",
       "clases": [
         "SAL",
         "TOXICO",
@@ -1998,14 +1585,100 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1B-016",
+      "code": "SA-1B-001",
       "armario": 1,
       "estante": "B",
-      "correlativo": 16
+      "correlativo": 1
+    },
+    {
+      "codigo_viejo": "524",
+      "chemicalName": "Citrato de Amonio",
+      "clases": [
+        "SAL",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "524-1",
+          "supplier": null,
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-1B-002",
+      "armario": 1,
+      "estante": "B",
+      "correlativo": 2
+    },
+    {
+      "codigo_viejo": "582",
+      "chemicalName": "Citrato de Sodio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "582-1",
+          "supplier": "Mallinchrodt",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "582-2",
+          "supplier": "Cicarelli",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "582-3",
+          "supplier": "Cicarelli",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "582-4",
+          "supplier": "Merck",
+          "initialQuantity": 582.0,
+          "currentQuantity": 582.0,
+          "purity": "sodio"
+        },
+        {
+          "lotNumber": "582-5",
+          "supplier": "Merck",
+          "initialQuantity": 582.0,
+          "currentQuantity": 582.0,
+          "purity": "sodio"
+        },
+        {
+          "lotNumber": "582-6",
+          "supplier": "Merck",
+          "initialQuantity": 582.0,
+          "currentQuantity": 582.0,
+          "purity": "sodio"
+        }
+      ],
+      "code": "SA-1B-003",
+      "armario": 1,
+      "estante": "B",
+      "correlativo": 3
     },
     {
       "codigo_viejo": "481",
-      "chemicalName": "cloramina T",
+      "chemicalName": "Cloramina T",
       "clases": [
         "BASE",
         "INORGANICO"
@@ -2023,14 +1696,14 @@
           "purity": null
         }
       ],
-      "code": "BA-1B-017",
+      "code": "BA-1B-004",
       "armario": 1,
       "estante": "B",
-      "correlativo": 17
+      "correlativo": 4
     },
     {
       "codigo_viejo": "436",
-      "chemicalName": "Cloruro de (anhidro) calcio",
+      "chemicalName": "Cloruro de (anhidro) de Calcio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2049,14 +1722,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1B-018",
+      "code": "SA-1B-005",
       "armario": 1,
       "estante": "B",
-      "correlativo": 18
+      "correlativo": 5
     },
     {
       "codigo_viejo": "505",
-      "chemicalName": "Cloruro de amonio",
+      "chemicalName": "Cloruro de Amonio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2075,14 +1748,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1B-019",
+      "code": "SA-1B-006",
       "armario": 1,
       "estante": "B",
-      "correlativo": 19
+      "correlativo": 6
     },
     {
       "codigo_viejo": "507",
-      "chemicalName": "Cloruro de amonio",
+      "chemicalName": "Cloruro de Amonio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2129,10 +1802,10 @@
           "purity": null
         }
       ],
-      "code": "SA-1B-020",
+      "code": "SA-1B-007",
       "armario": 1,
       "estante": "B",
-      "correlativo": 20
+      "correlativo": 7
     },
     {
       "codigo_viejo": "632",
@@ -2155,14 +1828,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1B-021",
+      "code": "SA-1B-008",
       "armario": 1,
       "estante": "B",
-      "correlativo": 21
+      "correlativo": 8
     },
     {
       "codigo_viejo": "901",
-      "chemicalName": "cloruro de Cesio",
+      "chemicalName": "Cloruro de Cesio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2202,14 +1875,47 @@
           "purity": null
         }
       ],
-      "code": "SA-1B-022",
+      "code": "SA-1B-009",
       "armario": 1,
       "estante": "B",
-      "correlativo": 22
+      "correlativo": 9
+    },
+    {
+      "codigo_viejo": "574",
+      "chemicalName": "Cloruro de Estañoso",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "574-1",
+          "supplier": "R.P.E",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "574-2",
+          "supplier": "R.P.E",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-1B-010",
+      "armario": 1,
+      "estante": "B",
+      "correlativo": 10
     },
     {
       "codigo_viejo": "903",
-      "chemicalName": "cloruro de estroncio",
+      "chemicalName": "Cloruro de Estroncio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2229,20 +1935,20 @@
         },
         {
           "lotNumber": "903-2",
-          "supplier": "Synthex(250g)",
+          "supplier": "Synthex",
           "initialQuantity": 250.0,
           "currentQuantity": 250.0,
           "purity": null
         }
       ],
-      "code": "SA-1B-023",
+      "code": "SA-1B-011",
       "armario": 1,
       "estante": "B",
-      "correlativo": 23
+      "correlativo": 11
     },
     {
       "codigo_viejo": "470",
-      "chemicalName": "Cloruro de hidroxil amonio",
+      "chemicalName": "Cloruro de hidroxil de Amonio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2261,14 +1967,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1B-024",
+      "code": "SA-1B-012",
       "armario": 1,
       "estante": "B",
-      "correlativo": 24
+      "correlativo": 12
     },
     {
       "codigo_viejo": "546",
-      "chemicalName": "Cloruro de hidroxilamonio",
+      "chemicalName": "Cloruro de Hidroxilamonio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2287,14 +1993,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1B-025",
+      "code": "SA-1B-013",
       "armario": 1,
       "estante": "B",
-      "correlativo": 25
+      "correlativo": 13
     },
     {
       "codigo_viejo": "473",
-      "chemicalName": "Cloruro de hierro",
+      "chemicalName": "Cloruro de Hierro",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2313,14 +2019,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1B-026",
+      "code": "SA-1B-014",
       "armario": 1,
       "estante": "B",
-      "correlativo": 26
+      "correlativo": 14
     },
     {
       "codigo_viejo": "143",
-      "chemicalName": "Cloruro de mercurio",
+      "chemicalName": "Cloruro de Mercurio",
       "clases": [
         "SAL",
         "TOXICO",
@@ -2340,14 +2046,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1B-027",
+      "code": "SA-1B-015",
       "armario": 1,
       "estante": "B",
-      "correlativo": 27
+      "correlativo": 15
     },
     {
       "codigo_viejo": "490",
-      "chemicalName": "Cloruro de mercurio",
+      "chemicalName": "Cloruro de Mercurio",
       "clases": [
         "SAL",
         "TOXICO",
@@ -2367,14 +2073,41 @@
           "purity": null
         }
       ],
-      "code": "SA-1B-028",
+      "code": "SA-1B-016",
       "armario": 1,
       "estante": "B",
-      "correlativo": 28
+      "correlativo": 16
+    },
+    {
+      "codigo_viejo": "311",
+      "chemicalName": "Cloruro de Mercurioso",
+      "clases": [
+        "SAL",
+        "TOXICO",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "311-1",
+          "supplier": "Cicarelli",
+          "initialQuantity": 100.0,
+          "currentQuantity": 100.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "SA-1B-017",
+      "armario": 1,
+      "estante": "B",
+      "correlativo": 17
     },
     {
       "codigo_viejo": "615",
-      "chemicalName": "Cloruro de potasio",
+      "chemicalName": "Cloruro de Potasio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2407,14 +2140,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1B-029",
+      "code": "SA-1B-018",
       "armario": 1,
       "estante": "B",
-      "correlativo": 29
+      "correlativo": 18
     },
     {
       "codigo_viejo": "589",
-      "chemicalName": "Cloruro de sodio",
+      "chemicalName": "Cloruro de Sodio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2468,14 +2201,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1B-030",
+      "code": "SA-1B-019",
       "armario": 1,
       "estante": "B",
-      "correlativo": 30
+      "correlativo": 19
     },
     {
       "codigo_viejo": "583",
-      "chemicalName": "Cloruro de(dihidratado) calcio",
+      "chemicalName": "Cloruro de(dihidratado) de Calcio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2494,14 +2227,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1B-031",
+      "code": "SA-1B-020",
       "armario": 1,
       "estante": "B",
-      "correlativo": 31
+      "correlativo": 20
     },
     {
       "codigo_viejo": "308",
-      "chemicalName": "cloruro dihidrato de Estaño",
+      "chemicalName": "Cloruro dihidrato de Estaño",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2548,14 +2281,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1B-032",
+      "code": "SA-1B-021",
       "armario": 1,
       "estante": "B",
-      "correlativo": 32
+      "correlativo": 21
     },
     {
       "codigo_viejo": "326",
-      "chemicalName": "Cloruro dihidrato estañoso",
+      "chemicalName": "Cloruro dihidrato de Estañoso",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2574,47 +2307,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1B-033",
+      "code": "SA-1B-022",
       "armario": 1,
       "estante": "B",
-      "correlativo": 33
-    },
-    {
-      "codigo_viejo": "574",
-      "chemicalName": "Cloruro estañoso",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "574-1",
-          "supplier": "R.P.E",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "574-2",
-          "supplier": "R.P.E",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "SA-1B-034",
-      "armario": 1,
-      "estante": "B",
-      "correlativo": 34
+      "correlativo": 22
     },
     {
       "codigo_viejo": "353",
-      "chemicalName": "Cloruro hexahidratado de magnesio",
+      "chemicalName": "Cloruro hexahidratado de Magnesio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -2633,37 +2333,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1B-035",
+      "code": "SA-1B-023",
       "armario": 1,
       "estante": "B",
-      "correlativo": 35
-    },
-    {
-      "codigo_viejo": "311",
-      "chemicalName": "Cloruro mercurioso",
-      "clases": [
-        "SAL",
-        "TOXICO",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "311-1",
-          "supplier": "Cicarelli",
-          "initialQuantity": 100.0,
-          "currentQuantity": 100.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "SA-1B-036",
-      "armario": 1,
-      "estante": "B",
-      "correlativo": 36
+      "correlativo": 23
     },
     {
       "codigo_viejo": "309",
@@ -2686,10 +2359,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "ME-1B-037",
+      "code": "ME-1B-024",
       "armario": 1,
       "estante": "B",
-      "correlativo": 37
+      "correlativo": 24
     },
     {
       "codigo_viejo": "145",
@@ -2710,14 +2383,14 @@
           "purity": null
         }
       ],
-      "code": "IO-1B-038",
+      "code": "IO-1B-025",
       "armario": 1,
       "estante": "B",
-      "correlativo": 38
+      "correlativo": 25
     },
     {
       "codigo_viejo": "492",
-      "chemicalName": "cremor tartaro",
+      "chemicalName": "Cremor tartaro",
       "clases": [
         "INORGANICO"
       ],
@@ -2734,10 +2407,87 @@
           "purity": null
         }
       ],
-      "code": "IO-1B-039",
+      "code": "IO-1B-026",
       "armario": 1,
       "estante": "B",
-      "correlativo": 39
+      "correlativo": 26
+    },
+    {
+      "codigo_viejo": "325",
+      "chemicalName": "Cromato de Potasio",
+      "clases": [
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "325-1",
+          "supplier": "Timper",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "CM-1B-027",
+      "armario": 1,
+      "estante": "B",
+      "correlativo": 27
+    },
+    {
+      "codigo_viejo": "620",
+      "chemicalName": "Cromato de(cristal puro) de Amonio",
+      "clases": [
+        "COLORANTE",
+        "INORGANICO"
+      ],
+      "state": "LIQUIDO",
+      "unit": "L",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "620-1",
+          "supplier": "Schering-Kahlbaum",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "CO-1B-028",
+      "armario": 1,
+      "estante": "B",
+      "correlativo": 28
+    },
+    {
+      "codigo_viejo": "332",
+      "chemicalName": "Cromotrópico Ácido sal disódica (dihidrato)",
+      "clases": [
+        "ACIDO",
+        "TOXICO",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "LIQUIDO",
+      "unit": "L",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "332-1",
+          "supplier": "Merck",
+          "initialQuantity": 25.0,
+          "currentQuantity": 25.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "AC-1B-029",
+      "armario": 1,
+      "estante": "B",
+      "correlativo": 29
     },
     {
       "codigo_viejo": "920",
@@ -2759,10 +2509,10 @@
           "purity": null
         }
       ],
-      "code": "IP-1B-040",
+      "code": "IP-1B-030",
       "armario": 1,
       "estante": "B",
-      "correlativo": 40
+      "correlativo": 30
     },
     {
       "codigo_viejo": "909",
@@ -2783,10 +2533,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1B-041",
+      "code": "IO-1B-031",
       "armario": 1,
       "estante": "B",
-      "correlativo": 41
+      "correlativo": 31
     },
     {
       "codigo_viejo": "351",
@@ -2808,10 +2558,10 @@
           "purity": null
         }
       ],
-      "code": "CA-1B-042",
+      "code": "CA-1B-032",
       "armario": 1,
       "estante": "B",
-      "correlativo": 42
+      "correlativo": 32
     },
     {
       "codigo_viejo": "715",
@@ -2834,14 +2584,14 @@
           "purity": null
         }
       ],
-      "code": "SO-1B-043",
+      "code": "SO-1B-033",
       "armario": 1,
       "estante": "B",
-      "correlativo": 43
+      "correlativo": 33
     },
     {
       "codigo_viejo": "708",
-      "chemicalName": "dextrina",
+      "chemicalName": "Dextrina",
       "clases": [
         "BASE",
         "INORGANICO"
@@ -2859,14 +2609,14 @@
           "purity": null
         }
       ],
-      "code": "BA-1B-044",
+      "code": "BA-1B-034",
       "armario": 1,
       "estante": "B",
-      "correlativo": 44
+      "correlativo": 34
     },
     {
       "codigo_viejo": "319",
-      "chemicalName": "dicloruro de Tiamina",
+      "chemicalName": "Dicloruro de Tiamina",
       "clases": [
         "BASE",
         "COMPUESTO_METALICO",
@@ -2885,10 +2635,73 @@
           "purity": null
         }
       ],
-      "code": "BA-1B-045",
+      "code": "BA-1B-035",
       "armario": 1,
       "estante": "B",
-      "correlativo": 45
+      "correlativo": 35
+    },
+    {
+      "codigo_viejo": "447",
+      "chemicalName": "Dicromato de Potasio",
+      "clases": [
+        "INDICADOR_REDOX",
+        "SAL",
+        "COMBURENTE",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "447-1",
+          "supplier": "Alkemit",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "447-2",
+          "supplier": "Biopack",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "IR-1B-036",
+      "armario": 1,
+      "estante": "B",
+      "correlativo": 36
+    },
+    {
+      "codigo_viejo": "613",
+      "chemicalName": "Dicromato de Potasio",
+      "clases": [
+        "INDICADOR_REDOX",
+        "SAL",
+        "COMBURENTE",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "613-1",
+          "supplier": "Cicarrelli",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "IR-1B-037",
+      "armario": 1,
+      "estante": "B",
+      "correlativo": 37
     },
     {
       "codigo_viejo": "142",
@@ -2909,10 +2722,10 @@
           "purity": null
         }
       ],
-      "code": "IO-1B-046",
+      "code": "IO-1B-038",
       "armario": 1,
       "estante": "B",
-      "correlativo": 46
+      "correlativo": 38
     },
     {
       "codigo_viejo": "413",
@@ -2942,10 +2755,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "BA-1B-047",
+      "code": "BA-1B-039",
       "armario": 1,
       "estante": "B",
-      "correlativo": 47
+      "correlativo": 39
     },
     {
       "codigo_viejo": "317",
@@ -2974,10 +2787,10 @@
           "purity": null
         }
       ],
-      "code": "IR-1B-048",
+      "code": "IR-1B-040",
       "armario": 1,
       "estante": "B",
-      "correlativo": 48
+      "correlativo": 40
     },
     {
       "codigo_viejo": "113",
@@ -2998,14 +2811,14 @@
           "purity": null
         }
       ],
-      "code": "IO-1B-049",
+      "code": "IO-1B-041",
       "armario": 1,
       "estante": "B",
-      "correlativo": 49
+      "correlativo": 41
     },
     {
       "codigo_viejo": "706",
-      "chemicalName": "dioxano",
+      "chemicalName": "Dioxano",
       "clases": [
         "INORGANICO"
       ],
@@ -3022,10 +2835,10 @@
           "purity": null
         }
       ],
-      "code": "IO-1B-050",
+      "code": "IO-1B-042",
       "armario": 1,
       "estante": "B",
-      "correlativo": 50
+      "correlativo": 42
     },
     {
       "codigo_viejo": "408",
@@ -3053,10 +2866,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1C-001",
+      "code": "IO-1B-043",
       "armario": 1,
-      "estante": "C",
-      "correlativo": 1
+      "estante": "B",
+      "correlativo": 43
     },
     {
       "codigo_viejo": "623",
@@ -3077,10 +2890,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1C-002",
+      "code": "IO-1B-044",
       "armario": 1,
-      "estante": "C",
-      "correlativo": 2
+      "estante": "B",
+      "correlativo": 44
     },
     {
       "codigo_viejo": "312",
@@ -3103,16 +2916,15 @@
           "purity": null
         }
       ],
-      "code": "ME-1C-003",
+      "code": "ME-1B-045",
       "armario": 1,
-      "estante": "C",
-      "correlativo": 3
+      "estante": "B",
+      "correlativo": 45
     },
     {
       "codigo_viejo": "559",
-      "chemicalName": "etilo",
+      "chemicalName": "Etilo Acetoacetato de",
       "clases": [
-        "SOLVENTE",
         "SAL",
         "ORGANICO"
       ],
@@ -3136,10 +2948,10 @@
           "purity": "p/síntesis"
         }
       ],
-      "code": "SO-1C-004",
+      "code": "SA-1B-046",
       "armario": 1,
-      "estante": "C",
-      "correlativo": 4
+      "estante": "B",
+      "correlativo": 46
     },
     {
       "codigo_viejo": "223",
@@ -3217,10 +3029,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IR-1C-005",
+      "code": "IR-1B-047",
       "armario": 1,
-      "estante": "C",
-      "correlativo": 5
+      "estante": "B",
+      "correlativo": 47
     },
     {
       "codigo_viejo": "455",
@@ -3248,10 +3060,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1C-006",
+      "code": "IO-1B-048",
       "armario": 1,
-      "estante": "C",
-      "correlativo": 6
+      "estante": "B",
+      "correlativo": 48
     },
     {
       "codigo_viejo": "543",
@@ -3273,10 +3085,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "BA-1C-007",
+      "code": "BA-1B-049",
       "armario": 1,
-      "estante": "C",
-      "correlativo": 7
+      "estante": "B",
+      "correlativo": 49
     },
     {
       "codigo_viejo": "626",
@@ -3297,10 +3109,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "OR-1C-008",
+      "code": "OR-1B-050",
       "armario": 1,
-      "estante": "C",
-      "correlativo": 8
+      "estante": "B",
+      "correlativo": 50
     },
     {
       "codigo_viejo": "402",
@@ -3322,10 +3134,10 @@
           "purity": "purísima"
         }
       ],
-      "code": "IP-1C-009",
+      "code": "IP-1C-001",
       "armario": 1,
       "estante": "C",
-      "correlativo": 9
+      "correlativo": 1
     },
     {
       "codigo_viejo": "234",
@@ -3347,14 +3159,157 @@
           "purity": "p.a."
         }
       ],
-      "code": "CM-1C-010",
+      "code": "CM-1C-002",
       "armario": 1,
       "estante": "C",
-      "correlativo": 10
+      "correlativo": 2
+    },
+    {
+      "codigo_viejo": "469",
+      "chemicalName": "Fluoruro de Amonio",
+      "clases": [
+        "SAL",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "469-1",
+          "supplier": "Sintethix",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-1C-003",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 3
+    },
+    {
+      "codigo_viejo": "449",
+      "chemicalName": "Fluoruro de Sodio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "449-1",
+          "supplier": "Alkemit",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "449-2",
+          "supplier": "Alkemit",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "449-3",
+          "supplier": "BDH",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "SA-1C-004",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 4
+    },
+    {
+      "codigo_viejo": "501",
+      "chemicalName": "Fosfato de Amonio y sodio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "501-1",
+          "supplier": "Ceblako",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-1C-005",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 5
+    },
+    {
+      "codigo_viejo": "502",
+      "chemicalName": "Fosfato de Calcio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "502-1",
+          "supplier": "Baker",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-1C-006",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 6
+    },
+    {
+      "codigo_viejo": "599",
+      "chemicalName": "Fosfato de Calcio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "599-1",
+          "supplier": "BDH",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "SA-1C-007",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 7
     },
     {
       "codigo_viejo": "552",
-      "chemicalName": "Fosfato  de dibasico 7H2O sodio",
+      "chemicalName": "Fosfato de dibasico 7H2O de Sodio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -3373,16 +3328,17 @@
           "purity": null
         }
       ],
-      "code": "SA-1C-011",
+      "code": "SA-1C-008",
       "armario": 1,
       "estante": "C",
-      "correlativo": 11
+      "correlativo": 8
     },
     {
       "codigo_viejo": "515",
-      "chemicalName": "Fosfato  de(dibasico) amonio",
+      "chemicalName": "Fosfato de(dibasico) de Amonio",
       "clases": [
         "SAL",
+        "COMPUESTO_METALICO",
         "INORGANICO"
       ],
       "state": "SOLIDO",
@@ -3433,92 +3389,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1C-012",
+      "code": "SA-1C-009",
       "armario": 1,
       "estante": "C",
-      "correlativo": 12
-    },
-    {
-      "codigo_viejo": "501",
-      "chemicalName": "Fosfato de amonio y sodio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "501-1",
-          "supplier": "Ceblako",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "SA-1C-013",
-      "armario": 1,
-      "estante": "C",
-      "correlativo": 13
-    },
-    {
-      "codigo_viejo": "502",
-      "chemicalName": "Fosfato de Calcio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "502-1",
-          "supplier": "Baker",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "SA-1C-014",
-      "armario": 1,
-      "estante": "C",
-      "correlativo": 14
-    },
-    {
-      "codigo_viejo": "599",
-      "chemicalName": "Fosfato de calcio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "599-1",
-          "supplier": "BDH",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "SA-1C-015",
-      "armario": 1,
-      "estante": "C",
-      "correlativo": 15
+      "correlativo": 9
     },
     {
       "codigo_viejo": "586",
-      "chemicalName": "Fosfato de(monobasico monohidratado) sodio",
+      "chemicalName": "Fosfato de(monobasico monohidratado) de Sodio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -3537,14 +3415,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1C-016",
+      "code": "SA-1C-010",
       "armario": 1,
       "estante": "C",
-      "correlativo": 16
+      "correlativo": 10
     },
     {
       "codigo_viejo": "542",
-      "chemicalName": "Fosfato dibasico de(decahidrato) sodio",
+      "chemicalName": "Fosfato dibasico de(decahidrato) de Sodio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -3563,14 +3441,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1C-017",
+      "code": "SA-1C-011",
       "armario": 1,
       "estante": "C",
-      "correlativo": 17
+      "correlativo": 11
     },
     {
       "codigo_viejo": "547",
-      "chemicalName": "Fosfato dibasico de(dihidratado) sodio",
+      "chemicalName": "Fosfato dibasico de(dihidratado) de Sodio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -3589,14 +3467,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1C-018",
+      "code": "SA-1C-012",
       "armario": 1,
       "estante": "C",
-      "correlativo": 18
+      "correlativo": 12
     },
     {
       "codigo_viejo": "549",
-      "chemicalName": "Fosfato dibasico de(dihidratado) sodio",
+      "chemicalName": "Fosfato dibasico de(dihidratado) de Sodio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -3615,14 +3493,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1C-019",
+      "code": "SA-1C-013",
       "armario": 1,
       "estante": "C",
-      "correlativo": 19
+      "correlativo": 13
     },
     {
       "codigo_viejo": "530",
-      "chemicalName": "Fosfato dibasico(anhidro) sodio",
+      "chemicalName": "Fosfato dibasico(anhidro) de Sodio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -3641,14 +3519,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1C-020",
+      "code": "SA-1C-014",
       "armario": 1,
       "estante": "C",
-      "correlativo": 20
+      "correlativo": 14
     },
     {
       "codigo_viejo": "406",
-      "chemicalName": "Fosfato dibásico anhidro de potasio",
+      "chemicalName": "Fosfato dibásico anhidro de Potasio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -3667,14 +3545,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1C-021",
+      "code": "SA-1C-015",
       "armario": 1,
       "estante": "C",
-      "correlativo": 21
+      "correlativo": 15
     },
     {
       "codigo_viejo": "611",
-      "chemicalName": "Fosfato monobasico de amonio",
+      "chemicalName": "Fosfato monobasico de Amonio",
       "clases": [
         "SAL",
         "INORGANICO"
@@ -3720,14 +3598,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1C-022",
+      "code": "SA-1C-016",
       "armario": 1,
       "estante": "C",
-      "correlativo": 22
+      "correlativo": 16
     },
     {
       "codigo_viejo": "303",
-      "chemicalName": "Fosfato monobásico de potasio",
+      "chemicalName": "Fosfato monobásico de Potasio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -3753,14 +3631,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1C-023",
+      "code": "SA-1C-017",
       "armario": 1,
       "estante": "C",
-      "correlativo": 23
+      "correlativo": 17
     },
     {
       "codigo_viejo": "225",
-      "chemicalName": "Fosfato monosódico de sodio",
+      "chemicalName": "Fosfato monosódico de Sodio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -3793,14 +3671,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1C-024",
+      "code": "SA-1C-018",
       "armario": 1,
       "estante": "C",
-      "correlativo": 24
+      "correlativo": 18
     },
     {
       "codigo_viejo": "457",
-      "chemicalName": "Fosfato tribásico de sodio",
+      "chemicalName": "Fosfato tribásico de Sodio",
       "clases": [
         "BASE",
         "COMPUESTO_METALICO",
@@ -3819,10 +3697,36 @@
           "purity": "p.a."
         }
       ],
-      "code": "BA-1C-025",
+      "code": "BA-1C-019",
       "armario": 1,
       "estante": "C",
-      "correlativo": 25
+      "correlativo": 19
+    },
+    {
+      "codigo_viejo": "461",
+      "chemicalName": "Fosforoso Ácido hipo al 32%",
+      "clases": [
+        "ACIDO",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "LIQUIDO",
+      "unit": "L",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "461-1",
+          "supplier": "Tetrahedron",
+          "initialQuantity": 200.0,
+          "currentQuantity": 200.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "AC-1C-020",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 20
     },
     {
       "codigo_viejo": "116",
@@ -3865,10 +3769,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "CO-1C-026",
+      "code": "CO-1C-021",
       "armario": 1,
       "estante": "C",
-      "correlativo": 26
+      "correlativo": 21
     },
     {
       "codigo_viejo": "336",
@@ -3890,14 +3794,14 @@
           "purity": null
         }
       ],
-      "code": "CO-1C-027",
+      "code": "CO-1C-022",
       "armario": 1,
       "estante": "C",
-      "correlativo": 27
+      "correlativo": 22
     },
     {
       "codigo_viejo": "565",
-      "chemicalName": "férrico",
+      "chemicalName": "Férrico Alumbre",
       "clases": [
         "INORGANICO"
       ],
@@ -3914,10 +3818,35 @@
           "purity": null
         }
       ],
-      "code": "IO-1C-028",
+      "code": "IO-1C-023",
       "armario": 1,
       "estante": "C",
-      "correlativo": 28
+      "correlativo": 23
+    },
+    {
+      "codigo_viejo": "551",
+      "chemicalName": "Galico Acido anidro",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "551-1",
+          "supplier": "Anedra",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "AC-1C-024",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 24
     },
     {
       "codigo_viejo": "424",
@@ -3939,10 +3868,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "CA-1C-029",
+      "code": "CA-1C-025",
       "armario": 1,
       "estante": "C",
-      "correlativo": 29
+      "correlativo": 25
     },
     {
       "codigo_viejo": "911",
@@ -3970,10 +3899,10 @@
           "purity": null
         }
       ],
-      "code": "IO-1C-030",
+      "code": "IO-1C-026",
       "armario": 1,
       "estante": "C",
-      "correlativo": 30
+      "correlativo": 26
     },
     {
       "codigo_viejo": "111",
@@ -3995,10 +3924,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IP-1C-031",
+      "code": "IP-1C-027",
       "armario": 1,
       "estante": "C",
-      "correlativo": 31
+      "correlativo": 27
     },
     {
       "codigo_viejo": "201",
@@ -4034,14 +3963,14 @@
           "purity": null
         }
       ],
-      "code": "IP-1C-032",
+      "code": "IP-1C-028",
       "armario": 1,
       "estante": "C",
-      "correlativo": 32
+      "correlativo": 28
     },
     {
       "codigo_viejo": "508",
-      "chemicalName": "hidroquinona",
+      "chemicalName": "Hidroquinona",
       "clases": [
         "INORGANICO"
       ],
@@ -4058,14 +3987,14 @@
           "purity": null
         }
       ],
-      "code": "IO-1C-033",
+      "code": "IO-1C-029",
       "armario": 1,
       "estante": "C",
-      "correlativo": 33
+      "correlativo": 29
     },
     {
       "codigo_viejo": "305",
-      "chemicalName": "hidroxilamina",
+      "chemicalName": "Hidroxilamina clorhidrato de",
       "clases": [
         "BASE",
         "INORGANICO"
@@ -4090,10 +4019,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "BA-1C-034",
+      "code": "BA-1C-030",
       "armario": 1,
       "estante": "C",
-      "correlativo": 34
+      "correlativo": 30
     },
     {
       "codigo_viejo": "219",
@@ -4114,7 +4043,216 @@
           "purity": null
         }
       ],
-      "code": "IO-1C-035",
+      "code": "IO-1C-031",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 31
+    },
+    {
+      "codigo_viejo": "601",
+      "chemicalName": "Hidróxido de (escamas) de Potasio",
+      "clases": [
+        "BASE",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "601-1",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "601-2",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "601-3",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "601-4",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "601-5",
+          "supplier": "Anedra",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "BA-1C-032",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 32
+    },
+    {
+      "codigo_viejo": "531",
+      "chemicalName": "Hidróxido de Bario",
+      "clases": [
+        "BASE",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "531-1",
+          "supplier": "Mallinchrodt",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "BA-1C-033",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 33
+    },
+    {
+      "codigo_viejo": "603",
+      "chemicalName": "Hidróxido de Calcio",
+      "clases": [
+        "BASE",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "603-1",
+          "supplier": "Baker",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "BA-1C-034",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 34
+    },
+    {
+      "codigo_viejo": "514",
+      "chemicalName": "Hidróxido de Sodio",
+      "clases": [
+        "BASE",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "514-1",
+          "supplier": "Alkemit",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "514-2",
+          "supplier": "Cicarelli",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "514-3",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "514-4",
+          "supplier": "Merck",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "514-5",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "514-6",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "514-7",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "514-8",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "514-9",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "514-10",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "514-11",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "514-12",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "BA-1C-035",
       "armario": 1,
       "estante": "C",
       "correlativo": 35
@@ -4195,7 +4333,7 @@
     },
     {
       "codigo_viejo": "590",
-      "chemicalName": "magnesio",
+      "chemicalName": "Magnesio Estearato de",
       "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
@@ -4220,7 +4358,7 @@
     },
     {
       "codigo_viejo": "476",
-      "chemicalName": "magnesio metal",
+      "chemicalName": "Magnesio metal",
       "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
@@ -4245,7 +4383,7 @@
     },
     {
       "codigo_viejo": "334",
-      "chemicalName": "maltol",
+      "chemicalName": "Maltol",
       "clases": [
         "INORGANICO"
       ],
@@ -4269,7 +4407,7 @@
     },
     {
       "codigo_viejo": "141",
-      "chemicalName": "mercurio",
+      "chemicalName": "Mercurio Bicloruro de",
       "clases": [
         "SAL",
         "TOXICO",
@@ -4293,6 +4431,133 @@
       "armario": 1,
       "estante": "C",
       "correlativo": 42
+    },
+    {
+      "codigo_viejo": "718",
+      "chemicalName": "Molibdato de (dihidratado) de Sodio",
+      "clases": [
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "718-1",
+          "supplier": "Anedra",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "CM-1C-043",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 43
+    },
+    {
+      "codigo_viejo": "605",
+      "chemicalName": "Molibdato de(heptamolibdato) de Amonio",
+      "clases": [
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "605-1",
+          "supplier": "Cicarelli",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "605-2",
+          "supplier": "Merck",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "605-3",
+          "supplier": "Merck",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "605-4",
+          "supplier": "Merck",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "IO-1C-044",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 44
+    },
+    {
+      "codigo_viejo": "176",
+      "chemicalName": "Molíbdico Ácido anhidro",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "176-1",
+          "supplier": "Merck",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "176-2",
+          "supplier": "Cicarelli",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": "p.a."
+        }
+      ],
+      "code": "AC-1C-045",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 45
+    },
+    {
+      "codigo_viejo": "350",
+      "chemicalName": "Molíbdico Ácido anhidro",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "350-1",
+          "supplier": "Anedra",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": "p.a."
+        }
+      ],
+      "code": "AC-1C-046",
+      "armario": 1,
+      "estante": "C",
+      "correlativo": 46
     },
     {
       "codigo_viejo": "102",
@@ -4321,14 +4586,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "CO-1C-043",
+      "code": "CO-1C-047",
       "armario": 1,
       "estante": "C",
-      "correlativo": 43
+      "correlativo": 47
     },
     {
       "codigo_viejo": "213",
-      "chemicalName": "Naftilendiamina",
+      "chemicalName": "Naftilendiamina Dichlorhidrato de N-1-",
       "clases": [
         "BASE",
         "INORGANICO"
@@ -4353,10 +4618,10 @@
           "purity": null
         }
       ],
-      "code": "BA-1C-044",
+      "code": "BA-1C-048",
       "armario": 1,
       "estante": "C",
-      "correlativo": 44
+      "correlativo": 48
     },
     {
       "codigo_viejo": "433",
@@ -4378,10 +4643,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "CO-1C-045",
+      "code": "CO-1C-049",
       "armario": 1,
       "estante": "C",
-      "correlativo": 45
+      "correlativo": 49
     },
     {
       "codigo_viejo": "327",
@@ -4409,39 +4674,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1C-046",
+      "code": "IO-1C-050",
       "armario": 1,
       "estante": "C",
-      "correlativo": 46
-    },
-    {
-      "codigo_viejo": "306",
-      "chemicalName": "nitrato  hexahidrato de lantano",
-      "clases": [
-        "SAL",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "306-1",
-          "supplier": "Merck",
-          "initialQuantity": 100.0,
-          "currentQuantity": 100.0,
-          "purity": null
-        }
-      ],
-      "code": "SA-1C-047",
-      "armario": 1,
-      "estante": "C",
-      "correlativo": 47
+      "correlativo": 50
     },
     {
       "codigo_viejo": "610",
-      "chemicalName": "Nitrato de amonio",
+      "chemicalName": "Nitrato de Amonio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -4460,14 +4700,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1C-048",
+      "code": "SA-1D-001",
       "armario": 1,
-      "estante": "C",
-      "correlativo": 48
+      "estante": "D",
+      "correlativo": 1
     },
     {
       "codigo_viejo": "471",
-      "chemicalName": "nitrato de calcio",
+      "chemicalName": "Nitrato de Calcio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -4500,14 +4740,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1C-049",
+      "code": "SA-1D-002",
       "armario": 1,
-      "estante": "C",
-      "correlativo": 49
+      "estante": "D",
+      "correlativo": 2
     },
     {
       "codigo_viejo": "147",
-      "chemicalName": "Nitrato de mercurio",
+      "chemicalName": "Nitrato de Mercurio",
       "clases": [
         "SAL",
         "TOXICO",
@@ -4534,14 +4774,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1C-050",
+      "code": "SA-1D-003",
       "armario": 1,
-      "estante": "C",
-      "correlativo": 50
+      "estante": "D",
+      "correlativo": 3
     },
     {
       "codigo_viejo": "144",
-      "chemicalName": "Nitrato de plata",
+      "chemicalName": "Nitrato de Plata",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -4574,14 +4814,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1D-001",
+      "code": "SA-1D-004",
       "armario": 1,
       "estante": "D",
-      "correlativo": 1
+      "correlativo": 4
     },
     {
       "codigo_viejo": "550",
-      "chemicalName": "Nitrato de plomo",
+      "chemicalName": "Nitrato de Plomo",
       "clases": [
         "SAL",
         "TOXICO",
@@ -4608,14 +4848,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1D-002",
+      "code": "SA-1D-005",
       "armario": 1,
       "estante": "D",
-      "correlativo": 2
+      "correlativo": 5
     },
     {
       "codigo_viejo": "571",
-      "chemicalName": "Nitrato de potasio",
+      "chemicalName": "Nitrato de Potasio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -4634,14 +4874,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1D-003",
+      "code": "SA-1D-006",
       "armario": 1,
       "estante": "D",
-      "correlativo": 3
+      "correlativo": 6
     },
     {
       "codigo_viejo": "407",
-      "chemicalName": "Nitrato de sodio",
+      "chemicalName": "Nitrato de Sodio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -4667,14 +4907,39 @@
           "purity": null
         }
       ],
-      "code": "SA-1D-004",
+      "code": "SA-1D-007",
       "armario": 1,
       "estante": "D",
-      "correlativo": 4
+      "correlativo": 7
+    },
+    {
+      "codigo_viejo": "306",
+      "chemicalName": "Nitrato hexahidrato de Lantano",
+      "clases": [
+        "SAL",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "306-1",
+          "supplier": "Merck",
+          "initialQuantity": 100.0,
+          "currentQuantity": 100.0,
+          "purity": null
+        }
+      ],
+      "code": "SA-1D-008",
+      "armario": 1,
+      "estante": "D",
+      "correlativo": 8
     },
     {
       "codigo_viejo": "104",
-      "chemicalName": "Nitrato Hidrato Paladium",
+      "chemicalName": "Nitrato Hidrato de Paladium",
       "clases": [
         "SAL",
         "INORGANICO"
@@ -4692,14 +4957,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1D-005",
+      "code": "SA-1D-009",
       "armario": 1,
       "estante": "D",
-      "correlativo": 5
+      "correlativo": 9
     },
     {
       "codigo_viejo": "545",
-      "chemicalName": "Nitrato(6-Hidrato) Magnesio",
+      "chemicalName": "Nitrato(6-Hidrato) de Magnesio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -4718,10 +4983,36 @@
           "purity": null
         }
       ],
-      "code": "SA-1D-006",
+      "code": "SA-1D-010",
       "armario": 1,
       "estante": "D",
-      "correlativo": 6
+      "correlativo": 10
+    },
+    {
+      "codigo_viejo": "429",
+      "chemicalName": "Nitrito de Sodio",
+      "clases": [
+        "BASE",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "429-1",
+          "supplier": null,
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "BA-1D-011",
+      "armario": 1,
+      "estante": "D",
+      "correlativo": 11
     },
     {
       "codigo_viejo": "637",
@@ -4743,10 +5034,10 @@
           "purity": "0.99"
         }
       ],
-      "code": "SO-1D-007",
+      "code": "SO-1D-012",
       "armario": 1,
       "estante": "D",
-      "correlativo": 7
+      "correlativo": 12
     },
     {
       "codigo_viejo": "109",
@@ -4767,10 +5058,10 @@
           "purity": null
         }
       ],
-      "code": "IO-1D-008",
+      "code": "IO-1D-013",
       "armario": 1,
       "estante": "D",
-      "correlativo": 8
+      "correlativo": 13
     },
     {
       "codigo_viejo": "338",
@@ -4805,14 +5096,118 @@
           "purity": "purísimo"
         }
       ],
-      "code": "IO-1D-009",
+      "code": "IO-1D-014",
       "armario": 1,
       "estante": "D",
-      "correlativo": 9
+      "correlativo": 14
+    },
+    {
+      "codigo_viejo": "410",
+      "chemicalName": "Oxalato de Amonio",
+      "clases": [
+        "SAL",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "410-1",
+          "supplier": "Timper",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "410-2",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "410-3",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-1D-015",
+      "armario": 1,
+      "estante": "D",
+      "correlativo": 15
+    },
+    {
+      "codigo_viejo": "709",
+      "chemicalName": "Oxalato de Amonio",
+      "clases": [
+        "SAL",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "709-1",
+          "supplier": "Cicarelli",
+          "initialQuantity": 100.0,
+          "currentQuantity": 100.0,
+          "purity": null
+        },
+        {
+          "lotNumber": "709-2",
+          "supplier": "Hartns",
+          "initialQuantity": 100.0,
+          "currentQuantity": 100.0,
+          "purity": null
+        },
+        {
+          "lotNumber": "709-3",
+          "supplier": "Proton",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": null
+        }
+      ],
+      "code": "SA-1D-016",
+      "armario": 1,
+      "estante": "D",
+      "correlativo": 16
+    },
+    {
+      "codigo_viejo": "464",
+      "chemicalName": "Oxalato de Potasio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "464-1",
+          "supplier": "Merck",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "SA-1D-017",
+      "armario": 1,
+      "estante": "D",
+      "correlativo": 17
     },
     {
       "codigo_viejo": "468",
-      "chemicalName": "Oxido de (amarillo) mercurio",
+      "chemicalName": "Oxido de (amarillo) de Mercurio",
       "clases": [
         "BASE",
         "TOXICO",
@@ -4853,14 +5248,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "BA-1D-010",
+      "code": "BA-1D-018",
       "armario": 1,
       "estante": "D",
-      "correlativo": 10
+      "correlativo": 18
     },
     {
       "codigo_viejo": "483",
-      "chemicalName": "oxido de berilio",
+      "chemicalName": "Oxido de Berilio",
       "clases": [
         "BASE",
         "TOXICO",
@@ -4880,10 +5275,10 @@
           "purity": null
         }
       ],
-      "code": "BA-1D-011",
+      "code": "BA-1D-019",
       "armario": 1,
       "estante": "D",
-      "correlativo": 11
+      "correlativo": 19
     },
     {
       "codigo_viejo": "503",
@@ -4906,10 +5301,10 @@
           "purity": null
         }
       ],
-      "code": "BA-1D-012",
+      "code": "BA-1D-020",
       "armario": 1,
       "estante": "D",
-      "correlativo": 12
+      "correlativo": 20
     },
     {
       "codigo_viejo": "504",
@@ -4946,10 +5341,10 @@
           "purity": null
         }
       ],
-      "code": "BA-1D-013",
+      "code": "BA-1D-021",
       "armario": 1,
       "estante": "D",
-      "correlativo": 13
+      "correlativo": 21
     },
     {
       "codigo_viejo": "921",
@@ -4972,14 +5367,61 @@
           "purity": null
         }
       ],
-      "code": "BA-1D-014",
+      "code": "BA-1D-022",
       "armario": 1,
       "estante": "D",
-      "correlativo": 14
+      "correlativo": 22
+    },
+    {
+      "codigo_viejo": "437",
+      "chemicalName": "Oxálico Ácido(cristal)",
+      "clases": [
+        "COLORANTE",
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "437-1",
+          "supplier": "Timper",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "437-2",
+          "supplier": "Cicarelli",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "437-3",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "437-4",
+          "supplier": "Merck",
+          "initialQuantity": 100.0,
+          "currentQuantity": 100.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "AC-1D-023",
+      "armario": 1,
+      "estante": "D",
+      "correlativo": 23
     },
     {
       "codigo_viejo": "479",
-      "chemicalName": "pancreatina",
+      "chemicalName": "Pancreatina",
       "clases": [
         "INORGANICO"
       ],
@@ -4996,10 +5438,10 @@
           "purity": null
         }
       ],
-      "code": "IO-1D-015",
+      "code": "IO-1D-024",
       "armario": 1,
       "estante": "D",
-      "correlativo": 15
+      "correlativo": 24
     },
     {
       "codigo_viejo": "221",
@@ -5020,10 +5462,10 @@
           "purity": null
         }
       ],
-      "code": "IO-1D-016",
+      "code": "IO-1D-025",
       "armario": 1,
       "estante": "D",
-      "correlativo": 16
+      "correlativo": 25
     },
     {
       "codigo_viejo": "645",
@@ -5044,14 +5486,14 @@
           "purity": null
         }
       ],
-      "code": "IO-1D-017",
+      "code": "IO-1D-026",
       "armario": 1,
       "estante": "D",
-      "correlativo": 17
+      "correlativo": 26
     },
     {
       "codigo_viejo": "477",
-      "chemicalName": "pepsina",
+      "chemicalName": "Pepsina",
       "clases": [
         "INORGANICO"
       ],
@@ -5068,10 +5510,51 @@
           "purity": null
         }
       ],
-      "code": "IO-1D-018",
+      "code": "IO-1D-027",
       "armario": 1,
       "estante": "D",
-      "correlativo": 18
+      "correlativo": 27
+    },
+    {
+      "codigo_viejo": "513",
+      "chemicalName": "Permanganato de Potasio",
+      "clases": [
+        "SAL",
+        "COMBURENTE",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "513-1",
+          "supplier": "Alkemit",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "513-2",
+          "supplier": "Cicarelli",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "513-3",
+          "supplier": "Anedra",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "SA-1D-028",
+      "armario": 1,
+      "estante": "D",
+      "correlativo": 28
     },
     {
       "codigo_viejo": "478",
@@ -5106,43 +5589,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1D-019",
+      "code": "IO-1D-029",
       "armario": 1,
       "estante": "D",
-      "correlativo": 19
-    },
-    {
-      "codigo_viejo": "536",
-      "chemicalName": "plomo",
-      "clases": [
-        "TOXICO",
-        "COMPUESTO_METALICO",
-        "ORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "536-1",
-          "supplier": "Merck",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "536-2",
-          "supplier": "Riedel-de Haen",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": "p.a."
-        }
-      ],
-      "code": "CM-1D-020",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 20
+      "correlativo": 29
     },
     {
       "codigo_viejo": "908",
@@ -5163,10 +5613,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-1D-021",
+      "code": "IO-1D-030",
       "armario": 1,
       "estante": "D",
-      "correlativo": 21
+      "correlativo": 30
     },
     {
       "codigo_viejo": "120",
@@ -5188,10 +5638,10 @@
           "purity": null
         }
       ],
-      "code": "CO-1D-022",
+      "code": "CO-1D-031",
       "armario": 1,
       "estante": "D",
-      "correlativo": 22
+      "correlativo": 31
     },
     {
       "codigo_viejo": "118",
@@ -5213,14 +5663,39 @@
           "purity": null
         }
       ],
-      "code": "CO-1D-023",
+      "code": "CO-1D-032",
       "armario": 1,
       "estante": "D",
-      "correlativo": 23
+      "correlativo": 32
+    },
+    {
+      "codigo_viejo": "439",
+      "chemicalName": "Potasio Biftalato de",
+      "clases": [
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "439-1",
+          "supplier": "Tetrahedron",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "CM-1D-033",
+      "armario": 1,
+      "estante": "D",
+      "correlativo": 33
     },
     {
       "codigo_viejo": "215",
-      "chemicalName": "potasio",
+      "chemicalName": "Potasio Biyodato de",
       "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
@@ -5238,80 +5713,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "CM-1D-024",
+      "code": "CM-1D-034",
       "armario": 1,
       "estante": "D",
-      "correlativo": 24
+      "correlativo": 34
     },
     {
-      "codigo_viejo": "316",
-      "chemicalName": "potasio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "316-1",
-          "supplier": "Mallinchrodt",
-          "initialQuantity": 100.0,
-          "currentQuantity": 100.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "CM-1D-025",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 25
-    },
-    {
-      "codigo_viejo": "318",
-      "chemicalName": "potasio",
-      "clases": [
-        "SAL",
-        "TOXICO",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "puro",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "318-1",
-          "supplier": "Timper",
-          "initialQuantity": 200.0,
-          "currentQuantity": 200.0,
-          "purity": "puro"
-        },
-        {
-          "lotNumber": "318-2",
-          "supplier": "Timper",
-          "initialQuantity": 200.0,
-          "currentQuantity": 200.0,
-          "purity": "puro"
-        },
-        {
-          "lotNumber": "318-3",
-          "supplier": "Timper",
-          "initialQuantity": 200.0,
-          "currentQuantity": 200.0,
-          "purity": "puro"
-        }
-      ],
-      "code": "SA-1D-026",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 26
-    },
-    {
-      "codigo_viejo": "325",
-      "chemicalName": "potasio",
+      "codigo_viejo": "418",
+      "chemicalName": "Potasio Biyodato de",
       "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
@@ -5322,46 +5731,21 @@
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "325-1",
-          "supplier": "Timper",
+          "lotNumber": "418-1",
+          "supplier": null,
           "initialQuantity": 1,
           "currentQuantity": 1,
           "purity": null
         }
       ],
-      "code": "CM-1D-027",
+      "code": "CM-1D-035",
       "armario": 1,
       "estante": "D",
-      "correlativo": 27
-    },
-    {
-      "codigo_viejo": "349",
-      "chemicalName": "potasio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "349-1",
-          "supplier": "Erbo",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "CM-1D-028",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 28
+      "correlativo": 35
     },
     {
       "codigo_viejo": "352",
-      "chemicalName": "potasio",
+      "chemicalName": "Potasio Bromato de",
       "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
@@ -5407,39 +5791,107 @@
           "purity": "potasio"
         }
       ],
-      "code": "CM-1D-029",
+      "code": "CM-1D-036",
       "armario": 1,
       "estante": "D",
-      "correlativo": 29
+      "correlativo": 36
     },
     {
-      "codigo_viejo": "418",
-      "chemicalName": "potasio",
+      "codigo_viejo": "532",
+      "chemicalName": "Potasio Bromato de",
       "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
       ],
       "state": "SOLIDO",
       "unit": "u",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "532-1",
+          "supplier": "Anedra",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": "p.a."
+        }
+      ],
+      "code": "CM-1D-037",
+      "armario": 1,
+      "estante": "D",
+      "correlativo": 37
+    },
+    {
+      "codigo_viejo": "608",
+      "chemicalName": "Potasio Ferricianuro de [Fe(CN)6K3]",
+      "clases": [
+        "SAL",
+        "TOXICO",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
       "purity": null,
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "418-1",
-          "supplier": null,
-          "initialQuantity": 1,
-          "currentQuantity": 1,
+          "lotNumber": "608-1",
+          "supplier": "Anedra",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
           "purity": null
         }
       ],
-      "code": "CM-1D-030",
+      "code": "SA-1D-038",
       "armario": 1,
       "estante": "D",
-      "correlativo": 30
+      "correlativo": 38
+    },
+    {
+      "codigo_viejo": "318",
+      "chemicalName": "Potasio Ferrocianuro de",
+      "clases": [
+        "SAL",
+        "TOXICO",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "puro",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "318-1",
+          "supplier": "Timper",
+          "initialQuantity": 200.0,
+          "currentQuantity": 200.0,
+          "purity": "puro"
+        },
+        {
+          "lotNumber": "318-2",
+          "supplier": "Timper",
+          "initialQuantity": 200.0,
+          "currentQuantity": 200.0,
+          "purity": "puro"
+        },
+        {
+          "lotNumber": "318-3",
+          "supplier": "Timper",
+          "initialQuantity": 200.0,
+          "currentQuantity": 200.0,
+          "purity": "puro"
+        }
+      ],
+      "code": "SA-1D-039",
+      "armario": 1,
+      "estante": "D",
+      "correlativo": 39
     },
     {
       "codigo_viejo": "423",
-      "chemicalName": "potasio",
+      "chemicalName": "Potasio Ferrocianuro de",
       "clases": [
         "SAL",
         "TOXICO",
@@ -5459,39 +5911,14 @@
           "purity": null
         }
       ],
-      "code": "SA-1D-031",
+      "code": "SA-1D-040",
       "armario": 1,
       "estante": "D",
-      "correlativo": 31
-    },
-    {
-      "codigo_viejo": "439",
-      "chemicalName": "potasio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "439-1",
-          "supplier": "Tetrahedron",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "CM-1D-032",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 32
+      "correlativo": 40
     },
     {
       "codigo_viejo": "446",
-      "chemicalName": "potasio",
+      "chemicalName": "Potasio Ferrocianuro de (hexaciano ferrato)",
       "clases": [
         "SAL",
         "TOXICO",
@@ -5518,18 +5945,15 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-1D-033",
+      "code": "SA-1D-041",
       "armario": 1,
       "estante": "D",
-      "correlativo": 33
+      "correlativo": 41
     },
     {
-      "codigo_viejo": "447",
-      "chemicalName": "potasio",
+      "codigo_viejo": "316",
+      "chemicalName": "Potasio Iodato de",
       "clases": [
-        "INDICADOR_REDOX",
-        "SAL",
-        "COMBURENTE",
         "COMPUESTO_METALICO",
         "INORGANICO"
       ],
@@ -5539,154 +5963,21 @@
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "447-1",
-          "supplier": "Alkemit",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "447-2",
-          "supplier": "Biopack",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
+          "lotNumber": "316-1",
+          "supplier": "Mallinchrodt",
+          "initialQuantity": 100.0,
+          "currentQuantity": 100.0,
           "purity": "p.a."
         }
       ],
-      "code": "IR-1D-034",
+      "code": "CM-1D-042",
       "armario": 1,
       "estante": "D",
-      "correlativo": 34
-    },
-    {
-      "codigo_viejo": "453",
-      "chemicalName": "potasio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "453-1",
-          "supplier": "Cicarelli",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "SA-1D-035",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 35
-    },
-    {
-      "codigo_viejo": "458",
-      "chemicalName": "potasio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "458-1",
-          "supplier": "Cicarelli",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "458-2",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "SA-1D-036",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 36
-    },
-    {
-      "codigo_viejo": "464",
-      "chemicalName": "potasio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "464-1",
-          "supplier": "Merck",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "SA-1D-037",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 37
-    },
-    {
-      "codigo_viejo": "513",
-      "chemicalName": "potasio",
-      "clases": [
-        "SAL",
-        "COMBURENTE",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "513-1",
-          "supplier": "Alkemit",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "513-2",
-          "supplier": "Cicarelli",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "513-3",
-          "supplier": "Anedra",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "SA-1D-038",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 38
+      "correlativo": 42
     },
     {
       "codigo_viejo": "521",
-      "chemicalName": "potasio",
+      "chemicalName": "Potasio Ioduro de",
       "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
@@ -5774,174 +6065,14 @@
           "purity": null
         }
       ],
-      "code": "CM-1D-039",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 39
-    },
-    {
-      "codigo_viejo": "532",
-      "chemicalName": "potasio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "532-1",
-          "supplier": "Anedra",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": "p.a."
-        }
-      ],
-      "code": "CM-1D-040",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 40
-    },
-    {
-      "codigo_viejo": "601",
-      "chemicalName": "potasio",
-      "clases": [
-        "BASE",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "601-1",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "601-2",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "601-3",
-          "supplier": "Alkemit",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "601-4",
-          "supplier": "Alkemit",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "601-5",
-          "supplier": "Anedra",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "BA-1D-041",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 41
-    },
-    {
-      "codigo_viejo": "608",
-      "chemicalName": "potasio",
-      "clases": [
-        "SAL",
-        "TOXICO",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "608-1",
-          "supplier": "Anedra",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": null
-        }
-      ],
-      "code": "SA-1D-042",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 42
-    },
-    {
-      "codigo_viejo": "613",
-      "chemicalName": "potasio",
-      "clases": [
-        "INDICADOR_REDOX",
-        "SAL",
-        "COMBURENTE",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "613-1",
-          "supplier": "Cicarrelli",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "IR-1D-043",
+      "code": "CM-1D-043",
       "armario": 1,
       "estante": "D",
       "correlativo": 43
     },
     {
-      "codigo_viejo": "652",
-      "chemicalName": "potasio",
-      "clases": [
-        "ACIDO",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "652-1",
-          "supplier": "RP",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "AC-1D-044",
-      "armario": 1,
-      "estante": "D",
-      "correlativo": 44
-    },
-    {
       "codigo_viejo": "900",
-      "chemicalName": "Potasio",
+      "chemicalName": "Potasio Persulfato de",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -5967,7 +6098,32 @@
           "purity": null
         }
       ],
-      "code": "SA-1D-045",
+      "code": "SA-1D-044",
+      "armario": 1,
+      "estante": "D",
+      "correlativo": 44
+    },
+    {
+      "codigo_viejo": "349",
+      "chemicalName": "Potasio Peryodato de",
+      "clases": [
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "349-1",
+          "supplier": "Erbo",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "CM-1D-045",
       "armario": 1,
       "estante": "D",
       "correlativo": 45
@@ -6022,7 +6178,7 @@
     },
     {
       "codigo_viejo": "489",
-      "chemicalName": "resina",
+      "chemicalName": "Resina",
       "clases": [
         "INORGANICO"
       ],
@@ -6235,7 +6391,7 @@
     },
     {
       "codigo_viejo": "717",
-      "chemicalName": "silicagel (anhidro)",
+      "chemicalName": "Silicagel (anhidro)",
       "clases": [
         "INORGANICO"
       ],
@@ -6258,65 +6414,15 @@
       "correlativo": 5
     },
     {
-      "codigo_viejo": "224",
-      "chemicalName": "sodio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": "p.s.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "224-1",
-          "supplier": "Timper",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": "p.s."
-        }
-      ],
-      "code": "CM-2A-006",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 6
-    },
-    {
-      "codigo_viejo": "226",
-      "chemicalName": "sodio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "226-1",
-          "supplier": "Fluka",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "CM-2A-007",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 7
-    },
-    {
       "codigo_viejo": "235",
-      "chemicalName": "sodio",
+      "chemicalName": "Sodio 2,6 Dicloro Fenol Indofenol de",
       "clases": [
         "SOLVENTE",
         "COMPUESTO_METALICO",
         "ORGANICO"
       ],
-      "state": "SOLIDO",
-      "unit": "u",
+      "state": "LIQUIDO",
+      "unit": "L",
       "purity": null,
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
@@ -6335,91 +6441,14 @@
           "purity": null
         }
       ],
-      "code": "SO-2A-008",
+      "code": "SO-2A-006",
       "armario": 2,
       "estante": "A",
-      "correlativo": 8
-    },
-    {
-      "codigo_viejo": "322",
-      "chemicalName": "Sodio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "322-1",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "CM-2A-009",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 9
-    },
-    {
-      "codigo_viejo": "337",
-      "chemicalName": "sodio",
-      "clases": [
-        "INDICADOR_REDOX",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "337-1",
-          "supplier": "Analar",
-          "initialQuantity": 25.0,
-          "currentQuantity": 25.0,
-          "purity": null
-        }
-      ],
-      "code": "IR-2A-010",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 10
-    },
-    {
-      "codigo_viejo": "429",
-      "chemicalName": "sodio",
-      "clases": [
-        "BASE",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "429-1",
-          "supplier": null,
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "BA-2A-011",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 11
+      "correlativo": 6
     },
     {
       "codigo_viejo": "438",
-      "chemicalName": "Sodio",
+      "chemicalName": "Sodio Bisulfito de",
       "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
@@ -6451,129 +6480,14 @@
           "purity": null
         }
       ],
-      "code": "CM-2A-012",
+      "code": "CM-2A-007",
       "armario": 2,
       "estante": "A",
-      "correlativo": 12
-    },
-    {
-      "codigo_viejo": "445",
-      "chemicalName": "sodio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "445-1",
-          "supplier": "Anedra",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "CM-2A-013",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 13
-    },
-    {
-      "codigo_viejo": "449",
-      "chemicalName": "sodio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "449-1",
-          "supplier": "Alkemit",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "449-2",
-          "supplier": "Alkemit",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "449-3",
-          "supplier": "BDH",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "SA-2A-014",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 14
-    },
-    {
-      "codigo_viejo": "485",
-      "chemicalName": "sodio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "485-1",
-          "supplier": null,
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "CM-2A-015",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 15
-    },
-    {
-      "codigo_viejo": "495",
-      "chemicalName": "sodio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "495-1",
-          "supplier": "Alkemit",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "CM-2A-016",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 16
+      "correlativo": 7
     },
     {
       "codigo_viejo": "512",
-      "chemicalName": "sodio",
+      "chemicalName": "Sodio cobaltinitro de",
       "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
@@ -6591,117 +6505,65 @@
           "purity": null
         }
       ],
-      "code": "CM-2A-017",
+      "code": "CM-2A-008",
       "armario": 2,
       "estante": "A",
-      "correlativo": 17
+      "correlativo": 8
     },
     {
-      "codigo_viejo": "514",
-      "chemicalName": "sodio",
+      "codigo_viejo": "337",
+      "chemicalName": "Sodio dietilditiocarbamato de",
       "clases": [
-        "BASE",
+        "INDICADOR_REDOX",
         "COMPUESTO_METALICO",
         "INORGANICO"
       ],
       "state": "SOLIDO",
       "unit": "g",
-      "purity": "p.a.",
+      "purity": null,
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "514-1",
-          "supplier": "Alkemit",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "514-2",
-          "supplier": "Cicarelli",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "514-3",
-          "supplier": "Alkemit",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
+          "lotNumber": "337-1",
+          "supplier": "Analar",
+          "initialQuantity": 25.0,
+          "currentQuantity": 25.0,
           "purity": null
-        },
+        }
+      ],
+      "code": "IR-2A-009",
+      "armario": 2,
+      "estante": "A",
+      "correlativo": 9
+    },
+    {
+      "codigo_viejo": "226",
+      "chemicalName": "Sodio Etanosulfonato de",
+      "clases": [
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
         {
-          "lotNumber": "514-4",
-          "supplier": "Merck",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "514-5",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "514-6",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "514-7",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "514-8",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "514-9",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "514-10",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "514-11",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "514-12",
-          "supplier": "Alkemit",
+          "lotNumber": "226-1",
+          "supplier": "Fluka",
           "initialQuantity": 1,
           "currentQuantity": 1,
           "purity": null
         }
       ],
-      "code": "BA-2A-018",
+      "code": "CM-2A-010",
       "armario": 2,
       "estante": "A",
-      "correlativo": 18
+      "correlativo": 10
     },
     {
       "codigo_viejo": "518",
-      "chemicalName": "sodio",
+      "chemicalName": "Sodio Metabisulfito de",
       "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
@@ -6733,14 +6595,14 @@
           "purity": null
         }
       ],
-      "code": "CM-2A-019",
+      "code": "CM-2A-011",
       "armario": 2,
       "estante": "A",
-      "correlativo": 19
+      "correlativo": 11
     },
     {
-      "codigo_viejo": "525",
-      "chemicalName": "sodio",
+      "codigo_viejo": "322",
+      "chemicalName": "Sodio metaperiodato de",
       "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
@@ -6751,411 +6613,17 @@
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "525-1",
-          "supplier": "Merck",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "CM-2A-020",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 20
-    },
-    {
-      "codigo_viejo": "527",
-      "chemicalName": "sodio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "527-1",
-          "supplier": "Carlos Erba",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "527-2",
-          "supplier": "R.P( ALTA 27/06/2017)",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "527-3",
-          "supplier": "Mallinckrodt(baja 27/06/2017)",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "527-4",
-          "supplier": "Alkemit",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "CM-2A-021",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 21
-    },
-    {
-      "codigo_viejo": "541",
-      "chemicalName": "sodio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "541-1",
-          "supplier": "BDH",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "SA-2A-022",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 22
-    },
-    {
-      "codigo_viejo": "569",
-      "chemicalName": "sodio",
-      "clases": [
-        "ACIDO",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "569-1",
-          "supplier": "Merck",
-          "initialQuantity": 100.0,
-          "currentQuantity": 100.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "569-2",
-          "supplier": "Merck",
-          "initialQuantity": 100.0,
-          "currentQuantity": 100.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "AC-2A-023",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 23
-    },
-    {
-      "codigo_viejo": "577",
-      "chemicalName": "sodio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "577-1",
-          "supplier": "Timper",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "CM-2A-024",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 24
-    },
-    {
-      "codigo_viejo": "582",
-      "chemicalName": "sodio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "582-1",
-          "supplier": "Mallinchrodt",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "582-2",
-          "supplier": "Cicarelli",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "582-3",
-          "supplier": "Cicarelli",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "582-4",
-          "supplier": "Merck",
-          "initialQuantity": 582.0,
-          "currentQuantity": 582.0,
-          "purity": "sodio"
-        },
-        {
-          "lotNumber": "582-5",
-          "supplier": "Merck",
-          "initialQuantity": 582.0,
-          "currentQuantity": 582.0,
-          "purity": "sodio"
-        },
-        {
-          "lotNumber": "582-6",
-          "supplier": "Merck",
-          "initialQuantity": 582.0,
-          "currentQuantity": 582.0,
-          "purity": "sodio"
-        }
-      ],
-      "code": "SA-2A-025",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 25
-    },
-    {
-      "codigo_viejo": "602",
-      "chemicalName": "sodio",
-      "clases": [
-        "COLORANTE",
-        "SOLVENTE",
-        "SAL",
-        "COMPUESTO_METALICO",
-        "ORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": "puro",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "602-1",
-          "supplier": null,
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": "puro"
-        },
-        {
-          "lotNumber": "602-2",
-          "supplier": "Merck",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": "puro"
-        },
-        {
-          "lotNumber": "602-3",
-          "supplier": "Timper",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "602-4",
-          "supplier": "Merck",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": "puro"
-        },
-        {
-          "lotNumber": "602-5",
-          "supplier": "Anedra",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "602-6",
-          "supplier": "Merck",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "602-7",
-          "supplier": "Merck",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "602-8",
-          "supplier": "Merck",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "SO-2A-026",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 26
-    },
-    {
-      "codigo_viejo": "618",
-      "chemicalName": "sodio",
-      "clases": [
-        "BASE",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "618-1",
-          "supplier": "Biopack",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "618-2",
-          "supplier": "Biopack",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "618-3",
-          "supplier": "Biopack",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "618-4",
-          "supplier": "Biopack",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "BA-2A-027",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 27
-    },
-    {
-      "codigo_viejo": "658",
-      "chemicalName": "sodio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "658-1",
-          "supplier": "Baker",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "658-2",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "658-3",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "658-4",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "658-5",
+          "lotNumber": "322-1",
           "supplier": "Biopack",
           "initialQuantity": 1,
           "currentQuantity": 1,
           "purity": null
         }
       ],
-      "code": "SA-2A-028",
+      "code": "CM-2A-012",
       "armario": 2,
       "estante": "A",
-      "correlativo": 28
-    },
-    {
-      "codigo_viejo": "718",
-      "chemicalName": "sodio",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "718-1",
-          "supplier": "Anedra",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "CM-2A-029",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 29
+      "correlativo": 12
     },
     {
       "codigo_viejo": "562",
@@ -7185,16 +6653,41 @@
           "purity": null
         }
       ],
-      "code": "ME-2A-030",
+      "code": "ME-2A-013",
       "armario": 2,
       "estante": "A",
-      "correlativo": 30
+      "correlativo": 13
     },
     {
-      "codigo_viejo": "593",
-      "chemicalName": "sodio y potasio",
+      "codigo_viejo": "541",
+      "chemicalName": "Sodio Ortofosfato de(dihidrogenado)",
       "clases": [
         "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "541-1",
+          "supplier": "BDH",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "SA-2A-014",
+      "armario": 2,
+      "estante": "A",
+      "correlativo": 14
+    },
+    {
+      "codigo_viejo": "577",
+      "chemicalName": "Sodio Sulfito de(anhidro)",
+      "clases": [
         "COMPUESTO_METALICO",
         "INORGANICO"
       ],
@@ -7204,24 +6697,138 @@
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "593-1",
+          "lotNumber": "577-1",
+          "supplier": "Timper",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "CM-2A-015",
+      "armario": 2,
+      "estante": "A",
+      "correlativo": 15
+    },
+    {
+      "codigo_viejo": "445",
+      "chemicalName": "Sodio Sulfito de(heptahidratado)",
+      "clases": [
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "445-1",
+          "supplier": "Anedra",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "CM-2A-016",
+      "armario": 2,
+      "estante": "A",
+      "correlativo": 16
+    },
+    {
+      "codigo_viejo": "495",
+      "chemicalName": "Sodio Tetraborato de",
+      "clases": [
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "495-1",
           "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "CM-2A-017",
+      "armario": 2,
+      "estante": "A",
+      "correlativo": 17
+    },
+    {
+      "codigo_viejo": "527",
+      "chemicalName": "Sodio Tetraborato de (4H2O)",
+      "clases": [
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "527-1",
+          "supplier": "Carlos Erba",
           "initialQuantity": 1,
           "currentQuantity": 1,
           "purity": null
         },
         {
-          "lotNumber": "593-2",
+          "lotNumber": "527-2",
+          "supplier": "R.P",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "527-3",
+          "supplier": "Mallinckrodt",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "527-4",
           "supplier": "Alkemit",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": "p.a."
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
         }
       ],
-      "code": "SA-2A-031",
+      "code": "CM-2A-018",
       "armario": 2,
       "estante": "A",
-      "correlativo": 31
+      "correlativo": 18
+    },
+    {
+      "codigo_viejo": "224",
+      "chemicalName": "Sodio Tungsteno de",
+      "clases": [
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": "p.s.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "224-1",
+          "supplier": "Timper",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": "p.s."
+        }
+      ],
+      "code": "CM-2A-019",
+      "armario": 2,
+      "estante": "A",
+      "correlativo": 19
     },
     {
       "codigo_viejo": "119",
@@ -7243,10 +6850,10 @@
           "purity": null
         }
       ],
-      "code": "CO-2A-032",
+      "code": "CO-2A-020",
       "armario": 2,
       "estante": "A",
-      "correlativo": 32
+      "correlativo": 20
     },
     {
       "codigo_viejo": "390",
@@ -7267,10 +6874,10 @@
           "purity": null
         }
       ],
-      "code": "IO-2A-033",
+      "code": "IO-2A-021",
       "armario": 2,
       "estante": "A",
-      "correlativo": 33
+      "correlativo": 21
     },
     {
       "codigo_viejo": "231",
@@ -7292,10 +6899,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IR-2A-034",
+      "code": "IR-2A-022",
       "armario": 2,
       "estante": "A",
-      "correlativo": 34
+      "correlativo": 22
     },
     {
       "codigo_viejo": "344",
@@ -7316,14 +6923,39 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-2A-035",
+      "code": "IO-2A-023",
       "armario": 2,
       "estante": "A",
-      "correlativo": 35
+      "correlativo": 23
+    },
+    {
+      "codigo_viejo": "523",
+      "chemicalName": "Sulfamico Acido (HS03NH2)",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "523-1",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "AC-2A-024",
+      "armario": 2,
+      "estante": "A",
+      "correlativo": 24
     },
     {
       "codigo_viejo": "716",
-      "chemicalName": "sulfato",
+      "chemicalName": "Sulfato",
       "clases": [
         "SAL",
         "INORGANICO"
@@ -7341,14 +6973,14 @@
           "purity": null
         }
       ],
-      "code": "SA-2A-036",
+      "code": "SA-2A-025",
       "armario": 2,
       "estante": "A",
-      "correlativo": 36
+      "correlativo": 25
     },
     {
       "codigo_viejo": "624",
-      "chemicalName": "Sulfato de  (anhidro) calcio",
+      "chemicalName": "Sulfato de (anhidro) de Calcio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7367,47 +6999,14 @@
           "purity": "uso qco."
         }
       ],
-      "code": "SA-2A-037",
+      "code": "SA-2A-026",
       "armario": 2,
       "estante": "A",
-      "correlativo": 37
-    },
-    {
-      "codigo_viejo": "456",
-      "chemicalName": "Sulfato de  (pentahidratado) cobre (II)",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "456-1",
-          "supplier": "Alkemit",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "456-2",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "SA-2A-038",
-      "armario": 2,
-      "estante": "A",
-      "correlativo": 38
+      "correlativo": 26
     },
     {
       "codigo_viejo": "342",
-      "chemicalName": "Sulfato de (II) mercurio",
+      "chemicalName": "Sulfato de (II) de Mercurio",
       "clases": [
         "SAL",
         "TOXICO",
@@ -7434,14 +7033,47 @@
           "purity": null
         }
       ],
-      "code": "SA-2A-039",
+      "code": "SA-2A-027",
       "armario": 2,
       "estante": "A",
-      "correlativo": 39
+      "correlativo": 27
+    },
+    {
+      "codigo_viejo": "456",
+      "chemicalName": "Sulfato de (pentahidratado) de Cobre (II)",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "456-1",
+          "supplier": "Alkemit",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "456-2",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-2A-028",
+      "armario": 2,
+      "estante": "A",
+      "correlativo": 28
     },
     {
       "codigo_viejo": "614",
-      "chemicalName": "Sulfato de aluminio",
+      "chemicalName": "Sulfato de Aluminio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7454,7 +7086,7 @@
       "lotes": [
         {
           "lotNumber": "614-1",
-          "supplier": "Anedra(250g)",
+          "supplier": "Anedra",
           "initialQuantity": 250.0,
           "currentQuantity": 250.0,
           "purity": "p.a."
@@ -7467,14 +7099,14 @@
           "purity": null
         }
       ],
-      "code": "SA-2A-040",
+      "code": "SA-2A-029",
       "armario": 2,
       "estante": "A",
-      "correlativo": 40
+      "correlativo": 29
     },
     {
       "codigo_viejo": "625",
-      "chemicalName": "Sulfato de aluminio y potasio",
+      "chemicalName": "Sulfato de Aluminio y potasio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7507,14 +7139,14 @@
           "purity": null
         }
       ],
-      "code": "SA-2A-041",
+      "code": "SA-2A-030",
       "armario": 2,
       "estante": "A",
-      "correlativo": 41
+      "correlativo": 30
     },
     {
       "codigo_viejo": "612",
-      "chemicalName": "Sulfato de amonio",
+      "chemicalName": "Sulfato de Amonio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7533,14 +7165,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-2A-042",
+      "code": "SA-2A-031",
       "armario": 2,
       "estante": "A",
-      "correlativo": 42
+      "correlativo": 31
     },
     {
       "codigo_viejo": "617",
-      "chemicalName": "Sulfato de amonio y aluminio",
+      "chemicalName": "Sulfato de Amonio y aluminio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7559,14 +7191,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-2A-043",
+      "code": "SA-2A-032",
       "armario": 2,
       "estante": "A",
-      "correlativo": 43
+      "correlativo": 32
     },
     {
       "codigo_viejo": "646",
-      "chemicalName": "Sulfato de bario",
+      "chemicalName": "Sulfato de Bario",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7585,14 +7217,14 @@
           "purity": "purísimo"
         }
       ],
-      "code": "SA-2A-044",
+      "code": "SA-2A-033",
       "armario": 2,
       "estante": "A",
-      "correlativo": 44
+      "correlativo": 33
     },
     {
       "codigo_viejo": "714",
-      "chemicalName": "Sulfato de bario",
+      "chemicalName": "Sulfato de Bario",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7611,14 +7243,14 @@
           "purity": null
         }
       ],
-      "code": "SA-2A-045",
+      "code": "SA-2A-034",
       "armario": 2,
       "estante": "A",
-      "correlativo": 45
+      "correlativo": 34
     },
     {
       "codigo_viejo": "331",
-      "chemicalName": "Sulfato de cadmio",
+      "chemicalName": "Sulfato de Cadmio",
       "clases": [
         "SAL",
         "TOXICO",
@@ -7645,14 +7277,14 @@
           "purity": null
         }
       ],
-      "code": "SA-2A-046",
+      "code": "SA-2A-035",
       "armario": 2,
       "estante": "A",
-      "correlativo": 46
+      "correlativo": 35
     },
     {
       "codigo_viejo": "653",
-      "chemicalName": "Sulfato de cobre y amonio",
+      "chemicalName": "Sulfato de Cobre y amonio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7671,14 +7303,40 @@
           "purity": null
         }
       ],
-      "code": "SA-2A-047",
+      "code": "SA-2A-036",
       "armario": 2,
       "estante": "A",
-      "correlativo": 47
+      "correlativo": 36
+    },
+    {
+      "codigo_viejo": "482",
+      "chemicalName": "Sulfato de Ferrico",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "482-1",
+          "supplier": "Anedra",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-2A-037",
+      "armario": 2,
+      "estante": "A",
+      "correlativo": 37
     },
     {
       "codigo_viejo": "450",
-      "chemicalName": "sulfato de hidrazina",
+      "chemicalName": "Sulfato de Hidrazina",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7697,14 +7355,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-2A-048",
+      "code": "SA-2A-038",
       "armario": 2,
       "estante": "A",
-      "correlativo": 48
+      "correlativo": 38
     },
     {
       "codigo_viejo": "354",
-      "chemicalName": "Sulfato de litio",
+      "chemicalName": "Sulfato de Litio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7723,14 +7381,89 @@
           "purity": null
         }
       ],
-      "code": "SA-2A-049",
+      "code": "SA-2A-039",
       "armario": 2,
       "estante": "A",
-      "correlativo": 49
+      "correlativo": 39
+    },
+    {
+      "codigo_viejo": "500",
+      "chemicalName": "Sulfato de Magnesio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "500-1",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "500-2",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "500-3",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "500-4",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "500-5",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "500-6",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "500-7",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "500-8",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-2A-040",
+      "armario": 2,
+      "estante": "A",
+      "correlativo": 40
     },
     {
       "codigo_viejo": "631",
-      "chemicalName": "Sulfato de magnesio",
+      "chemicalName": "Sulfato de Magnesio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7756,14 +7489,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-2A-050",
+      "code": "SA-2A-041",
       "armario": 2,
       "estante": "A",
-      "correlativo": 50
+      "correlativo": 41
     },
     {
       "codigo_viejo": "520",
-      "chemicalName": "Sulfato de manganeso",
+      "chemicalName": "Sulfato de Manganeso",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7782,14 +7515,14 @@
           "purity": null
         }
       ],
-      "code": "SA-2B-001",
+      "code": "SA-2A-042",
       "armario": 2,
-      "estante": "B",
-      "correlativo": 1
+      "estante": "A",
+      "correlativo": 42
     },
     {
       "codigo_viejo": "451",
-      "chemicalName": "Sulfato de monohidrato manganeso (II)",
+      "chemicalName": "Sulfato de monohidrato de Manganeso (II)",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7808,14 +7541,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-2B-002",
+      "code": "SA-2A-043",
       "armario": 2,
-      "estante": "B",
-      "correlativo": 2
+      "estante": "A",
+      "correlativo": 43
     },
     {
       "codigo_viejo": "343",
-      "chemicalName": "Sulfato de plata",
+      "chemicalName": "Sulfato de Plata",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7904,14 +7637,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-2B-003",
+      "code": "SA-2A-044",
       "armario": 2,
-      "estante": "B",
-      "correlativo": 3
+      "estante": "A",
+      "correlativo": 44
     },
     {
       "codigo_viejo": "431",
-      "chemicalName": "Sulfato de zinc",
+      "chemicalName": "Sulfato de Zinc",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -7930,14 +7663,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "SA-2B-004",
+      "code": "SA-2A-045",
       "armario": 2,
-      "estante": "B",
-      "correlativo": 4
+      "estante": "A",
+      "correlativo": 45
     },
     {
       "codigo_viejo": "579",
-      "chemicalName": "Sulfato de(anhidro cristal) potasio",
+      "chemicalName": "Sulfato de(anhidro cristal) de Potasio",
       "clases": [
         "COLORANTE",
         "SAL",
@@ -7951,7 +7684,7 @@
       "lotes": [
         {
           "lotNumber": "579-1",
-          "supplier": "Anedra(1000 g)baja 22/05/17",
+          "supplier": "Anedrabaja 22/05/17",
           "initialQuantity": 1000.0,
           "currentQuantity": 1000.0,
           "purity": "p.a."
@@ -7964,14 +7697,14 @@
           "purity": null
         }
       ],
-      "code": "CO-2B-005",
+      "code": "CO-2A-046",
       "armario": 2,
-      "estante": "B",
-      "correlativo": 5
+      "estante": "A",
+      "correlativo": 46
     },
     {
       "codigo_viejo": "538",
-      "chemicalName": "Sulfato de(anhidro) sodio",
+      "chemicalName": "Sulfato de(anhidro) de Sodio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -8053,14 +7786,14 @@
           "purity": null
         }
       ],
-      "code": "SA-2B-006",
+      "code": "SA-2A-047",
       "armario": 2,
-      "estante": "B",
-      "correlativo": 6
+      "estante": "A",
+      "correlativo": 47
     },
     {
       "codigo_viejo": "526",
-      "chemicalName": "Sulfato de(heptahidrato) magnesio",
+      "chemicalName": "Sulfato de(heptahidrato) de Magnesio",
       "clases": [
         "SAL",
         "COMPUESTO_METALICO",
@@ -8121,114 +7854,14 @@
           "purity": null
         }
       ],
-      "code": "SA-2B-007",
+      "code": "SA-2A-048",
       "armario": 2,
-      "estante": "B",
-      "correlativo": 7
-    },
-    {
-      "codigo_viejo": "482",
-      "chemicalName": "sulfato ferrico",
-      "clases": [
-        "SAL",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "482-1",
-          "supplier": "Anedra",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "SA-2B-008",
-      "armario": 2,
-      "estante": "B",
-      "correlativo": 8
-    },
-    {
-      "codigo_viejo": "500",
-      "chemicalName": "sulfato magnesio",
-      "clases": [
-        "SAL",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "500-1",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "500-2",
-          "supplier": "Alkemit",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "500-3",
-          "supplier": "Alkemit",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "500-4",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "500-5",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "500-6",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "500-7",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        },
-        {
-          "lotNumber": "500-8",
-          "supplier": "Biopack",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "SA-2B-009",
-      "armario": 2,
-      "estante": "B",
-      "correlativo": 9
+      "estante": "A",
+      "correlativo": 48
     },
     {
       "codigo_viejo": "535",
-      "chemicalName": "Sulfato(heptahidratado) ferroso",
+      "chemicalName": "Sulfato(heptahidratado) de Ferroso",
       "clases": [
         "SAL",
         "INORGANICO"
@@ -8253,14 +7886,39 @@
           "purity": null
         }
       ],
-      "code": "SA-2B-010",
+      "code": "SA-2A-049",
       "armario": 2,
-      "estante": "B",
-      "correlativo": 10
+      "estante": "A",
+      "correlativo": 49
+    },
+    {
+      "codigo_viejo": "525",
+      "chemicalName": "Sulfuro de Sodio",
+      "clases": [
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "525-1",
+          "supplier": "Merck",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "CM-2A-050",
+      "armario": 2,
+      "estante": "A",
+      "correlativo": 50
     },
     {
       "codigo_viejo": "628",
-      "chemicalName": "tanico",
+      "chemicalName": "Tanico Anhidrido",
       "clases": [
         "INORGANICO"
       ],
@@ -8277,10 +7935,207 @@
           "purity": null
         }
       ],
-      "code": "IO-2B-011",
+      "code": "IO-2B-001",
       "armario": 2,
       "estante": "B",
-      "correlativo": 11
+      "correlativo": 1
+    },
+    {
+      "codigo_viejo": "593",
+      "chemicalName": "Tartrato de Sodio y potasio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "593-1",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "593-2",
+          "supplier": "Alkemit",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "SA-2B-002",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 2
+    },
+    {
+      "codigo_viejo": "652",
+      "chemicalName": "Tartrato ácido de Potasio",
+      "clases": [
+        "ACIDO",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "652-1",
+          "supplier": "RP",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "AC-2B-003",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 3
+    },
+    {
+      "codigo_viejo": "705",
+      "chemicalName": "Tiocianato de Amonio",
+      "clases": [
+        "SAL",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "705-1",
+          "supplier": "Merck",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-2B-004",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 4
+    },
+    {
+      "codigo_viejo": "453",
+      "chemicalName": "Tiocianato de Potasio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": "p.a.",
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "453-1",
+          "supplier": "Cicarelli",
+          "initialQuantity": 250.0,
+          "currentQuantity": 250.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "SA-2B-005",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 5
+    },
+    {
+      "codigo_viejo": "658",
+      "chemicalName": "Tiosulfato de (pentahidratado) de Sodio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "658-1",
+          "supplier": "Baker",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "658-2",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "658-3",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "658-4",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "658-5",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-2B-006",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 6
+    },
+    {
+      "codigo_viejo": "301",
+      "chemicalName": "Tiosulfato de Amonio",
+      "clases": [
+        "SAL",
+        "COMPUESTO_METALICO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "301-1",
+          "supplier": "Timper",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "301-2",
+          "supplier": "Timper",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "SA-2B-007",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 7
     },
     {
       "codigo_viejo": "409",
@@ -8302,14 +8157,14 @@
           "purity": "p.a."
         }
       ],
-      "code": "BA-2B-012",
+      "code": "BA-2B-008",
       "armario": 2,
       "estante": "B",
-      "correlativo": 12
+      "correlativo": 8
     },
     {
       "codigo_viejo": "106",
-      "chemicalName": "tolueno",
+      "chemicalName": "Tolueno diisocianato de",
       "clases": [
         "SOLVENTE",
         "ORGANICO"
@@ -8327,10 +8182,35 @@
           "purity": null
         }
       ],
-      "code": "SO-2B-013",
+      "code": "SO-2B-009",
       "armario": 2,
       "estante": "B",
-      "correlativo": 13
+      "correlativo": 9
+    },
+    {
+      "codigo_viejo": "340",
+      "chemicalName": "Tánico Ácido puro",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "g",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "340-1",
+          "supplier": "Drog. Cronos",
+          "initialQuantity": 100.0,
+          "currentQuantity": 100.0,
+          "purity": null
+        }
+      ],
+      "code": "AC-2B-010",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 10
     },
     {
       "codigo_viejo": "936",
@@ -8351,10 +8231,10 @@
           "purity": null
         }
       ],
-      "code": "IO-2B-014",
+      "code": "IO-2B-011",
       "armario": 2,
       "estante": "B",
-      "correlativo": 14
+      "correlativo": 11
     },
     {
       "codigo_viejo": "588",
@@ -8375,10 +8255,10 @@
           "purity": "r.a."
         }
       ],
-      "code": "IO-2B-015",
+      "code": "IO-2B-012",
       "armario": 2,
       "estante": "B",
-      "correlativo": 15
+      "correlativo": 12
     },
     {
       "codigo_viejo": "700",
@@ -8399,10 +8279,10 @@
           "purity": null
         }
       ],
-      "code": "IO-2B-016",
+      "code": "IO-2B-013",
       "armario": 2,
       "estante": "B",
-      "correlativo": 16
+      "correlativo": 13
     },
     {
       "codigo_viejo": "210",
@@ -8431,10 +8311,10 @@
           "purity": null
         }
       ],
-      "code": "CO-2B-017",
+      "code": "CO-2B-014",
       "armario": 2,
       "estante": "B",
-      "correlativo": 17
+      "correlativo": 14
     },
     {
       "codigo_viejo": "581",
@@ -8455,69 +8335,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "IO-2B-018",
+      "code": "IO-2B-015",
       "armario": 2,
       "estante": "B",
-      "correlativo": 18
-    },
-    {
-      "codigo_viejo": "307",
-      "chemicalName": "Zinc",
-      "clases": [
-        "COMPUESTO_METALICO",
-        "ORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "307-1",
-          "supplier": "Biopack(baja 22/05/17)",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": null
-        },
-        {
-          "lotNumber": "307-2",
-          "supplier": "Merck",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": null
-        }
-      ],
-      "code": "CM-2B-019",
-      "armario": 2,
-      "estante": "B",
-      "correlativo": 19
-    },
-    {
-      "codigo_viejo": "712",
-      "chemicalName": "zinc",
-      "clases": [
-        "SOLVENTE",
-        "SAL",
-        "COMPUESTO_METALICO",
-        "ORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
-      "purity": null,
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "712-1",
-          "supplier": "Thomas and tigrerCo",
-          "initialQuantity": 1000.0,
-          "currentQuantity": 1000.0,
-          "purity": null
-        }
-      ],
-      "code": "SO-2B-020",
-      "armario": 2,
-      "estante": "B",
-      "correlativo": 20
+      "correlativo": 15
     },
     {
       "codigo_viejo": "440",
@@ -8539,10 +8360,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "CM-2B-021",
+      "code": "CM-2B-016",
       "armario": 2,
       "estante": "B",
-      "correlativo": 21
+      "correlativo": 16
     },
     {
       "codigo_viejo": "229",
@@ -8564,92 +8385,36 @@
           "purity": null
         }
       ],
-      "code": "CM-2B-022",
+      "code": "CM-2B-017",
       "armario": 2,
       "estante": "B",
-      "correlativo": 22
+      "correlativo": 17
     },
     {
-      "codigo_viejo": "176",
-      "chemicalName": "Ácido  anhidro molíbdico",
+      "codigo_viejo": "135",
+      "chemicalName": "Ácido acetico tricloro",
       "clases": [
         "ACIDO",
+        "COMPUESTO_METALICO",
         "INORGANICO"
       ],
       "state": "SOLIDO",
       "unit": "u",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "176-1",
-          "supplier": "Merck",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "176-2",
-          "supplier": "Cicarelli",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": "p.a."
-        }
-      ],
-      "code": "AC-2B-023",
-      "armario": 2,
-      "estante": "B",
-      "correlativo": 23
-    },
-    {
-      "codigo_viejo": "350",
-      "chemicalName": "Ácido  anhidro molíbdico",
-      "clases": [
-        "ACIDO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "u",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "350-1",
-          "supplier": "Anedra",
-          "initialQuantity": 1,
-          "currentQuantity": 1,
-          "purity": "p.a."
-        }
-      ],
-      "code": "AC-2B-024",
-      "armario": 2,
-      "estante": "B",
-      "correlativo": 24
-    },
-    {
-      "codigo_viejo": "340",
-      "chemicalName": "Ácido  puro tánico",
-      "clases": [
-        "ACIDO",
-        "INORGANICO"
-      ],
-      "state": "SOLIDO",
-      "unit": "g",
       "purity": null,
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "340-1",
-          "supplier": "Drog. Cronos",
-          "initialQuantity": 100.0,
-          "currentQuantity": 100.0,
+          "lotNumber": "135-1",
+          "supplier": null,
+          "initialQuantity": 1,
+          "currentQuantity": 1,
           "purity": null
         }
       ],
-      "code": "AC-2B-025",
+      "code": "AC-2B-018",
       "armario": 2,
       "estante": "B",
-      "correlativo": 25
+      "correlativo": 18
     },
     {
       "codigo_viejo": "452",
@@ -8671,10 +8436,74 @@
           "purity": "p.a."
         }
       ],
-      "code": "AC-2B-026",
+      "code": "AC-2B-019",
       "armario": 2,
       "estante": "B",
-      "correlativo": 26
+      "correlativo": 19
+    },
+    {
+      "codigo_viejo": "506",
+      "chemicalName": "Ácido benzoico",
+      "clases": [
+        "ACIDO",
+        "ORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "506-1",
+          "supplier": "Merck",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "506-2",
+          "supplier": "Merck",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "506-3",
+          "supplier": "RP",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": "p.a."
+        }
+      ],
+      "code": "AC-2B-020",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 20
+    },
+    {
+      "codigo_viejo": "719",
+      "chemicalName": "Ácido bromihidrico",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "719-1",
+          "supplier": null,
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "AC-2B-021",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 21
     },
     {
       "codigo_viejo": "539",
@@ -8724,10 +8553,113 @@
           "purity": null
         }
       ],
-      "code": "AC-2B-027",
+      "code": "AC-2B-022",
       "armario": 2,
       "estante": "B",
-      "correlativo": 27
+      "correlativo": 22
+    },
+    {
+      "codigo_viejo": "216",
+      "chemicalName": "Ácido calcon carboxilico",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "216-1",
+          "supplier": "Merck",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "216-2",
+          "supplier": "Merck",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "AC-2B-023",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 23
+    },
+    {
+      "codigo_viejo": "441",
+      "chemicalName": "Ácido citrico",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "441-1",
+          "supplier": "betsil",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "441-2",
+          "supplier": "timper",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "441-3",
+          "supplier": "Mallinchrodt",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "441-4",
+          "supplier": "Biopack",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "AC-2B-024",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 24
+    },
+    {
+      "codigo_viejo": "713",
+      "chemicalName": "Ácido fenico",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "713-1",
+          "supplier": null,
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "AC-2B-025",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 25
     },
     {
       "codigo_viejo": "323",
@@ -8756,36 +8688,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "AC-2B-028",
+      "code": "AC-2B-026",
       "armario": 2,
       "estante": "B",
-      "correlativo": 28
-    },
-    {
-      "codigo_viejo": "461",
-      "chemicalName": "Ácido hipo al 32% fosforoso",
-      "clases": [
-        "ACIDO",
-        "COMPUESTO_METALICO",
-        "INORGANICO"
-      ],
-      "state": "LIQUIDO",
-      "unit": "L",
-      "purity": "p.a.",
-      "warehouse": "Depósito Central / Droguero",
-      "lotes": [
-        {
-          "lotNumber": "461-1",
-          "supplier": "Tetrahedron",
-          "initialQuantity": 200.0,
-          "currentQuantity": 200.0,
-          "purity": "p.a."
-        }
-      ],
-      "code": "AC-2B-029",
-      "armario": 2,
-      "estante": "B",
-      "correlativo": 29
+      "correlativo": 26
     },
     {
       "codigo_viejo": "432",
@@ -8814,10 +8720,49 @@
           "purity": null
         }
       ],
-      "code": "AC-2B-030",
+      "code": "AC-2B-027",
       "armario": 2,
       "estante": "B",
-      "correlativo": 30
+      "correlativo": 27
+    },
+    {
+      "codigo_viejo": "592",
+      "chemicalName": "Ácido L-Tartarico",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "592-1",
+          "supplier": null,
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "592-2",
+          "supplier": "Alkemit",
+          "initialQuantity": 500.0,
+          "currentQuantity": 500.0,
+          "purity": "p.a."
+        },
+        {
+          "lotNumber": "592-3",
+          "supplier": "Alkemit",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        }
+      ],
+      "code": "AC-2B-028",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 28
     },
     {
       "codigo_viejo": "435",
@@ -8839,10 +8784,10 @@
           "purity": "síntesis"
         }
       ],
-      "code": "AC-2B-031",
+      "code": "AC-2B-029",
       "armario": 2,
       "estante": "B",
-      "correlativo": 31
+      "correlativo": 29
     },
     {
       "codigo_viejo": "572",
@@ -8864,10 +8809,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "AC-2B-032",
+      "code": "AC-2B-030",
       "armario": 2,
       "estante": "B",
-      "correlativo": 32
+      "correlativo": 30
     },
     {
       "codigo_viejo": "403",
@@ -8889,10 +8834,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "AC-2B-033",
+      "code": "AC-2B-031",
       "armario": 2,
       "estante": "B",
-      "correlativo": 33
+      "correlativo": 31
     },
     {
       "codigo_viejo": "101",
@@ -8921,10 +8866,10 @@
           "purity": "p.a."
         }
       ],
-      "code": "AC-2B-034",
+      "code": "AC-2B-032",
       "armario": 2,
       "estante": "B",
-      "correlativo": 34
+      "correlativo": 32
     },
     {
       "codigo_viejo": "416",
@@ -8953,31 +8898,107 @@
           "purity": null
         }
       ],
+      "code": "AC-2B-033",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 33
+    },
+    {
+      "codigo_viejo": "522",
+      "chemicalName": "Ácido salicilico",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "522-1",
+          "supplier": null,
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "522-2",
+          "supplier": "BDH",
+          "initialQuantity": 1000.0,
+          "currentQuantity": 1000.0,
+          "purity": "purísima"
+        }
+      ],
+      "code": "AC-2B-034",
+      "armario": 2,
+      "estante": "B",
+      "correlativo": 34
+    },
+    {
+      "codigo_viejo": "722",
+      "chemicalName": "Ácido salicilico",
+      "clases": [
+        "ACIDO",
+        "INORGANICO"
+      ],
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
+      "warehouse": "Depósito Central / Droguero",
+      "lotes": [
+        {
+          "lotNumber": "722-1",
+          "supplier": null,
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "722-2",
+          "supplier": "BDH",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": "p.a."
+        }
+      ],
       "code": "AC-2B-035",
       "armario": 2,
       "estante": "B",
       "correlativo": 35
     },
     {
-      "codigo_viejo": "332",
-      "chemicalName": "Ácido sal disódica (dihidrato) Cromotrópico",
+      "codigo_viejo": "217",
+      "chemicalName": "Ácido succinico",
       "clases": [
         "ACIDO",
-        "TOXICO",
-        "COMPUESTO_METALICO",
         "INORGANICO"
       ],
-      "state": "LIQUIDO",
-      "unit": "L",
-      "purity": "p.a.",
+      "state": "SOLIDO",
+      "unit": "u",
+      "purity": null,
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "332-1",
-          "supplier": "Merck",
-          "initialQuantity": 25.0,
-          "currentQuantity": 25.0,
-          "purity": "p.a."
+          "lotNumber": "217-1",
+          "supplier": "Analar",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "217-2",
+          "supplier": "Analar",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
+        },
+        {
+          "lotNumber": "217-3",
+          "supplier": "Analar",
+          "initialQuantity": 1,
+          "currentQuantity": 1,
+          "purity": null
         }
       ],
       "code": "AC-2B-036",
@@ -9128,45 +9149,23 @@
       "correlativo": 40
     },
     {
-      "codigo_viejo": "437",
-      "chemicalName": "Ácido(cristal) oxálico",
+      "codigo_viejo": "425",
+      "chemicalName": "Ácido tioglicolico",
       "clases": [
-        "COLORANTE",
         "ACIDO",
         "INORGANICO"
       ],
       "state": "SOLIDO",
-      "unit": "g",
-      "purity": "p.a.",
+      "unit": "u",
+      "purity": null,
       "warehouse": "Depósito Central / Droguero",
       "lotes": [
         {
-          "lotNumber": "437-1",
-          "supplier": "Timper",
-          "initialQuantity": 250.0,
-          "currentQuantity": 250.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "437-2",
-          "supplier": "Cicarelli",
-          "initialQuantity": 500.0,
-          "currentQuantity": 500.0,
-          "purity": "p.a."
-        },
-        {
-          "lotNumber": "437-3",
-          "supplier": "Alkemit",
+          "lotNumber": "425-1",
+          "supplier": "R.P",
           "initialQuantity": 1,
           "currentQuantity": 1,
           "purity": null
-        },
-        {
-          "lotNumber": "437-4",
-          "supplier": "Merck",
-          "initialQuantity": 100.0,
-          "currentQuantity": 100.0,
-          "purity": "p.a."
         }
       ],
       "code": "AC-2B-041",
@@ -9176,7 +9175,7 @@
     },
     {
       "codigo_viejo": "557",
-      "chemicalName": "Óxido de(pesado) magnesio",
+      "chemicalName": "Óxido de(pesado) de Magnesio",
       "clases": [
         "BASE",
         "COMPUESTO_METALICO",
@@ -9202,7 +9201,7 @@
     },
     {
       "codigo_viejo": "348",
-      "chemicalName": "α-Benzoinoxima",
+      "chemicalName": "Α-Benzoinoxima",
       "clases": [
         "ORGANICO"
       ],

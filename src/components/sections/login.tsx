@@ -27,11 +27,6 @@ export function LoginScreen() {
     }
   }
 
-  const quick = (em: string) => {
-    setEmail(em)
-    setPassword("3141")
-  }
-
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-teal-50 via-background to-emerald-50 dark:from-teal-950/30 dark:via-background dark:to-emerald-950/30">
       <div className="flex flex-1 items-center justify-center p-4">
@@ -96,19 +91,9 @@ export function LoginScreen() {
               </form>
 
               <div className="mt-6 rounded-lg border border-dashed bg-muted/30 p-3">
-                <p className="mb-2 text-xs font-medium text-muted-foreground">
-                  Acceso rápido:
+                <p className="text-xs text-muted-foreground text-center">
+                  Si olvidó su contraseña, contacte al administrador del sistema.
                 </p>
-                <div className="grid grid-cols-1 gap-1.5 text-xs">
-                  <button
-                    type="button"
-                    onClick={() => quick("mdellavecchia@inti.gob.ar")}
-                    className="rounded-md border bg-background px-2 py-1.5 text-left transition-colors hover:border-primary hover:bg-accent"
-                  >
-                    <div className="font-medium">MDV — Administrador</div>
-                    <div className="truncate text-muted-foreground">mdellavecchia@inti.gob.ar</div>
-                  </button>
-                </div>
               </div>
             </CardContent>
           </Card>

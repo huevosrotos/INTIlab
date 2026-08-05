@@ -438,6 +438,9 @@ function DrugDetail({ drugId, onBack }: { drugId: string; onBack: () => void }) 
         </CardContent>
       </Card>
 
+      {/* Acciones (solo admin) */}
+      <DrugActions drug={drug} />
+
       {/* Lotes */}
       <Card>
         <CardContent className="p-5 sm:p-6">
@@ -498,6 +501,16 @@ function InfoItem({ label, value, icon: Icon }: { label: string; value: string; 
         {label}
       </p>
       <p className="mt-0.5 text-sm font-medium">{value}</p>
+    </div>
+  )
+}
+
+function DrugActions({ drug }: { drug: any }) {
+  const { user } = useAuth()
+  if (!user || user.role !== "ADMIN") return null
+  return (
+    <div className="flex flex-wrap gap-2">
+      <DrugFormDialog drug={drug} />
     </div>
   )
 }

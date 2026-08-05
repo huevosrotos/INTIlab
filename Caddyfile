@@ -9,10 +9,21 @@
 # corre Docker. Si accedés desde otra IP, agregarla también.
 # ============================================================
 
-# Generar certificados autofirmados para localhost y la IP del host.
-# Cambiar 192.168.2.63 por la IP real si es distinta.
-https://192.168.2.63, https://localhost {
-    tls internal
+# Escuchar en el puerto 443 (HTTPS) para cualquier host.
+# tls internal genera un certificado autofirmado on-demand para
+# cualquier IP o hostname que se use para acceder (192.168.2.63,
+# localhost, etc.). El navegador va a mostrar advertencia la primera
+# vez — aceptar el riesgo para continuar.
+:443 {
+    tls internal {
+        on_demand
+    }
+    reverse_proxy droglab:3000
+}
+
+# Puerto 80 (HTTP) — acceso directo sin HTTPS para casos donde no
+# se necesite la cámara (escáner QR, fotos).
+:80 {
     reverse_proxy droglab:3000
 }
 

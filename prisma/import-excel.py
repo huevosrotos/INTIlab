@@ -293,6 +293,107 @@ ANION_PREFIXES = [
     "selenito", "telurito", "permanganato", "dihidrato", "hidrato",
 ]
 
+def normalize_hydrates(name: str) -> str:
+    """Normaliza los nombres de compuestos hidratados.
+    Convierte 'Acetato dihidrato de Zinc' → 'Acetato de Zinc (dihidrato)'
+    Convierte 'Cloruro de (anhidro) de Calcio' → 'Cloruro de Calcio (anhidro)'
+    """
+    import re
+
+    # Patrones de hidratación que pueden aparecer
+    hydrate_patterns = [
+        # "dihidrato de Zinc" → mover "dihidrato" al final entre paréntesis
+        (r'\s+(monohidrato|dihidrato|trihidrato|tetrahidrato|pentahidrato|hexahidrato|heptahidrato|octahidrato|decahidrato|hidrato)\s+de\s+', ' de '),
+        # "(anhidro) de Sodio" → "de Sodio (anhidro)"
+        (r'\s*\((anhidro|anhidro cristal|anhidra)\)\s*de\s*', ' de '),
+        # "de(anhidro) de" → "de ... (anhidro)"
+        (r'\s*de\s*\((anhidro|monohidrato|dihidrato|trihidrato|tetrahidrato|pentahidrato|hexahidrato|heptahidrato|decahidrato|6-Hidrato|hidrato)\)\s*de\s*', ' de '),
+        # "6-Hidrato" → "(hexahidrato)"
+        (r'\s*\(?\s*(\d+-?[Hh]idrato)\s*\)?\s*', ''),
+        # "(heptahidrato)" ya en paréntesis - dejarlo
+        # "anhidro" suelto al final → "(anhidro)"
+        (r'\s+anhidro$', ''),
+    ]
+
+    # Extraer el tipo de hidratación si está presente
+    hydrate_type = None
+    remaining = name
+
+    # Buscar patrones de hidratación
+    hydrate_keywords = [
+        'monohidrato', 'dihidrato', 'trihidrato', 'tetrahidrato',
+        'pentahidrato', 'hexahidrato', 'heptahidrato', 'octahidrato',
+        'decahidrato', 'anhidro', 'anhidra', 'hidrato',
+        '6-hidrato', '6-Hidrato', 'clorhidrato', 'diclorhidrato',
+    ]
+
+    # Mapeo de números a prefijos griegos
+    num_to_prefix = {
+        '1': 'monohidrato', '2': 'dihidrato', '3': 'trihidrato',
+        '4': 'tetrahidrato', '5': 'pentahidrato', '6': 'hexahidrato',
+        '7': 'heptahidrato', '8': 'octahidrato', '9': 'nonahidrato',
+        '10': 'decahidrato',
+    }
+
+    # Caso: "X (dihidrato)" → ya está bien, solo limpiar
+    m = re.search(r'\((monohidrato|dihidrato|trihidrato|tetrahidrato|pentahidrato|hexahidrato|heptahidrato|octahidrato|decahidrato|anhidro|anhidro cristal)\)', remaining, re.IGNORECASE)
+    if m:
+        hydrate_type = m.group(1).lower()
+        # Quitar el paréntesis del nombre, lo volveremos a agregar al final
+        remaining = remaining[:m.start()] + remaining[m.end():]
+        remaining = re.sub(r'\s+', ' ', remaining).strip().rstrip('de').strip()
+    else:
+        # Caso: "dihidrato de Zinc" → extraer "dihidrato"
+        for kw in hydrate_keywords:
+            if kw.lower() in remaining.lower() and kw.lower() not in ['clorhidrato', 'diclorhidrato']:
+                # No confundir clorhidrato con hidrato
+                pattern = re.compile(re.escape(kw), re.IGNORECASE)
+                # Verificar que no sea parte de "clorhidrato"
+                idx = remaining.lower().find(kw.lower())
+                if idx > 0 and remaining[idx-1:idx].lower() == 'o' and 'clor' in remaining[max(0,idx-5):idx].lower():
+                    continue  # Es clorhidrato, no hidrato
+                hydrate_type = kw.lower()
+                # Remover del nombre
+                remaining = pattern.sub('', remaining)
+                break
+
+        # Caso: "6-Hidrato" o "6-Hidrato)"
+        m2 = re.search(r'(\d+-?[Hh]idrato)', remaining)
+        if m2 and not hydrate_type:
+            num = m2.group(1).split('-')[0].lower()
+            hydrate_type = num_to_prefix.get(num, f'{num}-hidrato')
+            remaining = remaining[:m2.start()] + remaining[m2.end():]
+
+    # Limpiar el nombre restante
+    remaining = re.sub(r'\s+', ' ', remaining).strip()
+    # Quitar "de " sobrante al final
+    remaining = re.sub(r'\s+de$', '', remaining).strip()
+    # Quitar "de de" → "de" (se repite por el split)
+    remaining = re.sub(r'\bde\s+de\b', 'de', remaining).strip()
+    remaining = re.sub(r'\bde\s+de\b', 'de', remaining).strip()
+    # Quitar paréntesis vacíos
+    remaining = re.sub(r'\(\s*\)', '', remaining).strip()
+    # Quitar paréntesis con números sueltos como "(6-)"
+    remaining = re.sub(r'\(\d+-?\)', '', remaining).strip()
+    # Quitar comas sueltas
+    remaining = re.sub(r',\s*$', '', remaining).strip()
+    # Quitar "Clor" suelto (que viene de clorhidrato mal cortado)
+    remaining = re.sub(r'\s+Clor$', '', remaining).strip()
+    remaining = re.sub(r'\s+Clor\s+', ' ', remaining).strip()
+    # Quitar "Dichlor" suelto
+    remaining = re.sub(r'\s+Dichlor\s+', ' ', remaining).strip()
+    remaining = re.sub(r'\s+Dichlor$', '', remaining).strip()
+
+    # Si encontramos tipo de hidratación, agregarlo al final entre paréntesis
+    if hydrate_type:
+        # Normalizar "anhidro cristal" → "anhidro"
+        if 'anhidro' in hydrate_type:
+            hydrate_type = 'anhidro'
+        return f"{remaining} ({hydrate_type})"
+
+    return remaining
+
+
 def clean_name(name_b: str, tipo_c: str) -> str:
     """Combina B y C para obtener el nombre químico correcto."""
     b = (name_b or "").strip()
@@ -396,6 +497,8 @@ def main():
             nombre = re.sub(r"\s+", " ", nombre).strip()
             if nombre:
                 nombre = nombre[0].upper() + nombre[1:]
+            # Normalizar hidratos: "Acetato dihidrato de Zinc" → "Acetato de Zinc (dihidrato)"
+            nombre = normalize_hydrates(nombre)
             if not nombre or len(nombre) < 2:
                 continue
 

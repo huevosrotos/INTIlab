@@ -182,7 +182,7 @@ export function Labels() {
 
       <div className="grid gap-4 lg:grid-cols-5">
         {/* Columna izquierda: búsqueda + opciones */}
-        <div className="space-y-4 lg:col-span-3">
+        <div className="space-y-4 lg:col-span-3 order-2 lg:order-1">
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center gap-2 text-base">
@@ -214,7 +214,7 @@ export function Labels() {
               ) : (
                 <>
                   {/* Barra de selección masiva */}
-                  <div className="flex items-center justify-between gap-2 rounded-lg border bg-muted/30 p-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border bg-muted/30 p-2">
                     <div className="flex items-center gap-2">
                       <Checkbox
                         id="select-all"
@@ -238,9 +238,10 @@ export function Labels() {
                       variant="default"
                       disabled={selectedIds.size === 0}
                       onClick={() => setBulkPrintOpen(true)}
+                      className="whitespace-nowrap"
                     >
                       <Layers className="mr-1.5 h-4 w-4" />
-                      Imprimir {selectedIds.size > 0 ? `(${selectedIds.size})` : ""}
+                      Imprimir{selectedIds.size > 0 ? ` (${selectedIds.size})` : ""}
                     </Button>
                   </div>
 
@@ -373,7 +374,7 @@ export function Labels() {
         </div>
 
         {/* Columna derecha: vista previa */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 order-1 lg:order-2">
           <Card className="lg:sticky lg:top-4">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center gap-2 text-base">
@@ -382,7 +383,7 @@ export function Labels() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-center overflow-auto rounded-lg bg-muted/30 p-4">
+              <div className="flex items-center justify-center overflow-x-auto rounded-lg bg-muted/30 p-4">
                 {labelLoading ? (
                   <Skeleton className="h-32 w-48" />
                 ) : !labelData ? (

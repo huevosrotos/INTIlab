@@ -45,6 +45,7 @@ model Warehouse {
 
 model Drug {
   id                 String   @id @default(cuid())
+  code               String?  @unique // código nuevo: TIPO-ARMARIO-ESTANTE-CORR (ej: IND-A1-001)
   chemicalName       String
   commercialName     String?
   cas                String?  @unique
@@ -53,10 +54,11 @@ model Drug {
   purity             String?
   physicalState      String?  // SOLIDO | LIQUIDO | GAS | OTRO
   hazardClass        String?
-  pictograms         String   // JSON array string of GHS pictogram keys
+  pictograms         String   @default("[]") // JSON array string of GHS pictogram keys
   hStatements        String?  // JSON array string
+  chemicalClasses    String   @default("[]") // JSON array string of chemical class keys (INORGANICO, ACIDO, etc.)
   defaultWarehouseId String?
-  defaultLocation    String?  // estantería/estante/caja predeterminada
+  defaultLocation    String?  // armario-estante predeterminado
   minStock           Float?   @default(0)
   unit               String?  // g, mL, kg, L, u
   sdsUrl             String?

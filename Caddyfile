@@ -5,15 +5,20 @@
 # usa un certificado autofirmado (tls internal). Para dominios
 # públicos obtiene certificados Let's Encrypt automáticamente.
 #
-# Cambiar la IP/dominio abajo según tu entorno:
-#   - Local: usa tls internal (autofirmado, aceptar advertencia)
-#   - Dominio: comentar 'tls internal' para Let's Encrypt
+# IMPORTANTE: Cambiar la IP abajo por la IP real del host donde
+# corre Docker. Si accedés desde otra IP, agregarla también.
 # ============================================================
 
-# Para acceso por IP local (autofirmado):
-https://0.0.0.0, https://localhost {
-    reverse_proxy droglab:3000
+# Generar certificados autofirmados para localhost y la IP del host.
+# Cambiar 192.168.2.63 por la IP real si es distinta.
+https://192.168.2.63, https://localhost {
     tls internal
+    reverse_proxy droglab:3000
+}
+
+# HTTP (puerto 80) — acceso directo sin HTTPS
+http://0.0.0.0:80 {
+    reverse_proxy droglab:3000
 }
 
 # Para acceso por dominio público (Let's Encrypt automático):

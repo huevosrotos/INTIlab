@@ -504,7 +504,8 @@ function InfoItem({ label, value, icon: Icon }: { label: string; value: string; 
 
 function DrugFormDialog({ drug }: { drug?: any }) {
   const { user } = useAuth()
-  const canEdit = user && (user.role === "ADMIN" || user.role === "ENCARGADO")
+  // Solo los administradores pueden editar drogas
+  const canEdit = user && user.role === "ADMIN"
   const [open, setOpen] = useState(false)
   const qc = useQueryClient()
   const { data: whData } = useQuery({ queryKey: ["warehouses"], queryFn: fetchWarehouses, enabled: open })
@@ -516,8 +517,10 @@ function DrugFormDialog({ drug }: { drug?: any }) {
           ...drug,
           pictograms: parsePictograms(drug.pictograms),
           hStatements: drug.hStatements ? JSON.parse(drug.hStatements) : [],
+          chemicalClasses: drug.chemicalClasses ? parsePictograms(drug.chemicalClasses) : [],
         }
       : {
+          code: "",
           chemicalName: "",
           commercialName: "",
           cas: "",
@@ -528,6 +531,7 @@ function DrugFormDialog({ drug }: { drug?: any }) {
           hazardClass: "",
           pictograms: [],
           hStatements: [],
+          chemicalClasses: [],
           defaultWarehouseId: "",
           defaultLocation: "",
           minStock: 0,
@@ -595,6 +599,14 @@ function DrugFormDialog({ drug }: { drug?: any }) {
                 <Input value={form.commercialName} onChange={(e) => setForm({ ...form, commercialName: e.target.value })} />
               </Field>
             </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Field label="Código">
+                <Input value={form.code} onChange={(e) => setForm({ ...form, code: e.target.value })} placeholder="IO-1A-001" className="font-mono" />
+              </Field>
+              <Field label="Ubicación predeterminada">
+                <Input value={form.defaultLocation} onChange={(e) => setForm({ ...form, defaultLocation: e.target.value })} placeholder="Armario 1-Estante A" />
+              </Field>
+            </div>
             <div className="grid gap-3 sm:grid-cols-3">
               <Field label="Número CAS">
                 <Input value={form.cas} onChange={(e) => setForm({ ...form, cas: e.target.value })} placeholder="64-17-5" />
@@ -646,6 +658,46 @@ function DrugFormDialog({ drug }: { drug?: any }) {
                 placeholder="H225, H319, H336"
               />
             </Field>
+
+            {/* Clases químicas */}
+            <div>
+              <Label className="mb-2 block text-sm">Clases químicas</Label>
+              <div className="flex flex-wrap gap-1.5">
+                {Object.entries(CHEMICAL_CLASS_GROUPS).map(([groupKey, group]) => (
+                  <div key={groupKey} className="mb-2">
+                    <p className="mb-1 text-[10px] font-medium text-muted-foreground">{group.label}</p>
+                    <div className="flex flex-wrap gap-1">
+                      {group.options.map((c) => {
+                        const active = form.chemicalClasses?.includes(c) ?? false
+                        return (
+                          <button
+                            key={c}
+                            type="button"
+                            onClick={() => {
+                              const current = form.chemicalClasses ?? []
+                              setForm({
+                                ...form,
+                                chemicalClasses: active
+                                  ? current.filter((x: string) => x !== c)
+                                  : [...current, c],
+                              })
+                            }}
+                            className={cn(
+                              "rounded-md border px-1.5 py-0.5 text-[10px] transition-colors",
+                              active
+                                ? CHEMICAL_CLASS_COLORS[c]
+                                : "bg-background hover:bg-accent"
+                            )}
+                          >
+                            {CHEMICAL_CLASSES[c as keyof typeof CHEMICAL_CLASSES]}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             <div className="grid gap-3 sm:grid-cols-2">
               <Field label="Depósito predeterminado">

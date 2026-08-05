@@ -29,7 +29,7 @@ export function LoginScreen() {
 
   const quick = (em: string) => {
     setEmail(em)
-    setPassword("droglab123")
+    setPassword("3141")
   }
 
   return (
@@ -97,25 +97,17 @@ export function LoginScreen() {
 
               <div className="mt-6 rounded-lg border border-dashed bg-muted/30 p-3">
                 <p className="mb-2 text-xs font-medium text-muted-foreground">
-                  Accesos rápidos de demostración (contraseña: droglab123):
+                  Acceso rápido:
                 </p>
-                <div className="grid grid-cols-2 gap-1.5 text-xs">
-                  {[
-                    { em: "admin@lab.org", r: "Administrador" },
-                    { em: "encargado@lab.org", r: "Encargado" },
-                    { em: "operario@lab.org", r: "Operario" },
-                    { em: "auditor@lab.org", r: "Auditor" },
-                  ].map((q) => (
-                    <button
-                      key={q.em}
-                      type="button"
-                      onClick={() => quick(q.em)}
-                      className="rounded-md border bg-background px-2 py-1.5 text-left transition-colors hover:border-primary hover:bg-accent"
-                    >
-                      <div className="font-medium">{q.r}</div>
-                      <div className="truncate text-muted-foreground">{q.em}</div>
-                    </button>
-                  ))}
+                <div className="grid grid-cols-1 gap-1.5 text-xs">
+                  <button
+                    type="button"
+                    onClick={() => quick("mdellavecchia@inti.gob.ar")}
+                    className="rounded-md border bg-background px-2 py-1.5 text-left transition-colors hover:border-primary hover:bg-accent"
+                  >
+                    <div className="font-medium">MDV — Administrador</div>
+                    <div className="truncate text-muted-foreground">mdellavecchia@inti.gob.ar</div>
+                  </button>
                 </div>
               </div>
             </CardContent>

@@ -31,6 +31,7 @@ import { Ghspictogram } from "@/components/ghs-pictograms"
 import { QrBadge } from "@/components/qr-badge"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Catalog } from "@/components/sections/catalog"
+import { DrugFormDialog } from "@/components/sections/catalog"
 import { useAppStore } from "@/store/app-store"
 import { useAuth } from "@/components/app-provider"
 import { toast } from "sonner"
@@ -861,6 +862,10 @@ function LotDetail({
                         }
                       />
                     ))}
+                  {/* Editar droga: solo admin */}
+                  {user?.role === "ADMIN" && (
+                    <DrugEditButton drugId={lot.drug.id} drugData={lot.drug} />
+                  )}
                 </div>
               </div>
             </>
@@ -952,6 +957,11 @@ function InfoTile({
       {sub && <p className="text-[10px] text-muted-foreground">{sub}</p>}
     </div>
   )
+}
+
+// Botón para editar la droga desde el detalle del lote (solo admin)
+function DrugEditButton({ drugId, drugData }: { drugId: string; drugData: any }) {
+  return <DrugFormDialog drug={drugData} />
 }
 
 function NotesSection({ lot, canEdit }: { lot: Lot; canEdit: boolean }) {

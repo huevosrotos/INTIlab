@@ -515,7 +515,7 @@ function DrugActions({ drug }: { drug: any }) {
   )
 }
 
-function DrugFormDialog({ drug }: { drug?: any }) {
+export function DrugFormDialog({ drug }: { drug?: any }) {
   const { user } = useAuth()
   // Solo los administradores pueden editar drogas
   const canEdit = user && user.role === "ADMIN"

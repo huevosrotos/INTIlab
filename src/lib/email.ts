@@ -1,36 +1,21 @@
 import nodemailer from "nodemailer"
+import { getSettings } from "@/lib/settings"
 
-// Configuración SMTP desde variables de entorno
-// En el LXC/Docker, configurar:
-//   SMTP_HOST=smtp.gmail.com
-//   SMTP_PORT=587
-//   SMTP_USER=tu-email@gmail.com
-//   SMTP_PASS=tu-password-de-aplicacion
-//   SMTP_FROM=tu-email@gmail.com
-
-function getTransporter() {
-  const host = process.env.SMTP_HOST
-  const port = Number(process.env.SMTP_PORT || "587")
-  const user = process.env.SMTP_USER
-  const pass = process.env.SMTP_PASS
-
-  if (!host || !user || !pass) {
-    return null // SMTP no configurado
+async function getSmtpConfig() {
+  const settings = await getSettings([
+    "smtp_host", "smtp_port", "smtp_user", "smtp_pass", "smtp_from",
+  ])
+  return {
+    host: settings.smtp_host,
+    port: Number(settings.smtp_port || "587"),
+    user: settings.smtp_user,
+    pass: settings.smtp_pass,
+    from: settings.smtp_from || settings.smtp_user,
   }
-
-  return nodemailer.createTransport({
-    host,
-    port,
-    secure: port === 465,
-    auth: { user, pass },
-  })
 }
 
 export async function sendPasswordResetEmail(email: string, name: string, token: string, origin: string) {
-  const transporter = getTransporter()
-  const fromEmail = process.env.SMTP_FROM || process.env.SMTP_USER || "noreply@droglab.local"
-
-  // Link de reset: https://<host>/?reset=<token>
+  const config = await getSmtpConfig()
   const resetLink = `${origin}/?reset=${token}`
 
   const html = `
@@ -54,7 +39,7 @@ export async function sendPasswordResetEmail(email: string, name: string, token:
   `
 
   // Si SMTP no está configurado, loguear el link (para desarrollo)
-  if (!transporter) {
+  if (!config.host || !config.user || !config.pass) {
     console.log(`\n=== EMAIL (SMTP no configurado) ===`)
     console.log(`Para: ${email}`)
     console.log(`Link de reset: ${resetLink}`)
@@ -63,8 +48,15 @@ export async function sendPasswordResetEmail(email: string, name: string, token:
   }
 
   try {
+    const transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: config.port === 465,
+      auth: { user: config.user, pass: config.pass },
+    })
+
     await transporter.sendMail({
-      from: `DrogLab <${fromEmail}>`,
+      from: `DrogLab <${config.from}>`,
       to: email,
       subject: "DrogLab — Restablecer contraseña",
       html,
@@ -72,6 +64,39 @@ export async function sendPasswordResetEmail(email: string, name: string, token:
     return { ok: true }
   } catch (e: any) {
     console.error("Error enviando email:", e)
+    return { ok: false, error: e.message }
+  }
+}
+
+export async function sendTestEmail(to: string): Promise<{ ok: boolean; error?: string }> {
+  const config = await getSmtpConfig()
+
+  if (!config.host || !config.user || !config.pass) {
+    return { ok: false, error: "SMTP no configurado. Configure los parámetros primero." }
+  }
+
+  try {
+    const transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: config.port === 465,
+      auth: { user: config.user, pass: config.pass },
+    })
+
+    await transporter.sendMail({
+      from: `DrogLab <${config.from}>`,
+      to,
+      subject: "DrogLab — Email de prueba",
+      html: `
+        <div style="font-family: sans-serif; padding: 20px;">
+          <h2 style="color: #0d9488;">Email de prueba</h2>
+          <p>Si recibiste este email, la configuración SMTP funciona correctamente.</p>
+          <p style="color: #666; font-size: 12px;">DrogLab — Sistema de gestión de droguero</p>
+        </div>
+      `,
+    })
+    return { ok: true }
+  } catch (e: any) {
     return { ok: false, error: e.message }
   }
 }

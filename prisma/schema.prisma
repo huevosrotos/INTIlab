@@ -139,3 +139,8 @@ model Alert {
   @@index([lotId])
   @@index([resolved])
 }
+
+model Setting {
+  id    String @id
+  value String
+}

@@ -199,9 +199,13 @@ const toneClass: Record<string, string> = {
 
 export function Inventory() {
   const { activeLotId, selectedDrugId } = useAppStore()
-  // Si hay un lote o droga activa en detalle, mostrar directamente sin tabs
-  if (activeLotId || selectedDrugId) {
+  // Si hay un lote activo, mostrar el detalle del lote directamente
+  if (activeLotId) {
     return <LotsList />
+  }
+  // Si hay una droga seleccionada, mostrar el catálogo (que abre el DrugDetail)
+  if (selectedDrugId) {
+    return <Catalog />
   }
 
   return (

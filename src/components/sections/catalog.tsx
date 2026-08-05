@@ -40,6 +40,7 @@ import {
   AlertTriangle,
   Package,
   FileText,
+  Filter,
 } from "lucide-react"
 import {
   GHS_PICTOGRAMS,
@@ -48,6 +49,9 @@ import {
   UNITS,
   LOT_STATUS_COLORS,
   LOT_STATUS_LABELS,
+  CHEMICAL_CLASSES,
+  CHEMICAL_CLASS_GROUPS,
+  CHEMICAL_CLASS_COLORS,
 } from "@/lib/constants"
 import { useAppStore } from "@/store/app-store"
 import { useAuth } from "@/components/app-provider"
@@ -58,6 +62,7 @@ import { cn } from "@/lib/utils"
 
 type Drug = {
   id: string
+  code: string | null
   chemicalName: string
   commercialName: string | null
   cas: string | null
@@ -68,6 +73,7 @@ type Drug = {
   hazardClass: string | null
   pictograms: string
   hStatements: string | null
+  chemicalClasses: string
   defaultWarehouseId: string | null
   defaultLocation: string | null
   minStock: number | null
@@ -87,8 +93,11 @@ type Warehouse = {
   type: string
 }
 
-async function fetchDrugs(q?: string): Promise<{ drugs: Drug[] }> {
-  const url = q ? `/api/drugs?q=${encodeURIComponent(q)}` : "/api/drugs"
+async function fetchDrugs(q?: string, classes?: string[]): Promise<{ drugs: Drug[] }> {
+  const params = new URLSearchParams()
+  if (q) params.set("q", q)
+  if (classes && classes.length > 0) params.set("classes", classes.join(","))
+  const url = `/api/drugs${params.toString() ? "?" + params.toString() : ""}`
   const res = await fetch(url, { cache: "no-store" })
   if (!res.ok) throw new Error("Error")
   return res.json()
@@ -110,6 +119,8 @@ export function Catalog() {
   const { selectedDrugId, setSelectedDrugId } = useAppStore()
   const [query, setQuery] = useState("")
   const [debounced, setDebounced] = useState("")
+  const [selectedClasses, setSelectedClasses] = useState<string[]>([])
+  const [showFilters, setShowFilters] = useState(false)
 
   // debounce
   useEffect(() => {
@@ -118,12 +129,18 @@ export function Catalog() {
   }, [query])
 
   const { data, isLoading } = useQuery({
-    queryKey: ["drugs", debounced],
-    queryFn: () => fetchDrugs(debounced),
+    queryKey: ["drugs", debounced, selectedClasses.join(",")],
+    queryFn: () => fetchDrugs(debounced, selectedClasses),
   })
 
   if (selectedDrugId) {
     return <DrugDetail drugId={selectedDrugId} onBack={() => setSelectedDrugId(null)} />
+  }
+
+  const toggleClass = (c: string) => {
+    setSelectedClasses((prev) =>
+      prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]
+    )
   }
 
   return (
@@ -135,8 +152,74 @@ export function Catalog() {
             {data?.drugs.length ?? 0} drogas registradas
           </p>
         </div>
-        <DrugFormDialog />
+        <div className="flex items-center gap-2">
+          <Button
+            variant={selectedClasses.length > 0 ? "default" : "outline"}
+            size="sm"
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            <Filter className="mr-1.5 h-4 w-4" />
+            Filtros
+            {selectedClasses.length > 0 && (
+              <Badge variant="secondary" className="ml-1.5 text-[10px]">
+                {selectedClasses.length}
+              </Badge>
+            )}
+          </Button>
+          <DrugFormDialog />
+        </div>
       </div>
+
+      {/* Filtros por clase química */}
+      {showFilters && (
+        <Card>
+          <CardContent className="p-4">
+            <div className="mb-3 flex items-center justify-between">
+              <p className="text-xs font-medium text-muted-foreground">
+                Filtrar por clase química
+              </p>
+              {selectedClasses.length > 0 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setSelectedClasses([])}
+                  className="h-7 text-xs"
+                >
+                  Limpiar
+                </Button>
+              )}
+            </div>
+            <div className="space-y-3">
+              {Object.entries(CHEMICAL_CLASS_GROUPS).map(([groupKey, group]) => (
+                <div key={groupKey}>
+                  <p className="mb-1.5 text-[11px] font-medium text-muted-foreground">
+                    {group.label}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {group.options.map((c) => {
+                      const active = selectedClasses.includes(c)
+                      return (
+                        <button
+                          key={c}
+                          onClick={() => toggleClass(c)}
+                          className={cn(
+                            "rounded-md border px-2 py-0.5 text-[11px] transition-colors",
+                            active
+                              ? CHEMICAL_CLASS_COLORS[c]
+                              : "bg-background hover:bg-accent"
+                          )}
+                        >
+                          {CHEMICAL_CLASSES[c as keyof typeof CHEMICAL_CLASSES]}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       <div className="relative">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -185,6 +268,7 @@ function parsePictograms(p: string): string[] {
 
 function DrugCard({ drug, onClick }: { drug: Drug; onClick: () => void }) {
   const picts = parsePictograms(drug.pictograms)
+  const clases = parsePictograms(drug.chemicalClasses) // misma función, parsea JSON array
   const lowStock = drug.minStock != null && drug.totalStock <= drug.minStock && drug.totalStock > 0
   const outStock = drug.totalStock <= 0
   return (
@@ -193,6 +277,9 @@ function DrugCard({ drug, onClick }: { drug: Drug; onClick: () => void }) {
         <CardContent className="flex h-full flex-col p-4">
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0 flex-1">
+              {drug.code && (
+                <p className="mb-0.5 font-mono text-[10px] text-muted-foreground">{drug.code}</p>
+              )}
               <h3 className="truncate font-semibold leading-tight">{drug.chemicalName}</h3>
               {drug.commercialName && (
                 <p className="truncate text-xs text-muted-foreground">{drug.commercialName}</p>
@@ -218,6 +305,24 @@ function DrugCard({ drug, onClick }: { drug: Drug; onClick: () => void }) {
               </Badge>
             )}
           </div>
+
+          {/* Clases químicas */}
+          {clases.length > 0 && (
+            <div className="mt-1.5 flex flex-wrap gap-1">
+              {clases.slice(0, 4).map((c) => (
+                <Badge
+                  key={c}
+                  variant="outline"
+                  className={cn("border text-[9px]", CHEMICAL_CLASS_COLORS[c] ?? CHEMICAL_CLASS_COLORS.OTRO)}
+                >
+                  {CHEMICAL_CLASSES[c as keyof typeof CHEMICAL_CLASSES] ?? c}
+                </Badge>
+              ))}
+              {clases.length > 4 && (
+                <span className="text-[9px] text-muted-foreground">+{clases.length - 4}</span>
+              )}
+            </div>
+          )}
 
           <div className="mt-auto flex items-center justify-between pt-3">
             <div>

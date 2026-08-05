@@ -604,6 +604,7 @@ function LotDetail({
   canEdit: boolean
   canConsume: boolean
 }) {
+  const { user } = useAuth()
   const { data, isLoading } = useQuery({
     queryKey: ["lot", lotId],
     queryFn: () => fetchLotDetail(lotId),

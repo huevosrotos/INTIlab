@@ -1,234 +1,226 @@
-# DrogLab — Deploy con Docker
+# ============================================================
+# DrogLab — Guía de deployment en LXC (Proxmox)
+# ============================================================
 
-Sistema de gestión de droguero de laboratorio químico.
-Empaquetado en Docker para máxima portabilidad.
-
----
-
-## Requisitos
-
-- Docker Engine 20+ (o Docker Desktop)
-- Docker Compose v2
+Esta guía te lleva desde un LXC vacío hasta DrogLab corriendo en
+producción con Docker, accesible desde tu red local.
 
 ---
+## 0. Requisitos previos en el LXC (Proxmox)
 
-## Deploy rápido
+Docker necesita "nesting" habilitado en el LXC. En el HOST de Proxmox:
 
-### 1. Clonar el repo
+    pct set <CTID> --features nesting=1
+    pct restart <CTID>
 
-```bash
-git clone https://github.com/huevosrotos/INTIlab.git
-cd INTIlab
-git checkout docker  # rama con Docker
-```
+Reemplazá <CTID> por el ID de tu contenedor (ej: 101).
 
-### 2. Construir y levantar
+Para verificar que el nesting funciona, dentro del LXC:
 
-```bash
-docker compose up -d --build
-```
-
-La primera vez tarda 3-5 min (descarga imágenes, compila Next.js con Bun).
-
-### 3. Inicializar la DB con datos de muestra (solo la primera vez)
-
-```bash
-# Esperar a que el server arranque
-sleep 10
-
-# Inicializar (crea usuarios, depósitos, drogas, lotes de ejemplo)
-curl -X POST http://localhost:3000/api/setup \
-  -H "Authorization: Bearer droglab-setup-2024"
-```
-
-### 4. Acceder
-
-- **HTTP:** http://localhost:3000
-- **HTTPS:** https://localhost (aceptar certificado autofirmado)
-
-**Login demo:** `admin@lab.org` / `droglab123`
+    cat /proc/1/status | grep Cap | head -1
+    # debe incluir "cap_setfcap"
 
 ---
+## 1. Instalar Docker dentro del LXC
 
-## Comandos útiles
+Entrá al LXC (por consola Proxmox o SSH) como root y ejecutá:
 
-```bash
-# Ver logs
-docker compose logs -f droglab
+    # Debian/Ubuntu
+    apt update
+    apt install -y ca-certificates curl gnupg
 
-# Reiniciar
-docker compose restart droglab
+    install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/debian/gpg | \
+      gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    chmod a+r /etc/apt/keyrings/docker.gpg
 
-# Detener
-docker compose down
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(. /etc/os-release && echo $VERSION_CODENAME) stable" | \
+      tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-# Reconstruir después de cambios
-docker compose up -d --build
+    apt update
+    apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-# Ver estado
-docker compose ps
-```
-
----
-
-## Estructura de datos
-
-```
-data/
-├── db/            # Base SQLite (custom.db)
-└── uploads/       # Fotos de envases
-```
-
-Toda la información persiste en `data/`. Si borrás esa carpeta, perdés los datos.
+    # Verificar
+    docker --version
+    docker compose version
 
 ---
+## 2. Copiar el proyecto al LXC
 
-## Backup
+### Opción A — Desde un repo Git (recomendado)
 
-```bash
-# Backup completo (DB + imágenes)
-tar -czf droglab-backup-$(date +%F).tar.gz data/
+Si subiste el proyecto a un repo (GitHub, GitLab, Gitea local):
 
-# Restaurar
-tar -xzf droglab-backup-AAAA-MM-DD.tar.gz
-docker compose restart droglab
-```
+    apt install -y git
+    cd /opt
+    git clone https://tu-repo/droglab.git
+    cd droglab
 
----
+### Opción B — Subir un tarball desde tu máquina
 
-## Exportar el contenedor a otra máquina
+Desde tu PC (donde tenés el código), creá un tarball:
 
-### Opción A — Imagen + datos (sin Docker Hub)
+    cd /home/z/my-project
+    tar --exclude='node_modules' --exclude='.next' --exclude='db' \
+        --exclude='uploads' --exclude='*.log' \
+        -czf droglab.tar.gz .
 
-```bash
-# Exportar la imagen Docker
-docker save droglab:latest | gzip > droglab-image.tar.gz
+Subilo al LXC por SCP:
 
-# Exportar los datos
-tar -czf droglab-data.tar.gz data/
-docker-compose.yml Caddyfile
+    scp droglab.tar.gz root@<IP-DEL-LXC>:/opt/
 
-# Copiar a la otra máquina y:
-docker load < droglab-image.tar.gz
-tar -xzf droglab-data.tar.gz
-docker compose up -d
-```
+Y dentro del LXC:
 
-### Opción B — Repo Git + build (más limpio)
-
-```bash
-# En la nueva máquina:
-git clone https://github.com/huevosrotos/INTIlab.git
-cd INTIlab
-git checkout docker
-docker compose up -d --build
-
-# Migrar datos existentes (si hay):
-# Copiar data/ desde el backup
-```
+    mkdir -p /opt/droglab
+    tar -xzf /opt/droglab.tar.gz -C /opt/droglab
+    cd /opt/droglab
 
 ---
+## 3. Levantar el servicio
 
-## Migrar la DB a MariaDB (futuro)
+    cd /opt/droglab
+    docker compose up -d --build
 
-El sistema está preparado para migrar de SQLite a MariaDB sin cambiar código:
+La primera vez tarda 3-5 min (descarga imágenes, compila Next.js).
 
-### 1. Usar MariaDB externa (ya existente)
+Verificá que esté corriendo:
 
-Editar `docker-compose.yml`:
+    docker compose ps
+    docker compose logs -f
 
-```yaml
-services:
-  droglab:
-    environment:
-      - DATABASE_URL=mysql://admin:inti1957@192.168.2.205:3306/droglab
-```
-
-Cambiar `prisma/schema.prisma`:
-
-```prisma
-datasource db {
-  provider = "mysql"   # era "sqlite"
-  url      = env("DATABASE_URL")
-}
-```
-
-Crear la DB en MariaDB:
-
-```bash
-mysql -h 192.168.2.205 -u admin -p'inti1957' \
-  -e "CREATE DATABASE droglab CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-```
-
-Reconstruir y reiniciar:
-
-```bash
-docker compose up -d --build
-# El entrypoint aplica el schema automáticamente (prisma db push)
-# Inicializar datos:
-curl -X POST http://localhost:3000/api/setup \
-  -H "Authorization: Bearer droglab-setup-2024"
-```
-
-### 2. Usar MariaDB en un contenedor (incluido)
-
-Descomentar el servicio `db` en `docker-compose.yml` y cambiar `DATABASE_URL`:
-
-```yaml
-services:
-  droglab:
-    environment:
-      - DATABASE_URL=mysql://droglab:droglab@db:3306/droglab
-  db:
-    image: mariadb:11
-    # ... (ya está comentado en el archivo)
-```
-
-**Nota:** Las imágenes de los envases siguen en disco (`data/uploads/`), no en la DB. Eso es intencional: la DB queda liviana y las imágenes se respaldan por separado.
+Cuando veas ">> Iniciando servidor Next.js en puerto 3000…",
+la app está lista.
 
 ---
+## 4. Acceder desde la red local
 
-## HTTPS con Caddy
+Si el LXC tiene IP 192.168.1.50, abrí en el navegador:
 
-Caddy está incluido en el `docker-compose.yml` y gestiona HTTPS automáticamente:
+    http://192.168.1.50:3000
 
-- **IP local / localhost:** usa certificado autofirmado (`tls internal`). El navegador muestra advertencia la primera vez → aceptar el riesgo.
-- **Dominio público:** descomentar la sección de dominio en `Caddyfile` y Caddy obtiene certificados Let's Encrypt automáticamente.
+Login: admin@lab.org  /  droglab123
 
-El HTTPS es necesario para que la cámara funcione en el escáner QR y la captura de fotos del envase (los navegadores exigen HTTPS para `getUserMedia`).
-
----
-
-## Actualizar el código
-
-```bash
-git pull origin docker
-docker compose up -d --build
-```
-
-Los datos en `data/` no se pierden al actualizar.
+⚠️ IMPORTANTE: cambiá estas contraseñas antes de usar en producción
+(ver sección 6).
 
 ---
+## 5. Datos persistentes
 
-## Troubleshooting
+La base SQLite y las fotos de envases se guardan en:
 
-### El server no arranca
+    /opt/droglab/data/db/custom.db      # base de datos
+    /opt/droglab/data/uploads/          # fotos subidas
 
-```bash
-docker compose logs droglab | tail -30
-```
+Hacé backup periódico de esa carpeta:
+
+    tar -czf droglab-backup-$(date +%F).tar.gz data/
+
+---
+## 6. Seguridad (antes de producción real)
+
+### a) Cambiar contraseñas de los usuarios demo
+
+Entrá a la app como admin y cambiá las contraseñas, o ejecutá
+dentro del contenedor:
+
+    docker compose exec droglab sh -c \
+      'node -e "
+        const {PrismaClient} = require(\"@prisma/client\");
+        const crypto = require(\"crypto\");
+        const p = new PrismaClient();
+        const hash = crypto.createHash(\"sha256\").update(\"droglab_salt_2024_v1\" + \"TU_NUEVA_PASS\").digest(\"hex\");
+        p.user.update({where:{email:\"admin@lab.org\"}, data:{password:hash}}).then(()=>{console.log(\"OK\"); process.exit(0)});
+      "'
+
+### b) Ponerlo detrás de un reverse proxy con HTTPS (Caddy/Nginx)
+
+Para que el escáner QR funcione en el celu necesitás HTTPS.
+Instalá Caddy en el LXC:
+
+    apt install -y caddy
+
+Editá /etc/caddy/Caddyfile:
+
+    droglab.tudominio.com {
+        reverse_proxy localhost:3000
+    }
+
+    systemctl restart caddy
+
+Caddy gestiona certificados Let's Encrypt automáticamente.
+
+### c) Firewall
+
+Asegurate de abrir solo los puertos necesarios (80 y 443 para
+Caddy; NO exponer el 3000 directamente si usás reverse proxy).
+
+---
+## 7. Comandos útiles
+
+    docker compose up -d --build    # reconstruir tras actualizar código
+    docker compose down             # detener
+    docker compose restart          # reiniciar
+    docker compose logs -f          # ver logs en vivo
+    docker compose exec droglab sh  # entrar al contenedor
+
+    # Resetear la base de datos (¡borra todo!)
+    docker compose down
+    rm -rf data/db/*
+    docker compose up -d --build
+
+---
+## 8. Actualizar el código
+
+    cd /opt/intilab-docker
+    git pull origin docker
+    docker compose up -d --build
+    # el volumen data/ se preserva, no perdés datos
+
+**Importante:** Después de actualizar, verificar que los datos estén:
+
+    curl -s http://localhost:3000/api/auth/me | head -c 50
+
+Si devuelve error o `{"user":null}`, reinicializar:
+
+    curl -X POST http://localhost:3000/api/setup \
+      -H "Authorization: Bearer droglab-setup-2024"
+
+---
+## 9. Configurar SMTP (email de recuperación)
+
+Desde la app (solo admin): **Configuración → Email/SMTP**.
+
+Para Gmail:
+1. Activar verificación en 2 pasos en tu cuenta de Google
+2. Generar contraseña de aplicación: https://myaccount.google.com/apppasswords
+3. Completar en la app:
+   - Servidor: `smtp.gmail.com`
+   - Puerto: `587`
+   - Usuario: tu email
+   - Contraseña: la contraseña de aplicación (16 caracteres)
+   - Remitente: tu email
+4. Guardar y enviar email de prueba
+
+---
+## 10. Troubleshooting
 
 ### La cámara del escáner no funciona
-
-- Acceder por HTTPS (https://localhost), no HTTP
+- Acceder por HTTPS (https://<IP>), no HTTP
 - Aceptar el certificado autofirmado
 - Verificar permisos de cámara en el navegador
 
-### El build falla por Prisma
+### Los datos se perdieron después de un build
+    mkdir -p data/db data/uploads
+    chown -R 1001:1001 data/
+    curl -X POST http://localhost:3000/api/setup \
+      -H "Authorization: Bearer droglab-setup-2024"
 
-```bash
-# Limpiar todo y reconstruir
-docker compose down
-docker system prune -af
-docker compose up -d --build --no-cache
-```
+### El build falla por "no space left on device"
+    docker compose down
+    docker system prune -af --volumes
+    docker compose up -d --build
+
+### prisma db push falla con "Cannot find package effect"
+Asegurarse de tener el último Dockerfile:
+    git pull origin docker
+    docker compose build --no-cache

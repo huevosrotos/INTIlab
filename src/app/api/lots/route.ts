@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { requireUser, requireEditor, err, refreshLotAlerts } from "@/lib/api-helpers"
+import { normalizeText } from "@/lib/search"
 import { randomBytes } from "crypto"
 
 function genQrCode(): string {
@@ -21,15 +22,16 @@ export async function GET(req: NextRequest) {
   if (drugId) where.drugId = drugId
   if (status) where.status = status
   if (q) {
+    const qPrefix = q.substring(0, 3)
     where.OR = [
       { lotNumber: { contains: q } },
       { qrCode: { contains: q } },
-      { drug: { chemicalName: { contains: q } } },
-      { drug: { commercialName: { contains: q } } },
+      { drug: { chemicalName: { contains: qPrefix } } },
+      { drug: { commercialName: { contains: qPrefix } } },
     ]
   }
 
-  const lots = await db.lot.findMany({
+  let lots = await db.lot.findMany({
     where,
     orderBy: [{ status: "asc" }, { createdAt: "desc" }],
     include: {
@@ -37,6 +39,21 @@ export async function GET(req: NextRequest) {
       warehouse: true,
     },
   })
+
+  // Refinar búsqueda en memoria con normalización de acentos
+  if (q) {
+    const qNorm = normalizeText(q)
+    lots = lots.filter((l) => {
+      const fields = [
+        l.lotNumber,
+        l.qrCode,
+        l.drug?.chemicalName || "",
+        l.drug?.commercialName || "",
+      ]
+      return fields.some((f) => normalizeText(f).includes(qNorm))
+    })
+  }
+
   return NextResponse.json({ lots })
 }
 

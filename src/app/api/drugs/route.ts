@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { requireUser, requireEditor, err } from "@/lib/api-helpers"
+import { normalizeText } from "@/lib/search"
 
 export async function GET(req: NextRequest) {
   const r = await requireUser()
@@ -11,20 +12,25 @@ export async function GET(req: NextRequest) {
   const classes = searchParams.get("classes")?.split(",").filter(Boolean) ?? []
 
   const where: any = {}
-  if (q) {
-    where.OR = [
-      { chemicalName: { contains: q } },
-      { commercialName: { contains: q } },
-      { cas: { contains: q } },
-      { formula: { contains: q } },
-      { code: { contains: q } },
-    ]
-  }
   // Filtro por clases químicas (AND: debe tener todas las clases seleccionadas)
   if (classes.length > 0) {
     where.AND = classes.map((c) => ({
       chemicalClasses: { contains: `"${c}"` },
     }))
+  }
+
+  // Si hay búsqueda por texto, filtrar por las primeras letras (broad)
+  // y luego refinar en memoria con normalización de acentos
+  if (q) {
+    // Buscar las primeras 3 letras para reducir el set de la DB
+    const qPrefix = q.substring(0, 3)
+    where.OR = [
+      { chemicalName: { contains: qPrefix } },
+      { commercialName: { contains: qPrefix } },
+      { cas: { contains: q } },
+      { formula: { contains: q } },
+      { code: { contains: q } },
+    ]
   }
 
   const drugs = await db.drug.findMany({
@@ -46,7 +52,23 @@ export async function GET(req: NextRequest) {
     },
   })
 
-  const result = drugs.map((d) => {
+  // Refinar búsqueda en memoria con normalización de acentos
+  let filteredDrugs = drugs
+  if (q) {
+    const qNorm = normalizeText(q)
+    filteredDrugs = drugs.filter((d) => {
+      const fields = [
+        d.chemicalName,
+        d.commercialName || "",
+        d.cas || "",
+        d.formula || "",
+        d.code || "",
+      ]
+      return fields.some((f) => normalizeText(f).includes(qNorm))
+    })
+  }
+
+  const result = filteredDrugs.map((d) => {
     const activeLots = d.lots.filter((l) => l.status === "ACTIVO" || l.status === "EN_USO")
     const totalStock = activeLots.reduce((s, l) => s + l.currentQuantity, 0)
     return {

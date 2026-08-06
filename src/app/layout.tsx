@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "DrogLab · Gestión de Droguero de Laboratorio",
+  title: "INTILab · Gestión de Droguero de Laboratorio",
   description:
     "Sistema de gestión de inventario, trazabilidad y control de drogas de laboratorio químico con QR, multi-depósito y alertas.",
 }

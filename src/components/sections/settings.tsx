@@ -252,9 +252,9 @@ export function SettingsSection() {
             <CardContent className="space-y-4">
               <Field label="Nombre del sistema">
                 <Input
-                  value={currentForm.system_name || "DrogLab"}
+                  value={currentForm.system_name || "INTILab"}
                   onChange={(e) => update("system_name", e.target.value)}
-                  placeholder="DrogLab"
+                  placeholder="INTILab"
                 />
               </Field>
 

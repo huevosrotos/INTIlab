@@ -579,6 +579,18 @@ function BulkPrintDialog({
                     )}
                   </div>
 
+                  {/* Logo INTILab pequeño arriba a la derecha */}
+                  <img
+                    src="/logo.png"
+                    alt="INTILab"
+                    className="absolute right-0.5 top-0.5 opacity-90"
+                    style={{
+                      width: `${Math.max(3, minDim * 0.15)}mm`,
+                      height: `${Math.max(3, minDim * 0.15)}mm`,
+                      objectFit: "contain",
+                    }}
+                  />
+
                   {/* Texto */}
                   <div
                     className="flex min-w-0 flex-1 flex-col justify-center text-black"
@@ -729,6 +741,18 @@ function LabelPreview({
           <QrIcon className="text-black/30" style={{ width: pictPx, height: pictPx }} />
         )}
       </div>
+
+      {/* Logo INTILab pequeño arriba a la derecha */}
+      <img
+        src="/logo.png"
+        alt="INTILab"
+        className="absolute right-0.5 top-0.5 opacity-90"
+        style={{
+          width: `${Math.max(3, minDim * 0.15)}mm`,
+          height: `${Math.max(3, minDim * 0.15)}mm`,
+          objectFit: "contain",
+        }}
+      />
 
       {/* Texto */}
       <div

@@ -247,7 +247,7 @@ function printElement(id: string) {
     toast.error("Permita popups para imprimir")
     return
   }
-  printWindow.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>DrogLab - Reporte</title>
+  printWindow.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>INTILab - Reporte</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 24px; color: #111; }
     h1 { font-size: 20px; margin: 0 0 4px; }
@@ -260,7 +260,7 @@ function printElement(id: string) {
     .header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #14b8a6; padding-bottom: 8px; margin-bottom: 12px; }
     .brand { font-weight: 700; color: #0f766e; }
   </style></head><body>`)
-  printWindow.document.write(`<div class="header"><div><h1>DrogLab</h1><div class="meta">Sistema de droguero de laboratorio</div></div><div class="meta">Generado: ${format(new Date(), "dd/MM/yyyy HH:mm", { locale: es })}</div></div>`)
+  printWindow.document.write(`<div class="header"><div><h1>INTILab</h1><div class="meta">Sistema de droguero de laboratorio</div></div><div class="meta">Generado: ${format(new Date(), "dd/MM/yyyy HH:mm", { locale: es })}</div></div>`)
   printWindow.document.write(el.innerHTML)
   printWindow.document.write("</body></html>")
   printWindow.document.close()

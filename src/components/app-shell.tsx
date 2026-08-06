@@ -101,7 +101,7 @@ export function AppShell() {
             <SheetHeader className="px-4 pt-4">
               <SheetTitle className="flex items-center gap-2">
                 <BrandMark />
-                DrogLab
+                INTILab
               </SheetTitle>
             </SheetHeader>
             <nav className="mt-4 flex flex-col gap-1 px-2">
@@ -125,7 +125,7 @@ export function AppShell() {
         </Sheet>
         <div className="flex items-center gap-2">
           <BrandMark className="h-6 w-6" />
-          <span className="font-semibold">DrogLab</span>
+          <span className="font-semibold">INTILab</span>
         </div>
         <div className="ml-auto flex items-center gap-2">
           <Badge variant="outline" className="hidden sm:inline-flex">
@@ -143,7 +143,7 @@ export function AppShell() {
           <div className="flex h-16 items-center gap-2.5 border-b px-5">
             <BrandMark className="h-7 w-7" />
             <div className="flex flex-col leading-none">
-              <span className="text-base font-bold tracking-tight">DrogLab</span>
+              <span className="text-base font-bold tracking-tight">INTILab</span>
               <span className="text-[11px] text-muted-foreground">
                 Droguero de laboratorio
               </span>
@@ -276,13 +276,10 @@ function ReadOnlyNotice() {
 
 function BrandMark({ className }: { className?: string }) {
   return (
-    <div
-      className={cn(
-        "flex items-center justify-center rounded-lg bg-gradient-to-br from-teal-500 to-emerald-600 text-white shadow-sm",
-        className ?? "h-7 w-7"
-      )}
-    >
-      <FlaskConical className="h-1/2 w-1/2" />
-    </div>
+    <img
+      src="/logo.png"
+      alt="INTILab"
+      className={cn("rounded-lg object-contain", className ?? "h-7 w-7")}
+    />
   )
 }

@@ -51,11 +51,9 @@ export function LoginScreen() {
       <div className="flex flex-1 items-center justify-center p-4">
         <div className="w-full max-w-md">
           <div className="mb-8 flex flex-col items-center gap-3 text-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-600 text-white shadow-lg">
-              <FlaskConical className="h-8 w-8" />
-            </div>
+            <img src="/logo.png" alt="INTILab" className="h-20 w-20 rounded-xl shadow-lg" />
             <div>
-              <h1 className="text-2xl font-bold tracking-tight">DrogLab</h1>
+              <h1 className="text-2xl font-bold tracking-tight">INTILab</h1>
               <p className="text-sm text-muted-foreground">
                 Gestión de droguero de laboratorio químico
               </p>
@@ -89,7 +87,7 @@ export function LoginScreen() {
           )}
 
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            DrogLab · Sistema de gestión de droguero · v1.0
+            INTILab · Sistema de gestión de droguero · v1.0
           </p>
         </div>
       </div>

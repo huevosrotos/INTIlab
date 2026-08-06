@@ -1,4 +1,4 @@
-// Constantes y tipos compartidos del sistema DrogLab
+// Constantes y tipos compartidos del sistema INTILab
 
 export const ROLES = {
   ADMIN: "ADMIN",

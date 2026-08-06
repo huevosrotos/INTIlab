@@ -20,9 +20,9 @@ export async function sendPasswordResetEmail(email: string, name: string, token:
 
   const html = `
     <div style="font-family: sans-serif; max-width: 500px; margin: 0 auto; padding: 20px;">
-      <h2 style="color: #0d9488;">DrogLab — Recuperación de contraseña</h2>
+      <h2 style="color: #0d9488;">INTILab — Recuperación de contraseña</h2>
       <p>Hola ${name},</p>
-      <p>Recibimos una solicitud para restablecer tu contraseña en DrogLab.</p>
+      <p>Recibimos una solicitud para restablecer tu contraseña en INTILab.</p>
       <p>Hacé click en el siguiente enlace para crear una nueva contraseña:</p>
       <p style="margin: 20px 0;">
         <a href="${resetLink}"
@@ -33,7 +33,7 @@ export async function sendPasswordResetEmail(email: string, name: string, token:
       <p style="color: #666; font-size: 12px;">
         Este enlace expira en 1 hora.<br>
         Si no solicitaste este cambio, ignorá este email.<br>
-        DrogLab — Sistema de gestión de droguero
+        INTILab — Sistema de gestión de droguero
       </p>
     </div>
   `
@@ -56,9 +56,9 @@ export async function sendPasswordResetEmail(email: string, name: string, token:
     })
 
     await transporter.sendMail({
-      from: `DrogLab <${config.from}>`,
+      from: `INTILab <${config.from}>`,
       to: email,
-      subject: "DrogLab — Restablecer contraseña",
+      subject: "INTILab — Restablecer contraseña",
       html,
     })
     return { ok: true }
@@ -84,14 +84,14 @@ export async function sendTestEmail(to: string): Promise<{ ok: boolean; error?: 
     })
 
     await transporter.sendMail({
-      from: `DrogLab <${config.from}>`,
+      from: `INTILab <${config.from}>`,
       to,
-      subject: "DrogLab — Email de prueba",
+      subject: "INTILab — Email de prueba",
       html: `
         <div style="font-family: sans-serif; padding: 20px;">
           <h2 style="color: #0d9488;">Email de prueba</h2>
           <p>Si recibiste este email, la configuración SMTP funciona correctamente.</p>
-          <p style="color: #666; font-size: 12px;">DrogLab — Sistema de gestión de droguero</p>
+          <p style="color: #666; font-size: 12px;">INTILab — Sistema de gestión de droguero</p>
         </div>
       `,
     })

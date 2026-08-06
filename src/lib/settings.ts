@@ -11,7 +11,7 @@ const DEFAULTS: Record<string, string> = {
   // Alertas
   alert_expiry_days: "30",
   // Sistema
-  system_name: "DrogLab",
+  system_name: "INTILab",
   setup_token: "droglab-setup-2024",
 }
 

@@ -3,6 +3,9 @@
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
+import { Separator } from "@/components/ui/separator"
+import { toast } from "sonner"
 import {
   HelpCircle,
   QrCode,
@@ -261,6 +264,7 @@ const CATEGORIES = [
   { id: "qr", label: "Códigos QR", icon: QrCode },
   { id: "movimientos", label: "Movimientos", icon: ArrowLeftRight },
   { id: "general", label: "General", icon: HelpCircle },
+  { id: "soporte", label: "Soporte", icon: Mail },
 ] as const
 
 export function Help() {
@@ -298,9 +302,11 @@ export function Help() {
         ))}
       </div>
 
-      {/* Lista de temas o detalle */}
+      {/* Lista de temas, detalle o soporte */}
       {selected ? (
         <HelpDetail topic={selected} onBack={() => setSelectedId(null)} />
+      ) : category === "soporte" ? (
+        <SupportCard />
       ) : (
         <div className="grid gap-3 sm:grid-cols-2">
           {filtered.map((topic) => (
@@ -357,6 +363,84 @@ export function Help() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+function SupportCard() {
+  const [message, setMessage] = useState("")
+  const [sending, setSending] = useState(false)
+
+  const handleSend = async () => {
+    if (!message.trim()) return
+    setSending(true)
+    try {
+      const subject = encodeURIComponent("Soporte INTILab")
+      const body = encodeURIComponent(message)
+      window.location.href = `mailto:miguel.della.vecchia@gmail.com?subject=${subject}&body=${body}`
+      toast.success("Abriendo tu cliente de email…")
+    } catch {
+      toast.error("No se pudo abrir el cliente de email")
+    } finally {
+      setSending(false)
+    }
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <div className="flex items-start gap-3">
+          <img src="/logo.png" alt="INTILab" className="h-14 w-14 rounded-lg" />
+          <div>
+            <CardTitle className="text-lg">INTILab — Soporte</CardTitle>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Sistema de gestión de droguero de laboratorio químico
+            </p>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-sm font-semibold">Acerca del sistema</h3>
+          <p className="text-sm text-muted-foreground">
+            INTILab es un sistema de gestión de droguero desarrollado para el
+            INTI Mendoza. Permite llevar el inventario de reactivos químicos con
+            trazabilidad completa, etiquetas QR, multi-depósito, alertas de
+            vencimiento y stock bajo, clasificación química automática, y
+            operación desde PC o celular con cámara para escanear QR y tomar
+            fotos de envases.
+          </p>
+        </div>
+
+        <Separator />
+
+        <div className="space-y-2">
+          <h3 className="text-sm font-semibold">Contactar soporte</h3>
+          <p className="text-sm text-muted-foreground">
+            Si tenés algún problema, sugerencia o consulta, enviános un email:
+          </p>
+          <Textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            rows={4}
+            placeholder="Describí tu consulta o problema…"
+          />
+          <Button onClick={handleSend} disabled={sending || !message.trim()}>
+            <Mail className="mr-2 h-4 w-4" />
+            Enviar email de soporte
+          </Button>
+          <p className="text-xs text-muted-foreground">
+            El email se enviará a miguel.della.vecchia@gmail.com
+          </p>
+        </div>
+
+        <Separator />
+
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
+          <span>© 2026 INTI Mendoza — Todos los derechos reservados</span>
+          <span>INTILab v1.0</span>
+        </div>
+      </CardContent>
+    </Card>
   )
 }
 

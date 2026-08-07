@@ -242,20 +242,21 @@ export function LotsList() {
   const [query, setQuery] = useState("")
   const viewMode = inventoryViewMode
   const setViewMode = setInventoryViewMode
-  const listRef = useRef<HTMLDivElement>(null)
 
-  // Restaurar scroll al montar (cuando se vuelve del detalle)
+  // Restaurar scroll al volver del detalle
   useEffect(() => {
-    if (listRef.current && inventoryScrollY > 0 && !activeLotId) {
-      listRef.current.scrollTop = inventoryScrollY
+    if (inventoryScrollY > 0 && !activeLotId) {
+      // Pequeño delay para que el DOM se renderice antes de restaurar
+      const t = setTimeout(() => {
+        window.scrollTo({ top: inventoryScrollY, behavior: "instant" })
+      }, 50)
+      return () => clearTimeout(t)
     }
   }, [activeLotId, inventoryScrollY])
 
   // Guardar scroll antes de navegar al detalle
   const handleLotClick = (id: string) => {
-    if (listRef.current) {
-      setInventoryScrollY(listRef.current.scrollTop)
-    }
+    setInventoryScrollY(window.scrollY)
     setActiveLotId(id)
   }
 
@@ -376,7 +377,6 @@ export function LotsList() {
       </Card>
 
       {/* Lista de lotes */}
-      <div ref={listRef}>
       {isLoading ? (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {[...Array(6)].map((_, i) => (
@@ -405,7 +405,6 @@ export function LotsList() {
       ) : (
         <DrugGroupsView lots={lots} onLotClick={(id) => handleLotClick(id)} />
       )}
-      </div>
     </div>
   )
 }

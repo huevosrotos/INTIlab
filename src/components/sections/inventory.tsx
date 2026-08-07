@@ -233,10 +233,31 @@ export function LotsList() {
     setInventoryWarehouseFilter,
     activeLotId,
     setActiveLotId,
+    inventoryViewMode,
+    setInventoryViewMode,
+    inventoryScrollY,
+    setInventoryScrollY,
   } = useAppStore()
   const [statusFilter, setStatusFilter] = useState<string>("ALL")
   const [query, setQuery] = useState("")
-  const [viewMode, setViewMode] = useState<"lots" | "drugs">("lots")
+  const viewMode = inventoryViewMode
+  const setViewMode = setInventoryViewMode
+  const listRef = useRef<HTMLDivElement>(null)
+
+  // Restaurar scroll al montar (cuando se vuelve del detalle)
+  useEffect(() => {
+    if (listRef.current && inventoryScrollY > 0 && !activeLotId) {
+      listRef.current.scrollTop = inventoryScrollY
+    }
+  }, [activeLotId, inventoryScrollY])
+
+  // Guardar scroll antes de navegar al detalle
+  const handleLotClick = (id: string) => {
+    if (listRef.current) {
+      setInventoryScrollY(listRef.current.scrollTop)
+    }
+    setActiveLotId(id)
+  }
 
   const canEdit = user?.role === "ADMIN" || user?.role === "ENCARGADO"
 
@@ -355,6 +376,7 @@ export function LotsList() {
       </Card>
 
       {/* Lista de lotes */}
+      <div ref={listRef}>
       {isLoading ? (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {[...Array(6)].map((_, i) => (
@@ -376,13 +398,14 @@ export function LotsList() {
             <LotCard
               key={lot.id}
               lot={lot}
-              onClick={() => setActiveLotId(lot.id)}
+              onClick={() => handleLotClick(lot.id)}
             />
           ))}
         </div>
       ) : (
-        <DrugGroupsView lots={lots} onLotClick={(id) => setActiveLotId(id)} />
+        <DrugGroupsView lots={lots} onLotClick={(id) => handleLotClick(id)} />
       )}
+      </div>
     </div>
   )
 }

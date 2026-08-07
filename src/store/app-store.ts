@@ -30,6 +30,12 @@ interface AppState {
   // se guarda acá para que el Scanner lo procese al montar.
   pendingQr: string | null
   setPendingQr: (qr: string | null) => void
+  // Vista del inventario: "lots" o "drugs". Se preserva al volver del detalle.
+  inventoryViewMode: "lots" | "drugs"
+  setInventoryViewMode: (m: "lots" | "drugs") => void
+  // Scroll Y del listado de inventario. Se preserva al volver del detalle.
+  inventoryScrollY: number
+  setInventoryScrollY: (y: number) => void
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -46,4 +52,8 @@ export const useAppStore = create<AppState>((set) => ({
   setMobileNavOpen: (mobileNavOpen) => set({ mobileNavOpen }),
   pendingQr: null,
   setPendingQr: (pendingQr) => set({ pendingQr }),
+  inventoryViewMode: "lots",
+  setInventoryViewMode: (inventoryViewMode) => set({ inventoryViewMode }),
+  inventoryScrollY: 0,
+  setInventoryScrollY: (inventoryScrollY) => set({ inventoryScrollY }),
 }))

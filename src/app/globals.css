@@ -41,6 +41,33 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* ============================================================
+     Escala tipográfica: 8, 12, 16, 20, 24, 32
+     ============================================================ */
+  --text-xs: 0.5rem;       /* 8px  — micro: badges, códigos */
+  --text-sm: 0.75rem;      /* 12px — labels, captions */
+  --text-base: 1rem;       /* 16px — texto base, body */
+  --text-lg: 1.25rem;      /* 20px — subtítulos medianos */
+  --text-xl: 1.5rem;       /* 24px — títulos de sección */
+  --text-2xl: 2rem;        /* 32px — títulos de página */
+  /* Los siguientes se mantienen para compatibilidad */
+  --text-3xl: 2.5rem;      /* 40px */
+  --text-4xl: 3rem;        /* 48px */
+
+  /* ============================================================
+     Escala de padding: múltiplos de 2.5px
+     2.5, 5, 7.5, 10, 12.5, 15, 20, 25, 30
+     ============================================================ */
+  --spacing-micro: 0.15625rem;   /* 2.5px  */
+  --spacing-xs: 0.3125rem;        /* 5px    */
+  --spacing-sm: 0.46875rem;      /* 7.5px  */
+  --spacing-md: 0.625rem;        /* 10px   */
+  --spacing-sd: 0.78125rem;      /* 12.5px */
+  --spacing-lg: 0.9375rem;       /* 15px   */
+  --spacing-xl: 1.25rem;         /* 20px   */
+  --spacing-2xl: 1.5625rem;      /* 25px   */
+  --spacing-3xl: 1.875rem;       /* 30px   */
 }
 
 :root {
@@ -118,5 +145,21 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: 1rem; /* 16px base */
+    line-height: 1.5;
   }
+}
+
+/* ============================================================
+   Clases utilitarias para la escala tipográfica
+   Uso: <span class="text-2xs">código</span>
+   ============================================================ */
+@layer utilities {
+  .text-2xs { font-size: 0.5rem; line-height: 0.75; }       /* 8px */
+  .text-xs { font-size: 0.75rem; line-height: 1rem; }       /* 12px */
+  .text-sm { font-size: 0.75rem; line-height: 1.25rem; }    /* 12px (compat) */
+  .text-base { font-size: 1rem; line-height: 1.5rem; }      /* 16px */
+  .text-lg { font-size: 1.25rem; line-height: 1.75rem; }    /* 20px */
+  .text-xl { font-size: 1.5rem; line-height: 2rem; }       /* 24px */
+  .text-2xl { font-size: 2rem; line-height: 2.5rem; }      /* 32px */
 }
